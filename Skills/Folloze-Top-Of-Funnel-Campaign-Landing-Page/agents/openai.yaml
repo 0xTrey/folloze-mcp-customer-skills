@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze TOFU Landing Page"
+  short_description: "Build public-safe top-of-funnel Folloze campaign landing pages"
+  default_prompt: "Use $Folloze-Top-Of-Funnel-Campaign-Landing-Page to turn a campaign goal, audience, offer, and source brand input into a public-safe Folloze landing page with a clear CTA, local HTML source, QA gates, and MCP publish handoff when ready."

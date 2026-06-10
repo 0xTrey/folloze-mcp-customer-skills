@@ -1,0 +1,38 @@
+{
+  "repo": "folloze-mcp-customer-skills",
+  "visibility": "public",
+  "owner": "0xTrey",
+  "purpose": "Customer-facing Folloze MCP skills for building buyer experiences.",
+  "skills": [
+    {
+      "name": "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
+      "path": "Skills/Folloze-Top-Of-Funnel-Campaign-Landing-Page",
+      "status": "customer-facing",
+      "summary": "Builds public-safe top-of-funnel Folloze campaign landing pages."
+    },
+    {
+      "name": "Folloze-One-To-One-Microsite-Builder",
+      "path": "Skills/Folloze-One-To-One-Microsite-Builder",
+      "status": "customer-facing",
+      "summary": "Builds named-account Folloze one-to-one microsites and follow-up pages."
+    },
+    {
+      "name": "Folloze-Industry-Campaign-Page-Builder",
+      "path": "Skills/Folloze-Industry-Campaign-Page-Builder",
+      "status": "customer-facing",
+      "summary": "Builds Folloze industry, segment, cohort, persona, and one-to-few campaign pages."
+    },
+    {
+      "name": "Folloze-Content-Magic-Builder",
+      "path": "Skills/Folloze-Content-Magic-Builder",
+      "status": "customer-facing",
+      "summary": "Turns an approved content item into an interactive Folloze buyer experience."
+    }
+  ],
+  "excluded_internal_workflows": [
+    "internal demo-board builders",
+    "Zoom demo-room and post-call deal-room automation",
+    "API/native-template board builders",
+    "internal sales, CRM, tracker, and deal-process automations"
+  ]
+}

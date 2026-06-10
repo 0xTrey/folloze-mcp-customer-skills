@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Industry Campaign Page"
+  short_description: "Build vertical, segment, cohort, persona, and one-to-few Folloze campaign pages"
+  default_prompt: "Use $Folloze-Industry-Campaign-Page-Builder to build a reusable Folloze page for an industry, segment, cohort, persona, or campaign group, with audience-specific messaging, public-safe proof, local HTML, QA, and MCP publish handoff."

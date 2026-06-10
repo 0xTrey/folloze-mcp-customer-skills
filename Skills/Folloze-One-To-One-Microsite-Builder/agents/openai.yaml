@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze 1:1 Microsite"
+  short_description: "Build buyer-safe named-account Folloze microsites and follow-up pages"
+  default_prompt: "Use $Folloze-One-To-One-Microsite-Builder to build a buyer-safe Folloze one-to-one microsite for a named account, using public evidence and approved notes, with source-brand fidelity, local HTML, QA, and MCP publish handoff when ready."
