@@ -23,6 +23,8 @@ Gather only what is missing:
 
 If the user only provides a URL and goal, infer the first draft from the source page and clearly label assumptions.
 
+When required campaign assets are missing, load and apply [Missing Campaign Asset Fallbacks](references/missing-campaign-asset-fallbacks.md) before building, saving, or publishing.
+
 ## Workflow
 
 1. Build a short campaign brief: goal, audience, offer, promise, CTA, source inputs, and constraints.
@@ -31,13 +33,14 @@ If the user only provides a URL and goal, infer the first draft from the source 
 4. Create a single self-contained HTML file in the active repo.
 5. Keep buyer-facing copy public-safe. Do not expose internal notes, sales scoring, intent data, private meeting notes, or tool mechanics.
 6. Add real buttons, anchors, resource links, forms, video embeds, and analytics hooks where supported.
-7. QA desktop and mobile before Folloze save or handoff.
+7. If any required URL, form, event detail, asset, theme, or consent text is missing, apply the fallback reference and maintain a visible fallback inventory.
+8. QA desktop and mobile before Folloze save or handoff.
 
 ## Copy Standards
 
 - Make the first viewport explain the offer in under 10 seconds.
 - Use plain campaign language: what the visitor gets, why it matters now, and what to do next.
-- Avoid visible words like `demo`, `template`, `wireframe`, `test`, `internal`, `generated`, or `placeholder`.
+- Avoid visible words like `demo`, `template`, `wireframe`, `test`, `internal`, `generated`, or `placeholder` on final/approved pages; provisional pages must visibly flag missing assets per the fallback reference.
 - Do not make Folloze the visible brand unless the campaign is Folloze-owned.
 - Use proof only when sourced from public pages, approved materials, or user-provided facts.
 
@@ -57,6 +60,7 @@ Before final response or publishing:
 - External links and embedded media load or have a deliberate fallback.
 - Copy is public-safe and not account-specific unless approved.
 - Styling follows the source design context instead of generic AI gradients or decorative filler.
+- Any fallback content, interim route, bracketed value, placeholder asset area, or unconfirmed legal language is summarized in one user-facing list and explicitly confirmed before saving to a live board.
 - If publishing through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report the exact board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
