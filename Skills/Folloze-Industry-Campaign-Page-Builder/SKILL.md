@@ -29,8 +29,9 @@ Gather only what is missing:
 3. Choose a reusable structure: vertical narrative, cohort workflow, persona path, account-selection hub, or lifecycle/event page.
 4. Build one self-contained local HTML file in the active repo.
 5. Use approved industry claims and public proof. Do not invent market stats or customer logos.
-6. If account examples are included, keep them illustrative and public-safe.
-7. QA desktop/mobile, CTA behavior, source-brand fidelity, and whether the page stays reusable across the whole audience.
+6. When named account examples, named customer examples, customer logos, quantified outcomes, benchmarks, approved stats, or other approved proof points are missing, unavailable, unapproved, weak, or disallowed, load `references/proof-without-logos.md` before writing proof sections, resource modules, or publishing.
+7. If account examples are included, keep them illustrative and public-safe.
+8. QA desktop/mobile, CTA behavior, source-brand fidelity, and whether the page stays reusable across the whole audience.
 
 ## Page Standards
 
