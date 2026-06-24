@@ -12,6 +12,7 @@ This repo is intentionally separate from Folloze internal skill work. It contain
 | `Folloze-One-To-One-Microsite-Builder` | Named-account ABM pages, executive follow-up pages, renewal/expansion microsites, and account-specific buyer experiences. |
 | `Folloze-Industry-Campaign-Page-Builder` | Industry, segment, cohort, persona, event-audience, and one-to-few campaign pages. |
 | `Folloze-Content-Magic-Builder` | Interactive Folloze experiences created from a whitepaper, report, ebook, webinar, deck, video, guide, or other approved content item. |
+| `codex-narration-sweep` (Codex Narration Sweep) | Mandatory final buyer-facing sweep that removes fourth-wall narration, internal demo language, visual production artifacts, placeholders, and dead interactions before a board is saved or published. |
 
 ## Deliberately Excluded
 
@@ -35,6 +36,7 @@ For each skill:
 3. Run a sample task with minimal inputs and verify the skill asks only for missing critical information.
 4. Confirm output separates local source, Folloze save status, board ID, edit URL, and public URL status.
 5. Confirm buyer-facing copy never leaks private notes, internal scoring, tool mechanics, pricing strategy, or unapproved claims.
+6. Confirm every board builder invokes `codex-narration-sweep` before save or publish and blocks release until the sweep passes.
 
 ## Publishing Assumption
 

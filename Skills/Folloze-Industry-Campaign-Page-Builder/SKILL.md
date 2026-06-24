@@ -32,6 +32,7 @@ Gather only what is missing:
 6. When named account examples, named customer examples, customer logos, quantified outcomes, benchmarks, approved stats, or other approved proof points are missing, unavailable, unapproved, weak, or disallowed, load `references/proof-without-logos.md` before writing proof sections, resource modules, or publishing.
 7. If account examples are included, keep them illustrative and public-safe.
 8. QA desktop/mobile, CTA behavior, source-brand fidelity, and whether the page stays reusable across the whole audience.
+9. Invoke `codex-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
 
 ## Page Standards
 
@@ -57,8 +58,9 @@ Before final response or publish:
 - No unsupported market claims, fake logos, or invented stats.
 - CTAs and path choices perform real actions.
 - Mobile path selection is readable and tappable.
+- `codex-narration-sweep` passes with no unresolved buyer-facing narration, internal demo language, visual production artifacts, placeholders, or dead controls.
 - If saved through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report local source path, board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, audience boundary, page shape, CTA, QA status, and Folloze save/publish status.
+Return the local file path, audience boundary, page shape, CTA, Codex Narration Sweep status, QA status, and Folloze save/publish status.

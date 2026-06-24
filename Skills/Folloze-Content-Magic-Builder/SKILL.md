@@ -37,6 +37,7 @@ Gather only what is missing:
 5. Include real interactions: tabs, accordions, filters, progress path, quiz, checklist, modal, embedded media, resource cards, or CTA anchors.
 6. Link to or embed the original asset according to the approved gating/share model.
 7. QA desktop/mobile, interaction behavior, source fidelity, and content-rights boundaries.
+8. Invoke `codex-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
 
 ## Page Standards
 
@@ -55,8 +56,9 @@ Before final response or publish:
 - Interactions work and are not decorative.
 - CTA and original asset access path are clear.
 - Mobile reading and interaction states are clean.
+- `codex-narration-sweep` passes with no unresolved buyer-facing narration, internal demo language, visual production artifacts, placeholders, or dead controls.
 - If saved through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report local source path, board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, source asset used, interactive shape, CTA, content-rights caveats, QA status, and Folloze save/publish status.
+Return the local file path, source asset used, interactive shape, CTA, content-rights caveats, Codex Narration Sweep status, QA status, and Folloze save/publish status.
