@@ -1,9 +1,9 @@
 ---
-name: codex-narration-sweep
-description: Run the mandatory final buyer-facing production sweep on a Folloze board or local board HTML before approval, save, publish, or delivery. Invoke after every Folloze board-building skill, especially demo boards that showcase a skill, to automatically remove fourth-wall narration, build-process commentary, visual demo artifacts, internal sales language, dead interactions, placeholders, and anything that prevents the finished board from being used with a real buyer.
+name: folloze-narration-sweep
+description: Run the mandatory, AI-provider-neutral final buyer-facing production sweep on a Folloze board before approval, save, publish, or delivery. Invoke after every Folloze board-building workflow, especially demo boards that must also work with real buyers, to automatically remove fourth-wall narration, build-process commentary, visual demo artifacts, internal sales language, dead interactions, placeholders, and anything that prevents production use.
 ---
 
-# Codex Narration Sweep
+# Folloze Narration Sweep
 
 Use this skill as the final enforcement pass after a Folloze board's content, design, and interactions have been built.
 
@@ -14,6 +14,20 @@ A board may demonstrate a skill, but it must never describe the demonstration.
 The presenter may explain how the skill worked. The board must present only the finished buyer experience.
 
 Treat every board as buyer-facing and production-usable unless the user explicitly identifies it as internal seller enablement. For mixed demo contexts, optimize the visible board for the external buyer and keep internal demo notes in the final response or a separate internal artifact.
+
+## Runtime Independence
+
+Apply this contract by outcomes, not by AI vendor, model, operating system, editor, browser, or publishing tool.
+
+- Use the host environment's available file, page-source, browser, rendering, link-checking, and interaction-testing capabilities.
+- Treat `agents/openai.yaml` only as optional OpenAI interface metadata. It is not part of the sweep logic.
+- Prefer the bundled Python linter when Python 3 is available. It uses only the standard library.
+- If Python is unavailable, perform the same phrase, placeholder, visible-copy, hidden-copy, attribute, comment, CSS-generated-content, and script-string review manually.
+- If the board is not HTML, inspect the editable source or configuration plus the rendered buyer experience. Apply the same gate regardless of framework.
+- If no browser or renderer is available, do not claim visual or interaction QA passed. Mark those checks `unverified` and block approval, save, publish, or delivery until a capable runtime completes them.
+- If no editable source is available, report the exact visible issue and block automatic correction rather than inventing a fix.
+
+Never convert a missing capability into a clean pass.
 
 ## Mandatory Builder Contract
 
@@ -31,8 +45,10 @@ Do not treat the builder's own copy review as a substitute for this independent 
 
 ## Required Inputs
 
-Use the completed local HTML file and, when available:
+Use the completed board artifact and, when available:
 
+- Editable HTML, component source, page configuration, or equivalent.
+- Local preview path, preview URL, or public URL.
 - Intended audience.
 - Vendor or publisher brand.
 - Primary CTA.
@@ -43,11 +59,11 @@ Infer missing context from the board and preceding builder workflow when safe. D
 
 ## Workflow
 
-1. Confirm the input file exists and renders.
+1. Confirm the editable source or board artifact exists and identify the renderable preview.
 2. Record the current layout and interaction baseline.
-3. Inspect the current diff or preserve the last working version without overwriting unrelated user changes.
-4. Run `scripts/narration_lint.py <path-to-html>`.
-5. Read the complete rendered experience and source HTML.
+3. When version history is available, inspect the current diff or preserve the last working version without overwriting unrelated user changes.
+4. For HTML, resolve the skill directory and run `python3 <skill-directory>/scripts/narration_lint.py <path-to-html>` when Python is available. Otherwise perform the deterministic review manually.
+5. Read the complete rendered experience and editable source or configuration.
 6. Inventory all buyer-visible, accessibility-visible, hidden, and dynamically populated copy.
 7. Identify textual and visual fourth-wall violations.
 8. Automatically delete content that exists only to explain the build.
@@ -59,6 +75,19 @@ Infer missing context from the board and preceding builder workflow when safe. D
 14. Repeat the correction and QA loop until the production-usability gate passes.
 
 Do not pause for approval on routine corrections. Ask only when the requested purpose conflicts with production usability or a safe correction requires new approved content.
+
+## Minimum Evidence
+
+A clean pass requires evidence from all applicable layers:
+
+1. Source review: editable copy, metadata, hidden states, scripts, attributes, comments, and configuration.
+2. Rendered review: first viewport through final CTA at required desktop and mobile sizes.
+3. Interaction review: every visible control changes state, content, location, or next step as promised.
+4. Destination review: anchors resolve and approved external links return the intended destination.
+5. Claim review: approved claims, quotations, attribution, and legal copy remain accurate after corrections.
+6. Platform review: Folloze Preview behavior is verified when a board has been saved.
+
+Record unavailable layers as `unverified`; never omit them from the result.
 
 ## Inspect Every Surface
 
@@ -83,6 +112,8 @@ Remove internal source comments when they expose private context, build mechanic
 ## Deterministic Phrase Lint
 
 Treat lint findings as review candidates, not automatic proof that copy is invalid.
+
+The linter is an accelerator, not the production-usability gate. A zero-finding result does not replace rendered, interaction, conversion, or claim QA.
 
 Review phrases such as:
 
@@ -272,6 +303,8 @@ The board passes only when every answer is yes:
 
 Any `no` blocks save, publish, delivery, or final approval.
 
+Any required answer that cannot be verified also blocks release.
+
 ## Failure And Rollback
 
 If a violation cannot be corrected safely:
@@ -292,6 +325,15 @@ Keep exceptions narrow and report them before publish.
 
 ## Final Response
 
-Report the local file reviewed, sections removed, copy rewritten, intentional exceptions, interaction and conversion QA, desktop/mobile QA, Folloze Preview QA when applicable, blocked items, and save/publish status.
+Report:
+
+- Skill name and version source used.
+- Artifact or URL reviewed.
+- Automated lint status: `passed`, `findings corrected`, `findings unresolved`, or `unavailable/manual fallback used`.
+- Sections removed and copy rewritten.
+- Intentional exceptions.
+- Source, rendered, interaction, destination, claim, desktop/mobile, and Folloze Preview QA status.
+- Any `unverified` or blocked items.
+- Save and publish status.
 
 Do not reproduce internal narration in the buyer-facing page while reporting that it was removed.

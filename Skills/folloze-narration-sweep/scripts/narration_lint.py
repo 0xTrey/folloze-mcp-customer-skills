@@ -60,6 +60,10 @@ SCRIPT_STRING_PATTERN = re.compile(
     r"""(?P<quote>["'`])(?P<value>(?:\\.|(?!\1).)*)(?P=quote)""",
     re.DOTALL,
 )
+CSS_CONTENT_PATTERN = re.compile(
+    r"""content\s*:\s*(?P<quote>["'])(?P<value>(?:\\.|(?!\1).)*)(?P=quote)""",
+    re.IGNORECASE | re.DOTALL,
+)
 BUYER_COPY_ATTRIBUTES = {
     "alt",
     "aria-description",
@@ -111,6 +115,17 @@ class CopyExtractor(HTMLParser):
 
     def handle_data(self, data: str) -> None:
         if self._style_depth:
+            line, _ = self.getpos()
+            for match in CSS_CONTENT_PATTERN.finditer(data):
+                value = match.group("value")
+                if value.strip():
+                    self.candidates.append(
+                        Candidate(
+                            line + data[: match.start()].count("\n"),
+                            "css-generated-content",
+                            value,
+                        )
+                    )
             return
 
         line, _ = self.getpos()

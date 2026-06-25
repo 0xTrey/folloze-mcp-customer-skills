@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Narration Sweep"
-  short_description: "Remove fourth-wall narration and production artifacts from Folloze boards"
-  default_prompt: "Use $codex-narration-sweep as the mandatory final pass on a completed Folloze board. Automatically remove buyer-facing build narration, internal demo language, visual production artifacts, placeholders, and dead interactions; preserve approved claims; then rerun interaction, conversion, desktop, mobile, and Folloze Preview QA before save or publish."
