@@ -52,7 +52,7 @@ If activation context or buyer stage is not clear from the request, ask one conc
 10. Create one self-contained local HTML file in the active repo.
 11. Link to or embed the original asset according to the approved gating/share model.
 12. Render and QA the complete experience for design fidelity, desktop/mobile layout, interaction behavior, source fidelity, conversion path, and content-rights boundaries.
-13. Invoke `codex-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
+13. Invoke `folloze-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
 
 ## Recommended Page Shapes
 
@@ -113,9 +113,9 @@ Before final response or publish:
 - Desktop near `1440 x 900` and mobile near `390 x 844` have been rendered and visually inspected.
 - Mobile reading and interaction states are clean, with no clipping, overlap, horizontal overflow, or layout shifts.
 - Source-brand fidelity, visual hierarchy, imagery, section rhythm, and proof treatment meet the same quality bar as the campaign builders.
-- `codex-narration-sweep` passes with no unresolved buyer-facing narration, internal demo language, visual production artifacts, placeholders, or dead controls.
+- `folloze-narration-sweep` passes with no unresolved or unverified buyer-facing narration, internal demo language, visual production artifacts, placeholders, dead controls, or required QA layers.
 - If saved through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report local source path, board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, source asset used, activation context, buyer stage, page shape, interaction pattern, CTA, content-rights caveats, design QA status, Codex Narration Sweep status, and Folloze save/publish status.
+Return the local file path, source asset used, activation context, buyer stage, page shape, interaction pattern, CTA, content-rights caveats, design QA status, Folloze Narration Sweep status, and Folloze save/publish status.
