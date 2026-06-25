@@ -35,7 +35,7 @@ When required campaign assets are missing, load and apply [Missing Campaign Asse
 6. Add real buttons, anchors, resource links, forms, video embeds, and analytics hooks where supported.
 7. If any required URL, form, event detail, asset, theme, or consent text is missing, apply the fallback reference and maintain a visible fallback inventory.
 8. QA desktop and mobile before Folloze save or handoff.
-9. Invoke `codex-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
+9. Invoke `folloze-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
 
 ## Copy Standards
 
@@ -62,9 +62,9 @@ Before final response or publishing:
 - Copy is public-safe and not account-specific unless approved.
 - Styling follows the source design context instead of generic AI gradients or decorative filler.
 - Any fallback content, interim route, bracketed value, placeholder asset area, or unconfirmed legal language is summarized in one user-facing list and explicitly confirmed before saving to a live board.
-- `codex-narration-sweep` passes with no unresolved buyer-facing narration, internal demo language, visual production artifacts, placeholders, or dead controls.
+- `folloze-narration-sweep` passes with no unresolved or unverified buyer-facing narration, internal demo language, visual production artifacts, placeholders, dead controls, or required QA layers.
 - If publishing through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report the exact board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, the campaign goal, the CTA, Codex Narration Sweep status, QA status, and whether the page is local-only, ready for Folloze publish, or already saved/published.
+Return the local file path, the campaign goal, the CTA, Folloze Narration Sweep status, QA status, and whether the page is local-only, ready for Folloze publish, or already saved/published.
