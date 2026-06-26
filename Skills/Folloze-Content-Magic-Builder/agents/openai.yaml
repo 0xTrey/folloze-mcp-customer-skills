@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze Content Magic"
   short_description: "Turn one content item into a source-branded standalone buyer experience"
-  default_prompt: "Use $Folloze-Content-Magic-Builder to turn an approved content item into a strategically framed, source-branded standalone Folloze experience. Build an activation brief, inspect the vendor design system before CSS, choose the page shape before interactions, create local HTML, run rendered design and interaction QA, then apply the narration sweep before MCP save or publish."
+  default_prompt: "Use $Folloze-Content-Magic-Builder to turn an approved content item into a strategically framed, source-branded standalone Folloze experience. Build an activation brief, inspect the vendor design system before CSS, choose the page shape before interactions, create local HTML, then run rendered design, copy, link, and interaction QA before MCP save or publish."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Folloze Narration Sweep"
-  short_description: "Remove fourth-wall narration from Folloze boards"
-  default_prompt: "Use $folloze-narration-sweep as the mandatory final pass on a completed Folloze board. Remove buyer-facing build narration, internal demo language, visual production artifacts, placeholders, and dead interactions; preserve approved claims; then verify source, interactions, destinations, desktop, mobile, and Folloze Preview behavior before save or publish."

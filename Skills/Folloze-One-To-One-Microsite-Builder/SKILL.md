@@ -37,7 +37,7 @@ Gather only what is missing:
 5. Build one self-contained local HTML file in the active repo.
 6. Include real resources, anchors, modals, videos, or CTA links. Do not include decorative dead controls.
 7. QA desktop/mobile, buyer-safe copy, personalization provenance, source-brand fidelity, and CTA behavior.
-8. Invoke `folloze-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
+8. Complete a buyer-facing QA pass across copy, links, interactions, desktop/mobile layout, placeholders, and dead controls before save, publish, or delivery.
 9. For Folloze save/publish, use the available Folloze MCP publishing tools and current Folloze guide. Keep local source path, board ID, returned edit URL, and public URL status separate.
 
 ## Page Standards
@@ -60,10 +60,10 @@ Before final response or publish:
 - CTA is specific and functional.
 - Vendor and account logo treatment is verified.
 - Mobile and desktop layouts are readable.
-- `folloze-narration-sweep` passes with no unresolved or unverified buyer-facing narration, internal demo language, visual production artifacts, placeholders, dead controls, or required QA layers.
+- Buyer-facing copy, links, interactions, desktop/mobile layout, placeholders, and dead controls have been checked and any blocking issues have been fixed or explicitly reported.
 - The final response includes the list of personalized elements and sources for explicit confirmation before any live publish.
 - If saved through Folloze, report local source path, board ID, returned designer URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, account/page angle, CTA, source boundary caveats, Folloze Narration Sweep status, QA status, and Folloze save/publish status.
+Return the local file path, account/page angle, CTA, source boundary caveats, QA status, and Folloze save/publish status.

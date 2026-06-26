@@ -32,7 +32,7 @@ Gather only what is missing:
 6. When named account examples, named customer examples, customer logos, quantified outcomes, benchmarks, approved stats, or other approved proof points are missing, unavailable, unapproved, weak, or disallowed, load `references/proof-without-logos.md` before writing proof sections, resource modules, or publishing.
 7. If account examples are included, keep them illustrative and public-safe.
 8. QA desktop/mobile, CTA behavior, source-brand fidelity, and whether the page stays reusable across the whole audience.
-9. Invoke `folloze-narration-sweep` on the completed HTML. Allow it to make automatic corrections and do not save, publish, or deliver the board until its production-usability gate passes.
+9. Complete a buyer-facing QA pass across copy, links, interactions, desktop/mobile layout, placeholders, and dead controls before save, publish, or delivery.
 
 ## Page Standards
 
@@ -58,9 +58,9 @@ Before final response or publish:
 - No unsupported market claims, fake logos, or invented stats.
 - CTAs and path choices perform real actions.
 - Mobile path selection is readable and tappable.
-- `folloze-narration-sweep` passes with no unresolved or unverified buyer-facing narration, internal demo language, visual production artifacts, placeholders, dead controls, or required QA layers.
+- Buyer-facing copy, links, interactions, desktop/mobile layout, placeholders, and dead controls have been checked and any blocking issues have been fixed or explicitly reported.
 - If saved through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report local source path, board ID, returned edit URL, and public URL status separately.
 
 ## Final Response
 
-Return the local file path, audience boundary, page shape, CTA, Folloze Narration Sweep status, QA status, and Folloze save/publish status.
+Return the local file path, audience boundary, page shape, CTA, QA status, and Folloze save/publish status.
