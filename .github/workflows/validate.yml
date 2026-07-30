@@ -1,0 +1,39 @@
+name: Validate customer skills
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate bundle
+        run: python3 scripts/validate_customer_skills.py
+      - name: Compile Brand Harvester CLI
+        env:
+          PYTHONPYCACHEPREFIX: /tmp/folloze-customer-skills-pyc
+        run: python3 -m py_compile Skills/brand-harvester/scripts/brand_harvest.py
+      - name: Check Brand Harvester CLI help
+        run: python3 Skills/brand-harvester/scripts/brand_harvest.py --help
+      - name: Confirm incomplete harvest fails closed
+        shell: bash
+        run: |
+          set +e
+          output="$(
+            python3 Skills/brand-harvester/scripts/brand_harvest.py \
+              "Unavailable Fixture" \
+              --source-url http://127.0.0.1:9/ \
+              --capture-mode none \
+              --timeout 0.2
+          )"
+          status=$?
+          set -e
+          test "$status" -eq 2
+          grep -q '"status": "incomplete"' <<<"$output"

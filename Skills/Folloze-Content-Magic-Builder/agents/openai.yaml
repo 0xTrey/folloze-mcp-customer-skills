@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze Content Magic"
   short_description: "Turn one content item into a source-branded standalone buyer experience"
-  default_prompt: "Use $Folloze-Content-Magic-Builder to turn an approved content item into a strategically framed, source-branded standalone Folloze experience. Build an activation brief, inspect the vendor design system before CSS, choose the page shape before interactions, create local HTML, then run rendered design, copy, link, and interaction QA before MCP save or publish."
+  default_prompt: "Use $abm-strategist first when the content activation is named-account or one-to-few; otherwise keep the activation brief audience-level. Run $brand-harvester for every build and require brand.json.validation.status to be ok before using $Folloze-Content-Magic-Builder to create the source-branded HTML. Render desktop and mobile, compare them with the brand evidence, and run design, copy, link, and interaction QA before MCP save or publish."

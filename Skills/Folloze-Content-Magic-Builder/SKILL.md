@@ -13,6 +13,13 @@ Use this when the content item is the center of the page. This skill must stand 
 
 If the asset is only one module inside a broader campaign, use the appropriate campaign builder instead. If the asset remains the primary experience, keep this skill in control and use the activation context to shape the page.
 
+## Required Foundations
+
+- `$abm-strategist` is bundled with this skill. Run it when the activation context is a named-account or one-to-few experience; do not invent a target account for a standalone or one-to-many content experience.
+- Run `$brand-harvester` for every build before choosing visual treatments or writing CSS/HTML.
+- Store the harvest in the active project repo and review its screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`. Require a zero CLI exit and `brand.json.validation.status: ok`; inspect the resolved source, extraction statuses, and desktop/mobile screenshot pair or approved manual evidence.
+- If the source is blocked or unreadable, stop visual design until the user supplies a screenshot, brand guide, or equivalent approved evidence.
+
 ## Minimum Inputs
 
 Gather only what is missing:
@@ -38,13 +45,12 @@ If activation context or buyer stage is not clear from the request, ask one conc
 
 1. Read the complete source asset before writing buyer-facing copy or HTML.
 2. Extract the asset spine: core promise, audience pain, key ideas, proof points, recommended action, useful visuals, and source limitations.
-3. Write an activation brief: use context, audience, buyer stage, why now, asset promise, proof hierarchy, gating model, CTA, and constraints.
+3. For named-account or one-to-few activation, run `$abm-strategist` and inherit its approved brief and page structure. Otherwise write an activation brief: use context, audience, buyer stage, why now, asset promise, proof hierarchy, gating model, CTA, and constraints.
 4. Establish two sources of truth:
    - Use the asset for facts, claims, quotations, concepts, diagrams, and proof.
    - Use the vendor's public website or approved brand source for visual design, typography, imagery, layout rhythm, buttons, navigation, and footer treatment.
-5. Capture the source design system before writing CSS. Inspect the specific source page first, then the vendor home page when useful. Use `brand-harvester` when available.
-   - If the source site is blocked or unavailable, use an approved brand guide, screenshot, or source asset with sufficient design evidence.
-   - If no reliable design source exists, ask for one concise brand input rather than inventing a generic visual system.
+5. Run `$brand-harvester` before writing CSS. Inspect the specific source page first, then the vendor home page when useful; save and review the durable evidence bundle.
+   - If the source site is blocked or unavailable, stop visual design until the user supplies an approved brand guide, screenshot, or source asset with sufficient design evidence.
 6. Build a message spine: buyer tension, useful promise, key ideas, proof, business implication, and natural next action. Do not mirror the asset page by page.
 7. Choose the overall page shape before choosing interactions.
 8. Plan the first viewport and section sequence. Give every section one primary job: orient, teach, prove, personalize, qualify, route, or convert.
@@ -102,6 +108,9 @@ If these decisions are still generic, improve them before writing HTML.
 Before final response or publish:
 
 - The source asset is identified and approved for the intended use.
+- Named-account/one-to-few work has an approved `$abm-strategist` brief and page structure.
+- A durable `$brand-harvester` bundle exists in the active project repo, its validation status is `ok`, and all required outputs and evidence statuses were reviewed.
+- Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
 - The activation brief identifies the use context, buyer stage, promise, proof hierarchy, gating model, and CTA.
 - The vendor website or approved design source was inspected before CSS was written.
 - The page shape was chosen before the interaction pattern.
@@ -118,4 +127,4 @@ Before final response or publish:
 
 ## Final Response
 
-Return the local file path, source asset used, activation context, buyer stage, page shape, interaction pattern, CTA, content-rights caveats, design QA status, buyer-facing QA status, and Folloze save/publish status.
+Return the local file path, brief mode and approval status, brand-harvest path and review status, source asset used, activation context, buyer stage, page shape, interaction pattern, CTA, content-rights caveats, rendered design QA status, buyer-facing QA status, and Folloze save/publish status.

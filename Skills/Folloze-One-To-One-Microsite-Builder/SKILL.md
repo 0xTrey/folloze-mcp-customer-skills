@@ -11,6 +11,13 @@ Use this skill to build a Folloze-ready page for one named account or customer. 
 
 Use this skill for named-account pages, executive follow-up, post-event one-to-one pages, account-specific ABM, renewal/expansion stories, and deal-room-style microsites. If the user wants a broad campaign page, use `Folloze-Top-Of-Funnel-Campaign-Landing-Page`.
 
+## Required Foundations
+
+1. Run `$abm-strategist` first. Do not start design or HTML until its campaign brief and page structure have been presented and approved.
+2. Run `$brand-harvester` against the vendor's most specific approved source page before choosing visual treatments or writing CSS/HTML.
+3. Store the harvest in the active project repo and review its screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`. Require a zero CLI exit and `brand.json.validation.status: ok`; inspect the resolved source, extraction statuses, and desktop/mobile screenshot pair or approved manual evidence.
+4. If the source is blocked or unreadable, stop visual design until the user supplies a screenshot, brand guide, or equivalent approved evidence.
+
 ## Minimum Inputs
 
 Gather only what is missing:
@@ -30,15 +37,16 @@ Gather only what is missing:
 
 ## Workflow
 
-1. Write an internal account brief: account context, trigger, likely buyer priority, why now, vendor promise, proof, and CTA.
-2. Capture source design context from the vendor brand first. Use the target-account brand only as a respectful secondary accent unless the user asks for co-branding.
-3. List the personalized elements you plan to show, name each source in one sentence, and apply the personalized-not-creepy rubric before drafting buyer-facing copy.
-4. Choose a page shape: executive narrative, account-specific workflow, event follow-up, role-based buying committee, or resource-led follow-up.
-5. Build one self-contained local HTML file in the active repo.
-6. Include real resources, anchors, modals, videos, or CTA links. Do not include decorative dead controls.
-7. QA desktop/mobile, buyer-safe copy, personalization provenance, source-brand fidelity, and CTA behavior.
-8. Complete a buyer-facing QA pass across copy, links, interactions, desktop/mobile layout, placeholders, and dead controls before save, publish, or delivery.
-9. For Folloze save/publish, use the available Folloze MCP publishing tools and current Folloze guide. Keep local source path, board ID, returned edit URL, and public URL status separate.
+1. Inherit the approved campaign brief and page structure from `$abm-strategist`.
+2. Run `$brand-harvester`, save the durable evidence bundle, and review the required outputs before visual design.
+3. Use the vendor brand as the primary visual system. Use the target-account brand only as a respectful secondary accent unless the user asks for co-branding.
+4. List the personalized elements you plan to show, name each source in one sentence, and apply the personalized-not-creepy rubric before drafting buyer-facing copy.
+5. Translate the approved narrative structure into the best page shape without changing its strategic argument.
+6. Build one self-contained local HTML file in the active repo.
+7. Include real resources, anchors, modals, videos, or CTA links. Do not include decorative dead controls.
+8. QA desktop/mobile, buyer-safe copy, personalization provenance, source-brand fidelity, and CTA behavior.
+9. Complete a buyer-facing QA pass across copy, links, interactions, desktop/mobile layout, placeholders, and dead controls before save, publish, or delivery.
+10. For Folloze save/publish, use the available Folloze MCP publishing tools and current Folloze guide. Keep local source path, board ID, returned edit URL, and public URL status separate.
 
 ## Page Standards
 
@@ -53,6 +61,9 @@ Gather only what is missing:
 Before final response or publish:
 
 - Account identity is correct and not confused with a similarly named entity.
+- `$abm-strategist` brief and page structure were explicitly approved.
+- A durable `$brand-harvester` bundle exists in the active project repo, its validation status is `ok`, and all required outputs and evidence statuses were reviewed.
+- Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
 - Public-facing claims are sourced or user-approved.
 - Private context has been translated into public-safe problem language.
 - Every visible personalized element has a named source and has passed the Safe/Risky/Prohibited rubric.
@@ -66,4 +77,4 @@ Before final response or publish:
 
 ## Final Response
 
-Return the local file path, account/page angle, CTA, source boundary caveats, QA status, and Folloze save/publish status.
+Return the local file path, approved brief/structure status, brand-harvest path and review status, account/page angle, CTA, source boundary caveats, rendered QA status, and Folloze save/publish status.
