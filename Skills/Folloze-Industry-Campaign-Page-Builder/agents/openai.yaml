@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze Industry Campaign Page"
   short_description: "Build vertical, segment, cohort, persona, and one-to-few Folloze campaign pages"
-  default_prompt: "Use $Folloze-Industry-Campaign-Page-Builder to build a reusable Folloze page for an industry, segment, cohort, persona, or campaign group, with audience-specific messaging, public-safe proof, local HTML, QA, and MCP publish handoff."
+  default_prompt: "Use $abm-strategist first for one-to-few or named account-cluster work; otherwise keep the brief audience-level. Run $brand-harvester for every build and require brand.json.validation.status to be ok before using $Folloze-Industry-Campaign-Page-Builder to create the reusable HTML. Render desktop and mobile, compare them with the brand evidence, run buyer-facing QA, and only then hand off to Folloze MCP."
