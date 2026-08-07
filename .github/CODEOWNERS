@@ -1,0 +1,10 @@
+# Public customer skill distribution is owner-reviewed.
+* @0xTrey
+
+# Brand and distribution controls require the same explicit owner review.
+/Skills/folloze-brand-kit/ @0xTrey
+/Skills/brand-harvester/ @0xTrey
+/skills-manifest.json @0xTrey
+/skills-source-lock.json @0xTrey
+/scripts/install_customer_skills.py @0xTrey
+/.github/ @0xTrey
