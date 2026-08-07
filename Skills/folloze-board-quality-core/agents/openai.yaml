@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Board Quality Core"
+  short_description: "Shared public-safe production, QA, analytics, and MCP preflight gates"
+  default_prompt: "Use $folloze-board-quality-core after $folloze-board-router to choose an experience shape, enforce source and proof discipline, render and inspect desktop/mobile, validate interactions and analytics, and run a current MCP preflight before any save or publish."

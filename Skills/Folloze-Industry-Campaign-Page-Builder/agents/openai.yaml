@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze Industry Campaign Page"
   short_description: "Build vertical, segment, cohort, persona, and one-to-few Folloze campaign pages"
-  default_prompt: "Use $abm-strategist first for one-to-few or named account-cluster work; otherwise keep the brief audience-level. Run $brand-harvester for every build and require brand.json.validation.status to be ok before using $Folloze-Industry-Campaign-Page-Builder to create the reusable HTML. Render desktop and mobile, compare them with the brand evidence, run buyer-facing QA, and only then hand off to Folloze MCP."
+  default_prompt: "Use $abm-strategist only for one-to-few or named account-cluster work. Use $folloze-brand-kit for a Folloze-owned experience or $brand-harvester with brand.json.validation.status ok for an external brand. Then use $Folloze-Industry-Campaign-Page-Builder with $folloze-board-quality-core before MCP save or publish. Inherit an upstream route handoff when one is supplied."

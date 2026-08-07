@@ -19,10 +19,18 @@ jobs:
       - name: Compile Brand Harvester CLI
         env:
           PYTHONPYCACHEPREFIX: /tmp/folloze-customer-skills-pyc
-        run: python3 -m py_compile Skills/brand-harvester/scripts/brand_harvest.py
+        run: python3 -m py_compile Skills/brand-harvester/scripts/brand_harvest.py scripts/install_customer_skills.py
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Exercise dual-client installer
+        run: |
+          python3 scripts/install_customer_skills.py \
+            --target both \
+            --claude-root /tmp/folloze-claude-skills \
+            --codex-root /tmp/folloze-codex-skills
       - name: Check Brand Harvester CLI help
         run: python3 Skills/brand-harvester/scripts/brand_harvest.py --help
-      - name: Confirm incomplete harvest fails closed
+      - name: Confirm unsafe harvest target fails closed
         shell: bash
         run: |
           set +e
@@ -36,4 +44,4 @@ jobs:
           status=$?
           set -e
           test "$status" -eq 2
-          grep -q '"status": "incomplete"' <<<"$output"
+          grep -q '"status": "rejected"' <<<"$output"

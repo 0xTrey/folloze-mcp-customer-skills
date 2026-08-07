@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Brand Kit"
+  short_description: "Public-safe Folloze messaging, voice, visual identity, claims, and capabilities"
+  default_prompt: "Use $folloze-brand-kit as the brand authority for a Folloze-owned board, loading only the needed public-safe references. Pair it with $folloze-board-quality-core and do not introduce private sources, pricing, restricted proof, roadmap claims, or internal operator details."

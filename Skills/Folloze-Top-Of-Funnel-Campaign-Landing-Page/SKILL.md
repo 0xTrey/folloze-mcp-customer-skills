@@ -13,10 +13,10 @@ Use this skill when the page is one-to-many and should avoid named-account assum
 
 ## Required Foundations
 
-- `$abm-strategist` is bundled with this skill so a request that becomes named-account or one-to-few can route through the catalog Campaign Brief workflow. Do not invent a target account for a one-to-many campaign.
-- Run `$brand-harvester` for every build before choosing visual treatments or writing CSS/HTML.
-- Store the harvest in the active project repo and review its screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`. Require a zero CLI exit and `brand.json.validation.status: ok`; inspect the resolved source, extraction statuses, and desktop/mobile screenshot pair or approved manual evidence.
-- If the source is blocked or unreadable, stop visual design until the user supplies a screenshot, brand guide, or equivalent approved evidence.
+- Keep the brief one-to-many unless named-account evidence changes the motion. If an upstream route handoff is supplied, inherit it without rerunning routing.
+- Run `$abm-strategist` only if the request becomes named-account or one-to-few. Do not invent a target account for a broad campaign.
+- For a Folloze-owned experience, use `$folloze-brand-kit`. For an external brand, run `$brand-harvester` and require a zero CLI exit plus `brand.json.validation.status: ok` before visual design.
+- Use `$folloze-board-quality-core` for source discipline, experience-shape selection, responsive and interaction QA, analytics, and MCP preflight.
 
 ## Minimum Inputs
 
@@ -36,7 +36,7 @@ When required campaign assets are missing, load and apply [Missing Campaign Asse
 
 1. Build a short campaign brief: goal, audience, offer, promise, CTA, source inputs, and constraints.
 2. If the motion changes to named-account or one-to-few, stop and run `$abm-strategist` before continuing with the matching customer builder.
-3. Run `$brand-harvester`, save the durable evidence bundle, and review the required outputs before visual design.
+3. Complete the brand gate before visual design: `$folloze-brand-kit` for Folloze-owned work or a saved, reviewed, validated `$brand-harvester` bundle for an external brand.
 4. Choose a simple landing-page shape: hero, why now, value proof, how it works, resource/offer module, CTA.
 5. Create a single self-contained HTML file in the active repo.
 6. Keep buyer-facing copy public-safe. Do not expose internal notes, sales scoring, intent data, private meeting notes, or tool mechanics.
@@ -65,7 +65,8 @@ When required campaign assets are missing, load and apply [Missing Campaign Asse
 Before final response or publishing:
 
 - The page has one clear CTA path and no dead controls.
-- A durable `$brand-harvester` bundle exists in the active project repo, its validation status is `ok`, and all required outputs and evidence statuses were reviewed.
+- The selected brand path is complete: `$folloze-brand-kit` for Folloze-owned work, or a durable validated `$brand-harvester` bundle for external-brand work.
+- `$folloze-board-quality-core` passed for source/proof discipline, selected experience shape, desktop/mobile render, controls, analytics, accessibility, and save readiness.
 - Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
 - Desktop and mobile layouts are readable with no horizontal overflow.
 - External links and embedded media load or have a deliberate fallback.

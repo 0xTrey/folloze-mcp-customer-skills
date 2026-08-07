@@ -1,23 +1,64 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "sources": {
     "abm-strategist": {
       "source_url": "https://cdn.folloze.com/flz/skills/abm-strategist.zip",
       "source_archive_sha256": "9a8effd4b60d93569f0ab4313b168ed6ff584a09cabed862c460702181d2f14d",
       "upstream_skill_sha256": "38dd381b30791037da9442895750a3d1f83ee8e7dc8da4b51c07363d3adec06a",
+      "derivation": "Customer-pack routing and host-neutral checkpoint compatibility applied.",
       "vendored_files": {
-        "Skills/abm-strategist/SKILL.md": "5d9cafbe22b2b34b8f2467de3297738d01fa13f78fcbf17bed25159b9b73944a",
-        "Skills/abm-strategist/agents/openai.yaml": "324dbe2c3018d1bab4bfb07f7a580dae3eda5d197b0eea70570af3c970487bfd"
+        "Skills/abm-strategist/SKILL.md": "cc6d74a9838a989e95e165be5ec2438f2ccc4a6a45dffdd8ad8c2a83c65e729f",
+        "Skills/abm-strategist/agents/openai.yaml": "75611a32d01efe710fa42335e401e2da7854f15bc4591dd50f55bb604a4ab7a3"
       }
     },
     "brand-harvester": {
       "source_url": "https://github.com/0xTrey/Folloze-Skills",
       "source_commit": "04d3482064a3ae8083af13ca4557dff515fc9ce1",
+      "derivation": "Portable customer routing, fail-closed evidence, host-neutral paths, and public-network URL security applied.",
       "vendored_files": {
-        "Skills/brand-harvester/SKILL.md": "eb523fee405f51b2f96b509aa9c2fa574b3cc1929fc46c45011666669e293db8",
+        "Skills/brand-harvester/SKILL.md": "fceaad1ca1e6ea0943c2783dede8223bdffadb6dbef9b29742bbe504d078e2ff",
         "Skills/brand-harvester/agents/openai.yaml": "4cae1f086b47f39a3b6e989e576f90cc10613e916d248d08eb064ba678219c52",
-        "Skills/brand-harvester/references/brand-harvest-cli.md": "8f63f62d40e37052aba544957d9e5c6529bc077cb754eb4a74ecba68109252cb",
-        "Skills/brand-harvester/scripts/brand_harvest.py": "8d7231213486d420c35313c9e2589a3fd1bd181f138d7173f09ea819672b19ae"
+        "Skills/brand-harvester/references/brand-harvest-cli.md": "af43990086d102f1f7da226e84e21c307d9701df97de55d5911f6355859e31fa",
+        "Skills/brand-harvester/scripts/brand_harvest.py": "9c20561947ad0d1e48ff8f52e07b7ec2896b591bf0bf28c3ddfe884f35745adb"
+      }
+    },
+    "demo-builder-public-quality-derivative": {
+      "source_url": "https://github.com/0xTrey/Folloze-Skills",
+      "source_commit": "3c37cc8c4a6938fb7eaa76760e70d83252d1ccfd",
+      "derivation": "Portable design DNA, experience shape, and QA gates distilled without internal board, tracker, account, or operator workflows.",
+      "vendored_files": {
+        "Skills/folloze-board-quality-core/references/buyer-experience-quality-gates.md": "026f9760e1beb732dd0fbd8ed506eaa22f163bfe27ad5b15aa532b0908ec3410",
+        "Skills/folloze-board-quality-core/references/experience-shapes.md": "c0a70f9ffc06f12667f5a63cab0572296aea707385a2fe1a4796699489e24bce",
+        "Skills/folloze-board-quality-core/references/source-design-dna.md": "b5edecd94a1271f46caed026a529d1393224b45ae33af80dfa5f72741f64451e"
+      }
+    },
+    "folloze-brand-kit-public-safe-derivative": {
+      "source_url": "https://github.com/0xTrey/Folloze-Skills",
+      "source_commit": "3c37cc8c4a6938fb7eaa76760e70d83252d1ccfd",
+      "derivation": "Purpose-built public-safe subset; private source pointers, pricing, package rows, restricted proof, competitive strategy, roadmap context, and logo binaries excluded.",
+      "vendored_files": {
+        "Skills/folloze-brand-kit/SKILL.md": "6d2185fbcc7183918167c959b3c5b328b113d6a604ebfeec7a1327770ecc806c",
+        "Skills/folloze-brand-kit/agents/openai.yaml": "e4eec5e39e496d723e01feabfdc9f633551a6bd19bc38a91f98e5f1bae05713f",
+        "Skills/folloze-brand-kit/references/brand-foundation.md": "d82e44b0941c33781da95ef50eb125cd48b3a092adbf113b5a4dd4092a729a3d",
+        "Skills/folloze-brand-kit/references/campaign-board-design-context.md": "c938b8a037fa61c05c15e5dd1772ed8927d0a98c0b1a15ef2988b4786405060d",
+        "Skills/folloze-brand-kit/references/claims-and-proof.md": "e363268071b868f30c12fe5ba51873c2d579077c4ea556a7ad9a482a37372394",
+        "Skills/folloze-brand-kit/references/product-capabilities-public-safe.md": "e781f93a0cc5cb0a66953a6477cade8c8c89ae63dce978543a29964dcbe89c37",
+        "Skills/folloze-brand-kit/references/visual-identity.md": "63d241e8c619e4f444b6799e7a6766113c420e534f3940d18ac59db05501a029",
+        "Skills/folloze-brand-kit/references/voice-and-style.md": "7f906ff4c83527df8901c93bdb84b6a8f1ca2bacbfb62d72e7baf71b34461df0"
+      }
+    },
+    "customer-bundle-v3-authored": {
+      "source_url": "https://github.com/0xTrey/folloze-mcp-customer-skills",
+      "base_commit": "2676ae73232caf6aaee3471e887cb2da32a01390",
+      "derivation": "Public router, webinar builder, shared quality wrapper, and MCP preflight authored for bundle v3.",
+      "vendored_files": {
+        "Skills/Folloze-Webinar-Promotion-Page-Builder/SKILL.md": "dbcc1b829ce6f7d9bcb9552a0da25a1a28ce1b3f31e1ab7c282411399db5c10e",
+        "Skills/Folloze-Webinar-Promotion-Page-Builder/agents/openai.yaml": "c24bccd1bb23c6088d6997988a5f3f4e6bb0314146aa159bb01acb0a0b44335d",
+        "Skills/folloze-board-quality-core/SKILL.md": "6ccefa71e848aa2b9d5e97f2a13cc3f4c235896780b4d4dd71ea10792abb138d",
+        "Skills/folloze-board-quality-core/agents/openai.yaml": "ca0aae8ea0a5bbadfd02f6e7f3c83565327bc6a22eff8e8e461d309dd47f9b4c",
+        "Skills/folloze-board-quality-core/references/mcp-publishing-preflight.md": "4b851233d9d8bcc8439a9a7c18b120b5cd018e3cfc03226ef8f978dba64b355e",
+        "Skills/folloze-board-router/SKILL.md": "2d62ffd93b4081e99f5853cd0235728ad077dbdc3d51024c56f04ea48d52e417",
+        "Skills/folloze-board-router/agents/openai.yaml": "4dcf77baddeb9ecf63c14aacb63c441cfb43138af95a98ca31d8d0ba307baea7"
       }
     }
   }

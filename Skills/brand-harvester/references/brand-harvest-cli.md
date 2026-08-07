@@ -11,8 +11,10 @@ Use `scripts/brand_harvest.py` when a Folloze board, ABM page, or GTM asset need
 
 ## Command
 
+Set `FOLLOZE_SKILLS_DIR` to the active client's installed skill directory, such as the Claude or Codex destination selected by the bundle installer.
+
 ```bash
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   forcepoint.com \
   --target "Mayo Clinic"
 ```
@@ -20,7 +22,7 @@ python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/bran
 For a specific source page:
 
 ```bash
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   forcepoint.com \
   --source-url https://www.forcepoint.com/platform
 ```
@@ -28,7 +30,7 @@ python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/bran
 To include a GoFullPage or other manual screenshot:
 
 ```bash
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   forcepoint.com \
   --manual-screenshot ./screenshots/forcepoint-gofullpage.png
 ```
@@ -36,7 +38,7 @@ python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/bran
 By default, output goes to a timestamped directory under `/tmp/folloze-brand-harvest/`. For durable board work, pass an output directory inside the active board repo, for example:
 
 ```bash
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   forcepoint.com \
   --out research/brand-harvest/forcepoint
 ```
@@ -44,12 +46,12 @@ python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/bran
 For a vendor page where the source page is the visual truth but the home page may carry broader brand patterns, run both harvests:
 
 ```bash
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   younion.live \
   --source-url https://www.younion.live/our-work/aws-gen-ai-loft \
   --target AWS \
   --out research/brand-harvest/younion-aws-gen-ai-loft
-python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+python3 "${FOLLOZE_SKILLS_DIR:?set this to the installed Claude or Codex skills directory}/brand-harvester/scripts/brand_harvest.py" \
   younion.live \
   --source-url https://www.younion.live/ \
   --target AWS \
@@ -82,6 +84,7 @@ Exit code `2` and status `incomplete` mean the bundle is diagnostic only and mus
 1. Input resolver:
    - Accepts domain, source URL, or account name.
    - For account names, tries likely domains and a bounded search fallback.
+   - Accepts public HTTP(S) targets only and rejects local, private, link-local, metadata, reserved, credential-bearing, and unsafe redirect targets before fetch or browser navigation.
 
 2. Brandfetch:
    - Uses `BRANDFETCH_API_KEY` or `--brandfetch-token` when available.
