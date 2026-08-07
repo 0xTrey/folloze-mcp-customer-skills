@@ -1,27 +1,73 @@
 {
   "repo": "folloze-mcp-customer-skills",
-  "bundle_version": "2.0.0",
+  "bundle_version": "3.0.0",
   "visibility": "public",
   "owner": "0xTrey",
-  "purpose": "Customer-facing Folloze MCP skills for strategy, brand capture, and buyer-experience building.",
+  "purpose": "Customer-facing Folloze MCP skills for routing, strategy, brand fidelity, board building, QA, and safe publishing preflight.",
   "required_foundations": [
-    "abm-strategist",
-    "brand-harvester"
+    "folloze-board-quality-core"
   ],
+  "strategy_policy": {
+    "named_or_one_to_few": "abm-strategist",
+    "one_to_many": "audience-level brief; do not invent a target account"
+  },
+  "brand_policy": {
+    "folloze_owned": "folloze-brand-kit",
+    "external_brand": "brand-harvester"
+  },
   "skills": [
+    {
+      "name": "folloze-board-router",
+      "path": "Skills/folloze-board-router",
+      "role": "router",
+      "status": "customer-facing",
+      "requires": [
+        "folloze-board-quality-core",
+        "abm-strategist",
+        "brand-harvester",
+        "folloze-brand-kit",
+        "Folloze-One-To-One-Microsite-Builder",
+        "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
+        "Folloze-Webinar-Promotion-Page-Builder",
+        "Folloze-Industry-Campaign-Page-Builder",
+        "Folloze-Content-Magic-Builder"
+      ],
+      "routes_to": [
+        "Folloze-One-To-One-Microsite-Builder",
+        "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
+        "Folloze-Webinar-Promotion-Page-Builder",
+        "Folloze-Industry-Campaign-Page-Builder",
+        "Folloze-Content-Magic-Builder"
+      ],
+      "summary": "Chooses the motion, strategy path, brand source, board builder, and publishing state."
+    },
+    {
+      "name": "folloze-board-quality-core",
+      "path": "Skills/folloze-board-quality-core",
+      "role": "foundation",
+      "status": "customer-facing",
+      "summary": "Provides shared public-safe design, copy, interaction, responsive QA, analytics, and MCP preflight gates."
+    },
     {
       "name": "abm-strategist",
       "path": "Skills/abm-strategist",
-      "role": "foundation",
+      "role": "strategy",
       "status": "customer-facing",
-      "summary": "The Folloze MCP catalog Campaign Brief skill for one-to-one and one-to-few account campaigns."
+      "summary": "Builds an approved brief and page structure for named-account and one-to-few work."
     },
     {
       "name": "brand-harvester",
       "path": "Skills/brand-harvester",
-      "role": "foundation",
+      "role": "brand",
       "status": "customer-facing",
-      "summary": "Captures public brand, design, asset, and screenshot evidence before visual design."
+      "summary": "Captures validated public brand and screenshot evidence for external-brand experiences."
+    },
+    {
+      "name": "folloze-brand-kit",
+      "path": "Skills/folloze-brand-kit",
+      "role": "brand",
+      "status": "customer-facing",
+      "summary": "Provides a purpose-built public-safe Folloze brand subset for Folloze-owned experiences."
     },
     {
       "name": "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
@@ -29,12 +75,12 @@
       "role": "builder",
       "status": "customer-facing",
       "requires": [
-        "abm-strategist",
-        "brand-harvester"
+        "folloze-board-quality-core"
       ],
-      "runtime_gates": {
-        "abm-strategist": "route when the motion becomes named-account or one-to-few",
-        "brand-harvester": "required for every build"
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
       },
       "summary": "Builds public-safe top-of-funnel Folloze campaign landing pages."
     },
@@ -44,12 +90,12 @@
       "role": "builder",
       "status": "customer-facing",
       "requires": [
-        "abm-strategist",
-        "brand-harvester"
+        "folloze-board-quality-core"
       ],
-      "runtime_gates": {
-        "abm-strategist": "required before design",
-        "brand-harvester": "required before design"
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
       },
       "summary": "Builds named-account Folloze one-to-one microsites and follow-up pages."
     },
@@ -59,12 +105,12 @@
       "role": "builder",
       "status": "customer-facing",
       "requires": [
-        "abm-strategist",
-        "brand-harvester"
+        "folloze-board-quality-core"
       ],
-      "runtime_gates": {
-        "abm-strategist": "required for one-to-few and named account-cluster work",
-        "brand-harvester": "required for every build"
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
       },
       "summary": "Builds Folloze industry, segment, cohort, persona, and one-to-few campaign pages."
     },
@@ -74,14 +120,29 @@
       "role": "builder",
       "status": "customer-facing",
       "requires": [
-        "abm-strategist",
-        "brand-harvester"
+        "folloze-board-quality-core"
       ],
-      "runtime_gates": {
-        "abm-strategist": "required for named-account and one-to-few activation",
-        "brand-harvester": "required for every build"
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
       },
       "summary": "Turns an approved content item into an interactive Folloze buyer experience."
+    },
+    {
+      "name": "Folloze-Webinar-Promotion-Page-Builder",
+      "path": "Skills/Folloze-Webinar-Promotion-Page-Builder",
+      "role": "builder",
+      "status": "customer-facing",
+      "requires": [
+        "folloze-board-quality-core"
+      ],
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
+      },
+      "summary": "Builds promotion, live, replay, and post-event Folloze webinar experiences."
     }
   ],
   "excluded_internal_workflows": [

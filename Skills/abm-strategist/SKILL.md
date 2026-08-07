@@ -14,20 +14,20 @@ This skill is the Campaign Brief capability distributed on the Folloze MCP catal
 - Run this skill for one-to-one, named-account, account-cluster, and one-to-few work.
 - Do not invent a target account for a broad one-to-many campaign or a standalone content-led experience. Those builders create their own campaign or activation brief and invoke this skill only when the request becomes account-specific.
 - After the brief and page structure are approved, hand off to `Folloze-One-To-One-Microsite-Builder` for a named account or `Folloze-Industry-Campaign-Page-Builder` for a one-to-few/account-cluster motion.
-- The downstream builder must run `brand-harvester` before choosing visual treatments or writing HTML.
+- The downstream builder uses `$folloze-brand-kit` for a Folloze-owned page or `$brand-harvester` for an external-brand page, then applies `$folloze-board-quality-core`.
 
 ## Client Compatibility
 
-- Treat every reference to `AskUserQuestion` as the client's supported structured-question surface.
+- Use the client's supported structured-question surface, regardless of its product-specific tool name.
 - When a structured-question surface is unavailable, ask one concise blocking checkpoint question in chat and wait for the user's answer.
 - The required inline `continue` and `design it` lines are navigation instructions, not extra questions. Keep them so users can type an approval even when a structured control is also shown.
 - Preserve the same print-deliverable-first ordering in every client.
 
 ## Cardinal Rules (read these first)
 
-1. **Check for gaps before researching — ask only what's missing.** The moment this skill activates, do NOT jump into research. First read the prompt and see what it already answers: (a) is the brand named? (b) is the target account named? (c) is the specific product/offering named? (d) did they provide material (a URL, file, or notes)? (e) did the user ask you to research, or say they have the context? Then ask, in a single `AskUserQuestion` popup, ONLY the items that are still open — and wait for the reply before any web search or page fetch.
-   - If the prompt answers everything → skip the popup and proceed straight to research/synthesis. No need to ask for the sake of asking.
-   - If more than 4 items are open, split into two popups (max 4 questions per popup).
+1. **Check for gaps before researching — ask only what's missing.** The moment this skill activates, do NOT jump into research. First read the prompt and see what it already answers: (a) is the brand named? (b) is the target account named? (c) is the specific product/offering named? (d) did they provide material (a URL, file, or notes)? (e) did the user ask you to research, or say they have the context? Then ask, in one structured checkpoint when the client supports it, ONLY the items that are still open. Otherwise ask one concise blocking question in chat. Wait for the reply before any web search or page fetch.
+   - If the prompt answers everything → skip the structured checkpoint and proceed straight to research/synthesis. No need to ask for the sake of asking.
+   - Respect the client's per-call question limit and split open items across checkpoints when needed.
    - **Never ask about persona, buying role, function, or "who we're targeting."** The buying committee is inferred silently from research — never surfaced as a question. The brief addresses the committee as a whole.
    - Never run deep-research, workflows, or multi-agent research regardless of the answers.
 
@@ -38,7 +38,7 @@ This skill is the Campaign Brief capability distributed on the Folloze MCP catal
    - **"X selling to Y"** / **"[Brand] → [Target]"** in explicit form → X=brand, Y=target.
    - **Only one entity named, no URL** → that entity is the TARGET (the brand is the user's own context).
 
-   **Direction confirmation gate (safety net):** if your inference of who's brand vs target relies on more than ONE heuristic, OR if any heuristic feels uncertain, include a **Direction** question in the popup as the FIRST question. Show your current interpretation and let the user confirm or swap. This is cheap insurance against a brief built in the wrong direction — which is unrecoverable downstream.
+   **Direction confirmation gate (safety net):** if your inference of who's brand vs target relies on more than ONE heuristic, OR if any heuristic feels uncertain, include a **Direction** question in the structured checkpoint as the FIRST question. Show your current interpretation and let the user confirm or swap. This is cheap insurance against a brief built in the wrong direction — which is unrecoverable downstream.
 
 2. **Your visible output is ALWAYS the short brief from the Output section.** The full Brief Structure (Account Snapshot, GTM Motion, Message Spine, Committee Map, Copy Direction, etc.) is your internal reasoning — work it in your notes, keep it in the conversation for the designer to inherit, but NEVER print those sections to the user. Not when the user asks for "full detail." Always lead with the short brief; offer to expand specific pieces only after the user approves the direction.
 
@@ -46,13 +46,13 @@ This skill is the Campaign Brief capability distributed on the Folloze MCP catal
 
    **Internal intent stays internal.** The marketer's stated GOAL for the campaign — "this is for upsell", "promote the renewal", "we want to displace the incumbent", "drive expansion", "get them to a demo" — is strategic context that SHAPES the brief and the page, but it is NEVER quoted or surfaced as visible copy. The buyer must never see the seller's internal motive. Capture the goal in your working notes, let it steer the angle and CTA, then strip the internal phrasing entirely. A page that says "we built this to upsell you" is a credibility-killer. This applies to the brief output too: describe the strategic situation, never the seller's internal playbook language.
 
-4. **Never invent — any fact, not a fixed list.** Every fact — proof, customer logos, named quotes, banned language, custom assets, AND prices, plan names, SKUs, products, specs, dates, features, or anything else presented as true — comes from the marketer's material (URL, file, notes) or from public brand pages. This is not a checklist of categories; it covers every type of fact, including ones not named here. If the brief needs a specific fact that you cannot verify from the source, surface it in the closing checkpoint popup — never fabricate it (or fill it with a plausible-looking value) to make the brief look complete.
+4. **Never invent — any fact, not a fixed list.** Every fact — proof, customer logos, named quotes, banned language, custom assets, AND prices, plan names, SKUs, products, specs, dates, features, or anything else presented as true — comes from the marketer's material (URL, file, notes) or from public brand pages. This is not a checklist of categories; it covers every type of fact, including ones not named here. If the brief needs a specific fact that you cannot verify from the source, surface it in the closing checkpoint — never fabricate it (or fill it with a plausible-looking value) to make the brief look complete.
 
-5. **Every question or approval uses the client's structured-question surface when available** — the gap check, the closing checkpoint, and any clarification needed mid-research. Pack up to 4 open questions into a single call. When that surface is unavailable, ask one concise blocking question in chat and wait. The required inline `continue` and `design it` navigation lines are not questions and remain part of the deliverable.
+5. **Every question or approval uses the client's structured-question surface when available** — the gap check, the closing checkpoint, and any clarification needed mid-research. Pack open questions up to the client's supported per-call limit. When that surface is unavailable, ask one concise blocking question in chat and wait. The required inline `continue` and `design it` navigation lines are not questions and remain part of the deliverable.
 
-   **Critical: the popup is NEVER a substitute for the visible deliverable.** Whenever the popup asks the user to approve content (a brief, a structure, a section summary), the content itself MUST appear as visible text in your assistant message BEFORE the popup is called. The popup is the approval mechanism — the deliverable is what gets approved. Calling the popup without printing the deliverable above it is always a bug. Exception: gap-check questions at the very start (no deliverable yet) and theme/clarifying questions (no content to approve).
+   **Critical: the structured checkpoint is NEVER a substitute for the visible deliverable.** Whenever the structured checkpoint asks the user to approve content (a brief, a structure, a section summary), the content itself MUST appear as visible text in your assistant message BEFORE the structured checkpoint is called. The structured checkpoint is the approval mechanism — the deliverable is what gets approved. Calling the structured checkpoint without printing the deliverable above it is always a bug. Exception: gap-check questions at the very start (no deliverable yet) and theme/clarifying questions (no content to approve).
 
-6. **Speak like a human colleague, not a form.** Before invoking `AskUserQuestion`, write one warm short sentence in the chat to set context ("Let me lock 2 things before I dive in", "Got it. One more thing before I start", "Quick checkpoint before I hand off to the designer"). After the user answers, briefly acknowledge in one sentence and explain the next step ("Great — researching now", "Building the brief"). Popup labels and descriptions should sound conversational, not transactional: prefer "Yeah, research it" over "Yes — research it"; prefer "I'll tell you" over "I'll name it". The whole interaction should feel like a chat with a sharp colleague, not a wizard.
+6. **Speak like a human colleague, not a form.** Before invoking the client's structured-question surface, write one warm short sentence in the chat to set context ("Let me lock 2 things before I dive in", "Got it. One more thing before I start", "Quick checkpoint before I hand off to the designer"). After the user answers, briefly acknowledge in one sentence and explain the next step ("Great — researching now", "Building the brief"). Structured checkpoint labels and descriptions should sound conversational, not transactional: prefer "Yeah, research it" over "Yes — research it"; prefer "I'll tell you" over "I'll name it". The whole interaction should feel like a chat with a sharp colleague, not a wizard.
 
 7. **Lead each axis with the strongest angle, not the most obvious one.** Inside each axis, the most defensible argument for the brand goes FIRST — not the fact the account is most aware of. If the strongest leverage is buried in sentence 3, the brief reads like a report; if it leads sentence 1, the brief reads like a strategy.
 
@@ -79,21 +79,21 @@ The order is: **gap check → research → synthesize → PRINT brief → brief 
 
 **Two hard-stop print steps that the model must execute as separate assistant turns:**
 
-- **PRINT brief** = the brief blockquote must appear as visible text in the chat BEFORE the brief checkpoint popup. Not optional. Not implicit.
-- **PRINT structure** = the structure blockquote must appear as visible text in the chat BEFORE the structure checkpoint popup. Not optional. Not implicit.
+- **PRINT brief** = the brief blockquote must appear as visible text in the chat BEFORE the brief checkpoint. Not optional. Not implicit.
+- **PRINT structure** = the structure blockquote must appear as visible text in the chat BEFORE the structure checkpoint. Not optional. Not implicit.
 
-A common failure mode after a long research phase is to jump straight from the last tool result to `AskUserQuestion` — skipping the print step. If you catch yourself reaching for the popup tool right after a research/tool result, **STOP**, print the deliverable first, THEN call the tool.
+A common failure mode after a long research phase is to jump straight from the last tool result to the client's structured-question surface — skipping the print step. If you catch yourself reaching for the structured checkpoint tool right after a research/tool result, **STOP**, print the deliverable first, THEN call the tool.
 
-❌ WRONG pattern: `Web search → Web search → Page fetch → AskUserQuestion` (no brief visible)
-✅ RIGHT pattern: `Web search → Web search → Page fetch → [print brief blockquote] → one sentence → AskUserQuestion`
+❌ WRONG pattern: `Web search → Web search → Page fetch → structured-question surface` (no brief visible)
+✅ RIGHT pattern: `Web search → Web search → Page fetch → [print brief blockquote] → one sentence → structured-question surface`
 
 ### Step 0 — Gap check (ask only what's missing, then wait)
 
-Before any research, read the prompt and decide which of these are already answered and which are open. Ask — in **one** `AskUserQuestion` tool call — ONLY the open ones, then **wait for the reply** before any web search or page fetch.
+Before any research, read the prompt and decide which of these are already answered and which are open. Use the client's structured-question surface for only the open items, splitting calls if the client limit requires it, then **wait for the reply** before any web search or page fetch.
 
-**Always use the `AskUserQuestion` tool** for the gap check — never ask in plain inline text. The tool renders a clean interactive selector ("Other" is always available for free-text input). Pack the open questions into a single popup (max 4 per call — split into two popups if more than 4 are open).
+**Use the client's structured-question surface when it is available.** Pack the open questions up to that client's per-call limit and split only when needed. When the client has no structured-question surface, ask one concise blocking question in chat and wait.
 
-**Before the popup, say one warm sentence** in the chat — something like "Let me lock 2-3 things before I dive in" or "Quick scope before I start". Then call `AskUserQuestion`.
+**Before the structured checkpoint, say one warm sentence** in the chat — something like "Let me lock 2-3 things before I dive in" or "Quick scope before I start". Then call the client's structured-question surface.
 
 **Order of questions (skip any that the prompt already answers):**
 
@@ -138,9 +138,9 @@ Before any research, read the prompt and decide which of these are already answe
      - { label: "Yeah, I'll upload", description: "PDF, doc, URL, or notes" }
      - { label: "Nope, start fresh", description: "Public sources only" }
    ```
-5. **Research — DO NOT ASK; research is the default.** When the brand and target are identified (named in the prompt or answered above), just run the research — never add a "want me to research?" question to the popup. A 1:1 page request inherently needs account research; asking is needless friction. ONLY skip research if the user explicitly says they already have the context or hands you a complete brief ("don't research, use what I'm giving you", or a full positioning doc) — and even then, don't ask, just infer it from their phrasing.
+5. **Research — DO NOT ASK; research is the default.** When the brand and target are identified (named in the prompt or answered above), just run the research — never add a "want me to research?" question to the structured checkpoint. A 1:1 page request inherently needs account research; asking is needless friction. ONLY skip research if the user explicitly says they already have the context or hands you a complete brief ("don't research, use what I'm giving you", or a full positioning doc) — and even then, don't ask, just infer it from their phrasing.
 
-If brand, target, product, and material are all already answered in the prompt, **do not call the tool** — skip the gap check entirely and go straight to research. Never ask about persona, buying role, or "who we're speaking to" — that is inferred silently in Phase 2. Never ask about research when brand and target are known. Never ask in plain text when `AskUserQuestion` is available.
+If brand, target, product, and material are all already answered in the prompt, **do not call the tool** — skip the gap check entirely and go straight to research. Never ask about persona, buying role, or "who we're speaking to" — that is inferred silently in Phase 2. Never ask about research when brand and target are known. Never ask in plain text when the client's structured-question surface is available.
 
 Then branch:
 
@@ -187,22 +187,22 @@ For pains, proof, committee, and constraints, rely on the research and sensible 
 
 Work the full structure below in your notes — it is your internal reasoning, NOT your output. **Never print the Brief Structure sections to the user.** Your only visible output is the short brief from the Output section. Every claim must be account-specific — if swapping in a different account logo would not break it, sharpen it.
 
-### Phase 4 — Print the brief (REQUIRED before any popup)
+### Phase 4 — Print the brief (REQUIRED before any structured checkpoint)
 
 After synthesis, **the very next assistant message must include the brief blockquote as visible text**. This is a hard-stop step — not a guideline.
 
 - Open a new assistant turn.
 - Print the brief blockquote (the exact shape defined in the Output section).
 - Add the exact `continue` navigation line defined in the Output section.
-- THEN — and only then — call `AskUserQuestion` for the brief checkpoint.
+- THEN — and only then — call the client's structured-question surface for the brief checkpoint.
 
-If you call `AskUserQuestion` without the brief blockquote visible above it in the same or prior assistant message, the run is broken. Do not rationalize it. Print first.
+If you call the client's structured-question surface without the brief blockquote visible above it in the same or prior assistant message, the run is broken. Do not rationalize it. Print first.
 
 ### Phase 5 — Brief checkpoint
 
-The popup follows the printed brief. See the Output section below for the exact popup shape and the loop logic.
+The structured checkpoint follows the printed brief. See the Output section below for the exact structured checkpoint shape and the loop logic.
 
-### Phase 6 — Print the structure (REQUIRED before any popup)
+### Phase 6 — Print the structure (REQUIRED before any structured checkpoint)
 
 After the brief checkpoint resolves with "Looks good — show me the plan" (or the user types `continue`), **the very next assistant message must include the Page Structure blockquote as visible text**. Same rule as Phase 4 — print before the approval control.
 
@@ -353,7 +353,7 @@ State which shape and why it fits this account's buying motion.
 
 ### Print the brief before the checkpoint
 
-**Before calling `AskUserQuestion` for the Brief checkpoint, the brief blockquote MUST already be visible in your current assistant message**, followed by the inline closing line — the popup approves the brief, so the brief has to exist above it. If your message is empty and you're reaching for the popup, you skipped the print step: write the brief blockquote first.
+**Before calling the client's structured-question surface for the Brief checkpoint, the brief blockquote MUST already be visible in your current assistant message**, followed by the inline closing line — the structured checkpoint approves the brief, so the brief has to exist above it. If your message is empty and you're reaching for the structured checkpoint, you skipped the print step: write the brief blockquote first.
 
 ### Brief template (this is what you print)
 
@@ -392,14 +392,14 @@ Structure rules:
 2. Write one inline closing line: *"Tell me what you think — say **'continue'** to see the page plan, or describe what to change. (You can also click an option below.)"*
 3. THEN call the client's structured-question surface as a backup approval mechanism when available. Otherwise ask one concise checkpoint question in chat and wait.
 
-The popup question text explicitly references "the brief above" — so the brief MUST be visible above the popup. If you call `AskUserQuestion` and the brief blockquote is not in your assistant message, the question text makes no sense to the user.
+The structured checkpoint question text explicitly references "the brief above" — so the brief MUST be visible above the structured checkpoint. If you call the client's structured-question surface and the brief blockquote is not in your assistant message, the question text makes no sense to the user.
 
 The flow accepts EITHER response:
 - User types "continue" → proceed to Structure Preview (next step in the strategist, not yet a designer handoff)
 - User clicks "Looks good — show me the plan" → proceed to Structure Preview
 - User types text or clicks other options → fold the addition into the brief and confirm in one line
 
-Call `AskUserQuestion` with this exact shape:
+Call the client's structured-question surface with this exact shape:
 
 ```
 question: "What do you think about the brief above?"
@@ -415,16 +415,16 @@ options:
 
 Checkpoint rules:
 
-- **The inline closing line IS part of the deliverable** — it must appear directly after the brief blockquote, before the popup is called. This gives the user a text-typing path ("continue") and explains the popup choice.
+- **The inline closing line IS part of the deliverable** — it must appear directly after the brief blockquote, before the structured checkpoint is called. This gives the user a text-typing path ("continue") and explains the structured checkpoint choice.
 - **"Looks good — show me the plan"** (or user typing "continue") → proceed to the **Structure Preview** step (see next section), NOT a direct handoff. The structure preview is mandatory before the matching customer builder is invoked.
 - Any other choice (or "Other" with free text) → fold the addition into the working brief and confirm in one line — no need to re-present the whole brief.
-- If the user already approved in the same message that triggered the brief, skip the popup but still run the Structure Preview.
+- If the user already approved in the same message that triggered the brief, skip the structured checkpoint but still run the Structure Preview.
 
 ## Structure Preview (after brief approval, before handoff)
 
 ### Print the structure before the checkpoint
 
-**Before calling `AskUserQuestion` for the Structure check, the Page Structure blockquote MUST already be visible in your current assistant message**, followed by the inline closing line — same rule as the Brief checkpoint. If it's not printed, the popup has nothing to approve.
+**Before calling the client's structured-question surface for the Structure check, the Page Structure blockquote MUST already be visible in your current assistant message**, followed by the inline closing line — same rule as the Brief checkpoint. If it's not printed, the structured checkpoint has nothing to approve.
 
 ### When and why
 
@@ -474,14 +474,14 @@ Use this exact shape for the blockquote:
 
 Bold the section name, 1-1.5 lines of STORY (not UI). All in scroll order.
 
-The popup question text explicitly references "the structure above" — so the structure MUST be visible above the popup. If you call `AskUserQuestion` and the structure blockquote is not in your assistant message, the question makes no sense.
+The structured checkpoint question text explicitly references "the structure above" — so the structure MUST be visible above the structured checkpoint. If you call the client's structured-question surface and the structure blockquote is not in your assistant message, the question makes no sense.
 
 The flow accepts EITHER response:
 - User types "design it" → hand off to designer immediately
 - User clicks "Looks good — start designing" → hand off to designer immediately
-- Other choice (typed or clicked) → adjust the plan, re-render the blockquote, and call `AskUserQuestion` again
+- Other choice (typed or clicked) → adjust the plan, re-render the blockquote, and call the client's structured-question surface again
 
-### Then call `AskUserQuestion` for approval:
+### Then call the client's structured-question surface for approval:
 
 ```
 question: "Does the structure above feel right?"
@@ -498,7 +498,7 @@ options:
 ### Loop until approved
 
 - **"Looks good — start designing"** (or user typing "design it") → hand off **immediately** to the matching customer builder. The approved structure (and the full brief) inherits into the conversation. The builder reads it and builds directly.
-- Any other choice → adjust the plan, re-render the blockquote with the change, and call `AskUserQuestion` again. Loop until approved.
+- Any other choice → adjust the plan, re-render the blockquote with the change, and call the client's structured-question surface again. Loop until approved.
 
 **No designer invocation happens before the structure is approved.**
 
@@ -512,7 +512,7 @@ Hold the full brief — every section under Brief Structure above — in your wo
 
 ## Handoff
 
-The handoff happens **automatically** when the user picks "Looks good — start designing" in the **Structure Preview** popup (or types "design it" inline) — not the earlier brief checkpoint. **Never** print a "Brief is ready, say build" message or any other handoff prose — the popup choice IS the trigger. Once the user picks that option, immediately invoke `Folloze-One-To-One-Microsite-Builder` for a named account or `Folloze-Industry-Campaign-Page-Builder` for a one-to-few/account-cluster motion (the full Brief Structure and the approved Page Structure stay in the conversation; the builder reads both directly).
+The handoff happens **automatically** when the user picks "Looks good — start designing" in the **Structure Preview** structured checkpoint (or types "design it" inline) — not the earlier brief checkpoint. **Never** print a "Brief is ready, say build" message or any other handoff prose — the structured checkpoint choice IS the trigger. Once the user picks that option, immediately invoke `Folloze-One-To-One-Microsite-Builder` for a named account or `Folloze-Industry-Campaign-Page-Builder` for a one-to-few/account-cluster motion (the full Brief Structure and the approved Page Structure stay in the conversation; the builder reads both directly).
 
 Do not attempt to build, design, or deploy anything yourself. That is the next skill's job. Your job ends at the Structure Preview checkpoint.
 
@@ -543,7 +543,7 @@ Before presenting the brief, check:
 
 The rules that break the run if violated — re-check these before every checkpoint:
 
-1. **Print before popup, both channels.** Never call `AskUserQuestion` to approve a brief or structure without that brief/structure already visible as a blockquote above it AND an inline closing line ("continue" / "design it"). Popup + inline text together, every content checkpoint.
+1. **Print before structured checkpoint, both channels.** Never call the client's structured-question surface to approve a brief or structure without that brief/structure already visible as a blockquote above it AND an inline closing line ("continue" / "design it"). Structured checkpoint + inline text together, every content checkpoint.
 2. **Direction before research.** Lock who is brand vs target (Cardinal #1) before any search — a wrong direction is unrecoverable downstream.
 3. **Source everything; estimate-frame the rest.** No invented proof, customers, quotes, or stats. Numbers that are estimates (e.g. Economic shape) are framed as estimates, never as verified facts.
 4. **Internal intent never becomes visible copy.** The marketer's goal (upsell / renewal / displacement / demo) shapes the brief but is never quoted as output.

@@ -18,6 +18,8 @@ Customer-pack compatibility changes:
 - Added an explicit routing section so broad one-to-many builders do not invent a target account.
 - Routed approved briefs to this repo's one-to-one or industry/one-to-few customer builder instead of the separately distributed `abm-page-designer`.
 - Added `agents/openai.yaml` for the repository's existing agent metadata convention.
+- Replaced product-specific question-tool mandates with a host-neutral structured-checkpoint contract and concise chat fallback.
+- Routed brand selection through `folloze-board-router`: Folloze-owned work uses the public-safe brand kit; external-brand work uses Brand Harvester.
 
 The upstream archive contains no license file, checksum manifest, or semantic version. Treat it as Folloze-distributed source and retain this provenance record when repackaging it.
 
@@ -40,3 +42,37 @@ Customer-pack compatibility changes:
 - Made blocked-source handling fail closed: the builder waits for approved screenshots or brand evidence instead of inventing a generic visual system.
 - Made the CLI return status `incomplete` and exit code `2` when source extraction or required visual evidence is missing; diagnostic output files no longer authorize a build.
 - Removed Trey-specific internal wording from the CLI reference.
+- Replaced Claude-only installed paths with the host-neutral `FOLLOZE_SKILLS_DIR` convention.
+- Restricted sources and redirects to public HTTP(S) targets. The CLI rejects credentials, localhost, loopback, private, link-local, cloud-metadata, reserved, and unsafe redirect targets before external fetch or browser request continuation.
+
+## Public Quality Core
+
+- Source repository: `https://github.com/0xTrey/Folloze-Skills`
+- Source commit: `3c37cc8c4a6938fb7eaa76760e70d83252d1ccfd`
+- Source area: `Skills/Folloze-MCP-Demo-Builder/references/`
+
+The customer `folloze-board-quality-core` is a derivative, not a copy of the internal Demo Builder. It retains portable Source Design DNA, experience-shape, copy/proof, responsive, interaction, analytics, accessibility, and save-readiness gates. It excludes internal account systems, board identities, trackers, operator identities, sales systems, and deal workflows. Current derivative checksums are recorded in `skills-source-lock.json`.
+
+## Public-Safe Folloze Brand Kit
+
+- Source repository: `https://github.com/0xTrey/Folloze-Skills`
+- Source commit: `3c37cc8c4a6938fb7eaa76760e70d83252d1ccfd`
+- Source area: `Skills/folloze-brand-kit/`
+
+This is a purpose-built, rewritten public subset. It contains positioning, voice, visual color tokens, generic product-capability definitions, claims discipline, and campaign-layout guidance. It excludes private document links, internal and customer-ready capability sources, pricing, package rows, credits, order forms, customer proof tables, unverified metrics, competitive strategy, roadmap context, local paths, trackers, and operator details.
+
+Logo binaries are intentionally not redistributed. The user or agent must obtain a current approved Folloze logo from an authorized source for each asset.
+
+## Bundle V3 Authored Skills
+
+The following skills are authored in this customer repository from base commit `2676ae73232caf6aaee3471e887cb2da32a01390`:
+
+- `folloze-board-router`
+- `folloze-board-quality-core` wrapper and MCP preflight
+- `Folloze-Webinar-Promotion-Page-Builder`
+
+Their file checksums are recorded in `skills-source-lock.json`.
+
+## Licensing Review Required
+
+This repository currently has no license file. Do not infer MIT, Apache, proprietary, or brand-asset redistribution rights from its public visibility. The repository owner should confirm the intended license for original code, terms for repackaging the catalog skill, and Folloze brand-asset permissions before marketplace or third-party redistribution.

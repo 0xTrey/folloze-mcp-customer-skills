@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Board Router"
+  short_description: "Choose the correct strategy, brand source, builder, and production gates"
+  default_prompt: "Use $folloze-board-router to classify motion, brand owner, and experience job. Run $abm-strategist only for named-account or one-to-few work. Use $folloze-brand-kit for Folloze-owned experiences or $brand-harvester for external brands, then hand off to the selected builder with $folloze-board-quality-core."

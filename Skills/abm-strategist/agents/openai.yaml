@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze ABM Strategist"
   short_description: "Plan the account campaign and approve its narrative before design"
-  default_prompt: "Use $abm-strategist to research a named account or one-to-few cluster, produce the concise campaign brief, get the brief and page structure approved, then hand off to the matching Folloze customer builder. The builder must run $brand-harvester before visual design or HTML."
+  default_prompt: "Use $abm-strategist to research a named account or one-to-few cluster, produce the concise campaign brief, get the brief and page structure approved through the client's available checkpoint surface, then hand off to $folloze-board-router. The builder uses $folloze-brand-kit for Folloze-owned work or $brand-harvester for external-brand work, plus $folloze-board-quality-core."

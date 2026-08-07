@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Webinar Promotion Page"
+  short_description: "Build promotion, live, replay, and follow-up webinar experiences"
+  default_prompt: "Use $abm-strategist only for named-account or one-to-few activation. Use $folloze-brand-kit for Folloze-owned events or $brand-harvester with brand.json.validation.status ok for external brands. Then use $Folloze-Webinar-Promotion-Page-Builder with $folloze-board-quality-core to build and QA the correct webinar lifecycle state before MCP save or publish. Inherit an upstream route handoff when one is supplied."

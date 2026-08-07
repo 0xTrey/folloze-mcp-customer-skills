@@ -13,10 +13,10 @@ Use this for industry pages, one-to-few account clusters, vertical plays, person
 
 ## Required Foundations
 
-- `$abm-strategist` is bundled with this skill. Run it before design for one-to-few and named account-cluster work; for a broad vertical, persona, event, or regional motion, keep the campaign brief audience-level and do not invent a target account.
-- Run `$brand-harvester` for every build before choosing visual treatments or writing CSS/HTML.
-- Store the harvest in the active project repo and review its screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`. Require a zero CLI exit and `brand.json.validation.status: ok`; inspect the resolved source, extraction statuses, and desktop/mobile screenshot pair or approved manual evidence.
-- If the source is blocked or unreadable, stop visual design until the user supplies a screenshot, brand guide, or equivalent approved evidence.
+- Confirm whether the motion is broad audience-level work or a named one-to-few cluster. If an upstream route handoff is supplied, inherit it without rerunning routing.
+- Run `$abm-strategist` only for one-to-few and named account-cluster work. For a broad vertical, persona, event, or regional motion, keep the brief audience-level.
+- For a Folloze-owned experience, use `$folloze-brand-kit`. For an external brand, run `$brand-harvester` and require a zero CLI exit plus `brand.json.validation.status: ok` before visual design.
+- Use `$folloze-board-quality-core` for source discipline, experience-shape selection, responsive and interaction QA, analytics, and MCP preflight.
 
 ## Minimum Inputs
 
@@ -33,7 +33,7 @@ Gather only what is missing:
 
 1. Define the audience boundary: who is included, who is not, and what shared pressure connects them.
 2. For one-to-few or named account-cluster work, run `$abm-strategist` and inherit its approved brief and page structure. For broader motions, build an audience-level campaign brief: audience insight, why now, offer, proof, CTA, and source constraints.
-3. Run `$brand-harvester`, save the durable evidence bundle, and review the required outputs before visual design.
+3. Complete the brand gate before visual design: `$folloze-brand-kit` for Folloze-owned work or a saved, reviewed, validated `$brand-harvester` bundle for an external brand.
 4. Choose a reusable structure: vertical narrative, cohort workflow, persona path, account-selection hub, or lifecycle/event page.
 5. Build one self-contained local HTML file in the active repo.
 6. Use approved industry claims and public proof. Do not invent market stats or customer logos.
@@ -63,7 +63,8 @@ Before final response or publish:
 
 - The page is specific enough for the selected audience but not overfit to one account.
 - One-to-few/account-cluster work has an approved `$abm-strategist` brief and page structure.
-- A durable `$brand-harvester` bundle exists in the active project repo, its validation status is `ok`, and all required outputs and evidence statuses were reviewed.
+- The selected brand path is complete: `$folloze-brand-kit` for Folloze-owned work, or a durable validated `$brand-harvester` bundle for external-brand work.
+- `$folloze-board-quality-core` passed for source/proof discipline, selected experience shape, desktop/mobile render, controls, analytics, accessibility, and save readiness.
 - Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
 - Named examples are public-safe and approved.
 - No unsupported market claims, fake logos, or invented stats.

@@ -15,10 +15,10 @@ If the asset is only one module inside a broader campaign, use the appropriate c
 
 ## Required Foundations
 
-- `$abm-strategist` is bundled with this skill. Run it when the activation context is a named-account or one-to-few experience; do not invent a target account for a standalone or one-to-many content experience.
-- Run `$brand-harvester` for every build before choosing visual treatments or writing CSS/HTML.
-- Store the harvest in the active project repo and review its screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`. Require a zero CLI exit and `brand.json.validation.status: ok`; inspect the resolved source, extraction statuses, and desktop/mobile screenshot pair or approved manual evidence.
-- If the source is blocked or unreadable, stop visual design until the user supplies a screenshot, brand guide, or equivalent approved evidence.
+- Confirm that the approved content item is the experience's primary conversion job. If an upstream route handoff is supplied, inherit it without rerunning routing.
+- Run `$abm-strategist` only when the activation is named-account or one-to-few. Do not invent a target account for a standalone or one-to-many content experience.
+- For a Folloze-owned experience, use `$folloze-brand-kit`. For an external brand, run `$brand-harvester` and require a zero CLI exit plus `brand.json.validation.status: ok` before choosing visual treatments or writing CSS/HTML.
+- Use `$folloze-board-quality-core` for source discipline, experience-shape selection, responsive and interaction QA, analytics, and MCP preflight.
 
 ## Minimum Inputs
 
@@ -49,8 +49,7 @@ If activation context or buyer stage is not clear from the request, ask one conc
 4. Establish two sources of truth:
    - Use the asset for facts, claims, quotations, concepts, diagrams, and proof.
    - Use the vendor's public website or approved brand source for visual design, typography, imagery, layout rhythm, buttons, navigation, and footer treatment.
-5. Run `$brand-harvester` before writing CSS. Inspect the specific source page first, then the vendor home page when useful; save and review the durable evidence bundle.
-   - If the source site is blocked or unavailable, stop visual design until the user supplies an approved brand guide, screenshot, or source asset with sufficient design evidence.
+5. Complete the brand gate before writing CSS. Use `$folloze-brand-kit` for Folloze-owned work. For an external brand, run `$brand-harvester`, save and review the durable evidence bundle, and stop for approved evidence if the source is blocked or unavailable.
 6. Build a message spine: buyer tension, useful promise, key ideas, proof, business implication, and natural next action. Do not mirror the asset page by page.
 7. Choose the overall page shape before choosing interactions.
 8. Plan the first viewport and section sequence. Give every section one primary job: orient, teach, prove, personalize, qualify, route, or convert.
@@ -109,7 +108,8 @@ Before final response or publish:
 
 - The source asset is identified and approved for the intended use.
 - Named-account/one-to-few work has an approved `$abm-strategist` brief and page structure.
-- A durable `$brand-harvester` bundle exists in the active project repo, its validation status is `ok`, and all required outputs and evidence statuses were reviewed.
+- The selected brand path is complete: `$folloze-brand-kit` for Folloze-owned work, or a durable validated `$brand-harvester` bundle for external-brand work.
+- `$folloze-board-quality-core` passed for source/proof discipline, selected experience shape, desktop/mobile render, controls, analytics, accessibility, and save readiness.
 - Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
 - The activation brief identifies the use context, buyer stage, promise, proof hierarchy, gating model, and CTA.
 - The vendor website or approved design source was inspected before CSS was written.
