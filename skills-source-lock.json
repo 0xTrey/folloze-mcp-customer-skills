@@ -57,8 +57,24 @@
         "Skills/folloze-board-quality-core/SKILL.md": "6ccefa71e848aa2b9d5e97f2a13cc3f4c235896780b4d4dd71ea10792abb138d",
         "Skills/folloze-board-quality-core/agents/openai.yaml": "ca0aae8ea0a5bbadfd02f6e7f3c83565327bc6a22eff8e8e461d309dd47f9b4c",
         "Skills/folloze-board-quality-core/references/mcp-publishing-preflight.md": "4b851233d9d8bcc8439a9a7c18b120b5cd018e3cfc03226ef8f978dba64b355e",
-        "Skills/folloze-board-router/SKILL.md": "2d62ffd93b4081e99f5853cd0235728ad077dbdc3d51024c56f04ea48d52e417",
-        "Skills/folloze-board-router/agents/openai.yaml": "4dcf77baddeb9ecf63c14aacb63c441cfb43138af95a98ca31d8d0ba307baea7"
+        "Skills/folloze-board-router/SKILL.md": "0b7343e53472cdb905837df56e17b1f141a1d18fcd764399c8ed5c024af4c990",
+        "Skills/folloze-board-router/agents/openai.yaml": "00734c6792515a8a35e5c02f23c21a0b8d3dae8be78d2716e28f8ac98a310318"
+      }
+    },
+    "webinar-portal-builder-public-derivative": {
+      "source_url": "https://github.com/0xTrey/Folloze-Skills",
+      "source_commit": "7c7323ae4b8e42121c831c545aef5d5c9901f104",
+      "derivation": "ForgeX-specific event data and internal board assumptions removed; customer-neutral portal modes, demo truth gates, provider routing, safe Zoom extraction, and public release validation added.",
+      "vendored_files": {
+        "Skills/folloze-webinar-portal-builder/SKILL.md": "8e159f1ca951c87dd8fb1f9835a4c868861db58d0aba42454a5c8e79b3ed4c2d",
+        "Skills/folloze-webinar-portal-builder/agents/openai.yaml": "9fe61986b27800eba412ffdee11af9cd512c2bd0ad7dd9ff3be7cae161498ff6",
+        "Skills/folloze-webinar-portal-builder/references/portal-architecture.md": "88d235fd525a1675cbc17c2d035d8f3a0ccf40adade2e19f7d1af1e01dbe393e",
+        "Skills/folloze-webinar-portal-builder/references/qa-and-release-contract.md": "4e2eb28bdd79027eea076a665482a97c48382c5c374cfc39bbeb587be3005129",
+        "Skills/folloze-webinar-portal-builder/references/source-and-demo-truth-contract.md": "5282b79286a6bb054315691f19d59f2303f8d5faf349b182ab0da7aa26d1b104",
+        "Skills/folloze-webinar-portal-builder/scripts/extract_zoom_registration.py": "34a47747018b2e85a50691c05a69c4bb8e1b9a5466b1f9c26eee25316b7978fb",
+        "Skills/folloze-webinar-portal-builder/scripts/validate_webinar_portal_manifest.py": "aaa5d41b1e28d9ac719fa8a91dd021b1df5815d54598a3598a3aa14351191151",
+        "Skills/folloze-webinar-portal-builder/templates/webinar-portal.starter.json": "402eaa87ce33d053d210b632525ec6e0624da3ddb57e9732658997eaa60f7d14",
+        "Skills/folloze-webinar-portal-builder/tests/test_webinar_portal_skill.py": "786a952bc22eef708ce875c7c75b5a787063bf1e8b16f734d04570bc845d8772"
       }
     }
   }

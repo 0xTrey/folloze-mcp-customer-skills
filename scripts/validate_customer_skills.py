@@ -39,6 +39,7 @@ LOCK_COMPLETE_SKILLS = {
     "folloze-board-router",
     "folloze-board-quality-core",
     "Folloze-Webinar-Promotion-Page-Builder",
+    "folloze-webinar-portal-builder",
     "folloze-brand-kit",
 }
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -106,8 +107,8 @@ def main() -> int:
 
     if set(manifest.get("required_foundations", [])) != REQUIRED_CORE:
         errors.append(f"manifest required_foundations must be exactly {sorted(REQUIRED_CORE)}")
-    if manifest.get("bundle_version") != "3.0.0":
-        errors.append("manifest bundle_version must be 3.0.0")
+    if manifest.get("bundle_version") != "3.1.0":
+        errors.append("manifest bundle_version must be 3.1.0")
 
     locked_paths: set[str] = set()
     for source_name, source in source_lock.get("sources", {}).items():

@@ -73,6 +73,12 @@ The following skills are authored in this customer repository from base commit `
 
 Their file checksums are recorded in `skills-source-lock.json`.
 
+## Webinar Portal Builder
+
+The public `folloze-webinar-portal-builder` was derived from the reusable architecture and staged release gates in the ForgeX-specific live Zoom package at source commit `7c7323ae4b8e42121c831c545aef5d5c9901f104`. All ForgeX event facts, customer naming, source URLs, board identifiers, and assumptions were removed.
+
+The public derivative adds customer-neutral single-event, series-hub, and webinar-platform modes; verified-real versus illustrative-demo source contracts; provider-neutral live routing; public-network protections for the optional Zoom source helper; visual hierarchy rules; and portable Folloze MCP capability discovery. It does not redistribute internal board schemas, template identities, account data, credentials, or provider join tokens. Its file checksums are recorded in `skills-source-lock.json`.
+
 ## Licensing Review Required
 
 This repository currently has no license file. Do not infer MIT, Apache, proprietary, or brand-asset redistribution rights from its public visibility. The repository owner should confirm the intended license for original code, terms for repackaging the catalog skill, and Folloze brand-asset permissions before marketplace or third-party redistribution.

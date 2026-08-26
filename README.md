@@ -33,6 +33,7 @@ Every board follows one shared flow:
 | `Folloze-One-To-One-Microsite-Builder` | Named-account pages, executive follow-up, renewal, and expansion experiences. |
 | `Folloze-Top-Of-Funnel-Campaign-Landing-Page` | Broad demand generation, product launch, partner, event-awareness, and offer pages. |
 | `Folloze-Webinar-Promotion-Page-Builder` | Before, during, and after webinar promotion, live companion, replay, and follow-up pages. |
+| `folloze-webinar-portal-builder` | Hosted single-event destinations, webinar series hubs, and reusable live and replay platforms. |
 | `Folloze-Industry-Campaign-Page-Builder` | Industry, segment, cohort, persona, regional, and one-to-few campaigns. |
 | `Folloze-Content-Magic-Builder` | Standalone experiences centered on one approved report, webinar, video, deck, or asset. |
 
@@ -118,7 +119,7 @@ Validation checks manifest/frontmatter parity, dependency closure and cycles, so
 
 ## Deliberately Excluded
 
-- internal demo-board, template, tracker, CRM, email, chat, meeting-note, or deal workflows
+- internal demo-board, hard-coded template, tracker, CRM, email, chat, meeting-note, or deal workflows
 - internal product capability, pricing, packaging, credit, order-form, contract, or roadmap material
 - private customer proof tables and unverified metrics
 - hard-coded MCP identities, profiles, board identifiers, or internal URLs

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Webinar Portal Builder"
+  short_description: "Build live webinar portals, series hubs, and replay platforms"
+  default_prompt: "Use $abm-strategist only for named-account or one-to-few activation. Use $folloze-brand-kit for Folloze-owned portals or $brand-harvester with brand.json.validation.status: ok for external brands. Then use $folloze-webinar-portal-builder with $folloze-board-quality-core to build and QA a single-event lifecycle portal, series hub, or webinar platform with provider capability discovery, a tested fallback, and separate save, publish, and public-verification states."
