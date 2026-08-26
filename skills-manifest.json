@@ -1,6 +1,6 @@
 {
   "repo": "folloze-mcp-customer-skills",
-  "bundle_version": "3.0.0",
+  "bundle_version": "3.1.0",
   "visibility": "public",
   "owner": "0xTrey",
   "purpose": "Customer-facing Folloze MCP skills for routing, strategy, brand fidelity, board building, QA, and safe publishing preflight.",
@@ -29,6 +29,7 @@
         "Folloze-One-To-One-Microsite-Builder",
         "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
         "Folloze-Webinar-Promotion-Page-Builder",
+        "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
         "Folloze-Content-Magic-Builder"
       ],
@@ -36,6 +37,7 @@
         "Folloze-One-To-One-Microsite-Builder",
         "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
         "Folloze-Webinar-Promotion-Page-Builder",
+        "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
         "Folloze-Content-Magic-Builder"
       ],
@@ -143,12 +145,27 @@
         "external_brand": "brand-harvester"
       },
       "summary": "Builds promotion, live, replay, and post-event Folloze webinar experiences."
+    },
+    {
+      "name": "folloze-webinar-portal-builder",
+      "path": "Skills/folloze-webinar-portal-builder",
+      "role": "builder",
+      "status": "customer-facing",
+      "requires": [
+        "folloze-board-quality-core"
+      ],
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester"
+      },
+      "summary": "Builds hosted single-event portals, webinar series hubs, and reusable live and replay platforms."
     }
   ],
   "excluded_internal_workflows": [
     "internal demo-board builders",
     "Zoom demo-room and post-call deal-room automation",
-    "API/native-template board builders",
+    "hard-coded internal API and native-template automation",
     "internal sales, CRM, tracker, and deal-process automations"
   ]
 }

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "profile_name": "webinar-portal-draft",
+  "portal": {
+    "mode": "single_event_lifecycle",
+    "operation": "audit_only",
+    "title": "Illustrative webinar portal",
+    "audience": "Review audience",
+    "audience_motion": "one-to-many",
+    "source_mode": "illustrative_demo",
+    "demo_disclosure": "Illustrative webinar experience for demo review.",
+    "primary_conversion_job": "Review the event registration path",
+    "vanity_slug": "webinar-portal-draft"
+  },
+  "brand": {
+    "owner": "external",
+    "source_url": null,
+    "evidence_status": "unresolved",
+    "brand_json_path": null,
+    "brand_json_validation_status": "unresolved",
+    "folloze_brand_kit_status": "not_applicable"
+  },
+  "events": [
+    {
+      "event_key": "session-1",
+      "title": "Illustrative webinar session",
+      "description": "A synthetic session used to review the portal workflow.",
+      "source_status": "illustrative",
+      "source_url": null,
+      "source_checked_at": null,
+      "lifecycle": "upcoming_registration",
+      "start_at": null,
+      "end_at": null,
+      "timezone": null,
+      "duration_minutes": null,
+      "learning_outcomes": [
+        "Understand the webinar portal structure",
+        "Review the registration and live-provider route",
+        "Evaluate the replay and resource experience"
+      ],
+      "speakers": [],
+      "registration": {
+        "mode": "provider_registration",
+        "url": null,
+        "form_id": null,
+        "submit_redirect_url": null,
+        "email_notifications_enabled": false
+      },
+      "live": {
+        "provider": "external_live",
+        "embed_mode": "external_link",
+        "capability_status": "unresolved",
+        "schema_source": null,
+        "widget_id": null,
+        "widget_tag": null,
+        "destination_url": null,
+        "fallback_url": null
+      },
+      "replay": {
+        "status": "not_available",
+        "url": null
+      },
+      "primary_action": {
+        "label": "Review registration",
+        "url": null
+      }
+    }
+  ],
+  "resources": {
+    "status": "unresolved",
+    "expected_count": 5,
+    "items": []
+  },
+  "folloze": {
+    "connection_label": null,
+    "template_board_id": null,
+    "target_board_id": null,
+    "target_board_name": "Illustrative webinar portal",
+    "allowed_target_names": [
+      "Illustrative webinar portal"
+    ],
+    "theme_mode": "source_brand",
+    "native_editability_required": true,
+    "expected_access": "open",
+    "expected_public_url": null
+  },
+  "release": {
+    "apply": false,
+    "publish": false,
+    "publication_authorization_note": null
+  },
+  "evidence": {
+    "source_ledger_path": "webinar-portal/source-ledger.md",
+    "brand_evidence_path": "webinar-portal/brand/",
+    "manifest_path": "webinar-portal/manifest.json",
+    "readback_path": "webinar-portal/readback.json",
+    "qa_dir": "webinar-portal/qa/",
+    "release_receipt_path": "webinar-portal/release-receipt.json",
+    "structured_readback_passed": false,
+    "desktop_qa_passed": false,
+    "mobile_qa_passed": false,
+    "functional_qa_passed": false,
+    "anonymous_qa_passed": false,
+    "analytics_observed": false
+  }
+}

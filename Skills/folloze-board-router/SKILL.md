@@ -1,6 +1,6 @@
 ---
 name: folloze-board-router
-description: Route a Folloze board request to the correct public builder, strategy gate, and brand source before copy or visual design begins. Use for any Folloze board, microsite, campaign landing page, webinar page, industry page, or content-led buyer experience when the correct workflow is not already explicit.
+description: Route a Folloze board request to the correct public builder, strategy gate, and brand source before copy or visual design begins. Use for any Folloze board, microsite, campaign landing page, webinar page or portal, industry page, or content-led buyer experience when the correct workflow is not already explicit.
 ---
 
 # Folloze Board Router
@@ -22,6 +22,7 @@ Record four decisions in the working brief:
    - named-account microsite
    - campaign landing page
    - webinar promotion or lifecycle page
+   - hosted webinar portal, series hub, or replay platform
    - industry, segment, cohort, or persona page
    - content-led standalone experience
 4. **Publishing state**
@@ -49,10 +50,11 @@ Choose exactly one required brand source:
 - `one-to-one` named-account experience: `$Folloze-One-To-One-Microsite-Builder`
 - broad offer, demand-generation, product-launch, partner, or general campaign page: `$Folloze-Top-Of-Funnel-Campaign-Landing-Page`
 - webinar registration, promotion, live-event companion, or replay/follow-up page: `$Folloze-Webinar-Promotion-Page-Builder`
+- hosted single-event destination, multi-session series hub, or reusable live and on-demand platform: `$folloze-webinar-portal-builder`
 - industry, segment, cohort, persona, or one-to-few campaign: `$Folloze-Industry-Campaign-Page-Builder`
 - one approved asset as the center of the experience: `$Folloze-Content-Magic-Builder`
 
-When two routes seem plausible, choose the page's primary conversion job. A webinar promoted by a broad campaign is still a webinar page. A report featured inside a broader campaign remains a campaign page.
+When two routes seem plausible, choose the experience's primary job. A campaign page that promotes one webinar uses the promotion builder. A destination that hosts live access, multiple sessions, lifecycle transitions, or a reusable replay library uses the portal builder. A report featured inside a broader campaign remains a campaign page.
 
 ## Shared Production Contract
 
