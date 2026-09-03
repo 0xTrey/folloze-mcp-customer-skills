@@ -36,6 +36,7 @@ Every board follows one shared flow:
 | `folloze-webinar-portal-builder` | Hosted single-event destinations, webinar series hubs, and reusable live and replay platforms. |
 | `Folloze-Industry-Campaign-Page-Builder` | Industry, segment, cohort, persona, regional, and one-to-few campaigns. |
 | `Folloze-Content-Magic-Builder` | Standalone experiences centered on one approved report, webinar, video, deck, or asset. |
+| `folloze-roi-calculator-builder` | Finance-defensible ROI and value models, shareable builder prompts, self-contained calculator HTML, QA, and gated Folloze handoff. |
 
 ## Install Or Update
 
