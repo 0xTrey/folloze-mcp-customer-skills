@@ -41,6 +41,8 @@ LOCK_COMPLETE_SKILLS = {
     "Folloze-Webinar-Promotion-Page-Builder",
     "folloze-webinar-portal-builder",
     "folloze-brand-kit",
+    "folloze-analytics-tracking",
+    "folloze-roi-calculator-builder",
 }
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
@@ -107,8 +109,8 @@ def main() -> int:
 
     if set(manifest.get("required_foundations", [])) != REQUIRED_CORE:
         errors.append(f"manifest required_foundations must be exactly {sorted(REQUIRED_CORE)}")
-    if manifest.get("bundle_version") != "3.1.0":
-        errors.append("manifest bundle_version must be 3.1.0")
+    if manifest.get("bundle_version") != "3.2.0":
+        errors.append("manifest bundle_version must be 3.2.0")
 
     locked_paths: set[str] = set()
     for source_name, source in source_lock.get("sources", {}).items():
@@ -179,6 +181,13 @@ def main() -> int:
                 errors.append(f"{path_value}: external brand path does not enforce Brand Harvester validation")
             if "$folloze-board-router" in skill_text or "$folloze-board-router" in agent_text:
                 errors.append(f"{path_value}: builder must not invoke or depend on the router")
+
+            if name == "folloze-roi-calculator-builder":
+                for token in ("$folloze-analytics-tracking", "docs/folloze-analytics-tracking.md"):
+                    if token not in skill_text:
+                        errors.append(f"{path_value}: ROI builder does not reference {token}")
+                if "$folloze-analytics-tracking" not in agent_text:
+                    errors.append(f"{path_value}: agents/openai.yaml does not require $folloze-analytics-tracking")
 
         if entry.get("role") == "router":
             expected_router_dependencies = name_set - {name}

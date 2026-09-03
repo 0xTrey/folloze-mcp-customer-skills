@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Analytics Tracking"
+  short_description: "Track Folloze CTAs and meaningful buyer interactions safely"
+  default_prompt: "Use $folloze-analytics-tracking before any Folloze save or publish. Read the current Folloze guide and save schema, instrument every CTA and meaningful interaction with flzAnalytic, exclude raw financial values and PII, and report local event tests separately from production Folloze Pulse delivery."

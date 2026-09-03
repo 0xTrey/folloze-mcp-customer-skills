@@ -10,6 +10,26 @@ Your job is to interview the stakeholder responsible for a buyer-facing value ex
 
 Do not produce a generic calculator. Build a decision tool tied to an approved vendor, product or use case, buyer, value thesis, evidence base, and buying motion.
 
+## Required Analytics Tracking bootstrap
+
+Before Phase 0, download or update the current `folloze-analytics-tracking` skill from the public Folloze customer skill source:
+
+- documentation: `https://engage.folloze.com/follozemcp`
+- readable source: `https://github.com/0xTrey/folloze-mcp-customer-skills/blob/main/Skills/folloze-analytics-tracking/SKILL.md`
+- raw source: `https://raw.githubusercontent.com/0xTrey/folloze-mcp-customer-skills/main/Skills/folloze-analytics-tracking/SKILL.md`
+
+If your client supports local skills, install the complete source as `folloze-analytics-tracking/SKILL.md`, then refresh the client so the skill is available. If your environment cannot install skills but can open URLs, load the complete raw source into the working context and treat it as a required contract. Record the source URL, access time, and resolved revision or content hash when available.
+
+Read the skill completely and apply it to every CTA and meaningful calculator interaction. The current Folloze MCP board creation guide and active save schema override conflicting examples from older archives. Do not generate HTML, save to Folloze, or claim analytics readiness if the current skill source cannot be loaded. Ask the stakeholder to attach the skill source instead.
+
+At the top of the first response, include:
+
+```text
+Analytics Tracking source: [URL]
+Analytics Tracking status: [LOADED | BLOCKED]
+Analytics Tracking revision: [commit, hash, or unavailable]
+```
+
 ## Known reference experience
 
 Ask whether an existing prototype or approved reference experience should inform the interaction model. Use any supplied example only as an interaction and storytelling reference. Patterns such as a single-pane workbench, product selection, live inputs, decomposed outputs, visible assumptions, and role-based interpretation can be useful when they fit the buyer job.
@@ -779,7 +799,7 @@ Use real supplied destinations for every link and CTA. Do not use `href="#"`, `j
 
 ## Analytics contract
 
-Instrument meaningful events, but do not send raw sensitive financial inputs or PII unless an approved analytics policy explicitly requires it.
+Apply the downloaded `folloze-analytics-tracking` skill. Instrument meaningful events, but do not send raw sensitive financial inputs or PII unless an approved analytics policy explicitly requires it.
 
 Recommended events:
 
@@ -805,7 +825,7 @@ Recommended safe payload fields:
 - CTA text and approved destination;
 - validation error type.
 
-Create one defensive analytics adapter that dispatches a namespaced browser `CustomEvent` and fails silently. Integrate with a Folloze analytics adapter only when the current official guide explicitly documents and authorizes that interface for the target custom HTML placement. Do not reach into undocumented Folloze controllers or services.
+Create one defensive analytics adapter that emits the required `flzAnalytic` events when that function is available and may also dispatch a namespaced browser `CustomEvent` for local testing. Do not inject a custom bridge or reach into undocumented Folloze controllers or services unless the current official guide explicitly requires that exact integration.
 
 Use this internal adapter contract:
 
@@ -830,7 +850,7 @@ Every event must use one versioned envelope:
 }
 ```
 
-Dispatch `folloze:roi-event` with the envelope in `event.detail` as the portable default. If the current official guide authorizes a Folloze adapter for this exact placement, connect it behind the same internal interface and verify both paths with test spies. Record the emitted name and payload, confirm that raw financial inputs and PII are absent, and do not claim production analytics delivery until the saved Folloze experience is tested independently.
+Use a direct inline `flzAnalytic('cta_click', {text, area}, this)` call on every CTA so the current save validator can inspect it. For calculator controls and composite interactions, route safe event fields through `emitRoiEvent`, then call `flzAnalytic` with the action name, safe payload, and source element. Dispatch `folloze:roi-event` with the envelope in `event.detail` as an optional local test path. Verify both paths with test spies. Record the emitted name and payload, confirm that raw financial inputs and PII are absent, and do not claim production analytics delivery until the saved Folloze experience is tested independently.
 
 ## Accessibility and responsive contract
 
@@ -859,6 +879,7 @@ folloze-roi-calculator/
   ASSUMPTIONS.json
   FORMULAS.md
   SOURCES.md
+  ANALYTICS-RECEIPT.md
   TEST-VECTORS.json
   QA-REPORT.md
   RELEASE-CHECKLIST.md
@@ -892,13 +913,16 @@ The package must include:
 8. **Analytics map**
    - event, trigger, safe payload, destination adapter, and privacy note;
 
-9. **Test vectors**
+9. **Analytics Tracking receipt**
+   - source URL, access time, resolved revision or content hash, CTA coverage, custom interaction coverage, sensitive payload review, local spy status, and production verification state;
+
+10. **Test vectors**
    - exact inputs and expected outputs for each scenario and edge case;
 
-10. **QA report**
+11. **QA report**
     - calculation, copy, source, interaction, accessibility, responsive, overflow, asset, link, analytics, and brand-fidelity checks;
 
-11. **Approval checklist**
+12. **Approval checklist**
     - finance, product, Product Marketing, brand, legal, privacy, analytics, accessibility, technical, and Folloze release owners.
 
 ## Deterministic test requirements
@@ -935,20 +959,23 @@ If zero investment makes ROI undefined, display `not applicable` rather than inf
 
 Before declaring the package complete:
 
-1. Recalculate every test vector independently.
-2. Confirm every visible claim exists in the source ledger.
-3. Confirm every displayed number maps to the formula registry.
-4. Confirm assumptions are visibly distinguishable from facts.
-5. Confirm capacity is not counted as cash without approval.
-6. Confirm no benefit stream is double counted.
-7. Confirm the title matches the model status.
-8. Confirm every control works.
-9. Confirm every link has a real destination.
-10. Confirm desktop and mobile behavior.
-11. Confirm keyboard, focus, contrast, labels, errors, and reduced motion.
-12. Confirm the approved brand source owns every rendered surface and control family.
-13. Record an artifact hash or version identifier in the QA report.
-14. Report local build, review, approval, Folloze save, publication, anonymous verification, analytics verification, and source-control state separately.
+1. Confirm the current `folloze-analytics-tracking` source was downloaded, read, and applied. Record its URL and resolved revision or content hash.
+2. Recalculate every test vector independently.
+3. Confirm every visible claim exists in the source ledger.
+4. Confirm every displayed number maps to the formula registry.
+5. Confirm assumptions are visibly distinguishable from facts.
+6. Confirm capacity is not counted as cash without approval.
+7. Confirm no benefit stream is double counted.
+8. Confirm the title matches the model status.
+9. Confirm every control works.
+10. Confirm every link has a real destination.
+11. Confirm every CTA and meaningful interaction satisfies the loaded Analytics Tracking contract.
+12. Confirm no raw financial inputs or PII appear in analytics payloads.
+13. Confirm desktop and mobile behavior.
+14. Confirm keyboard, focus, contrast, labels, errors, and reduced motion.
+15. Confirm the approved brand source owns every rendered surface and control family.
+16. Record an artifact hash or version identifier in the QA report.
+17. Report local build, review, approval, Folloze save, publication, anonymous verification, analytics verification, and source-control state separately.
 
 Do not say `production ready`, `finance approved`, `brand approved`, `published`, or `verified` unless you have direct evidence for that exact state.
 
@@ -967,7 +994,7 @@ Do not say `production ready`, `finance approved`, `brand approved`, `published`
 
 ## Start now
 
-Begin with Phase 0. Briefly explain the seven phases in plain language, then ask no more than seven questions total. Combine the source and capability questions required to begin with the highest-priority Phase 1 questions. Ask the remaining Phase 1 questions in the next round. Do not calculate and do not generate code in your first response.
+Begin by loading `folloze-analytics-tracking` and showing the bootstrap receipt. If it is loaded, continue with Phase 0. Briefly explain the seven phases in plain language, then ask no more than seven questions total. Combine the source and capability questions required to begin with the highest-priority Phase 1 questions. Ask the remaining Phase 1 questions in the next round. Do not calculate and do not generate code in your first response.
 
 ---
 

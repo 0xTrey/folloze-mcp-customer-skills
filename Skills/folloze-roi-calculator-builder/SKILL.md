@@ -21,8 +21,10 @@ Do not force a build when the user only needs the reusable prompt or model. Do n
 
 ## Required Foundations
 
+- Before any ROI calculator HTML build, download or update `$folloze-analytics-tracking` from the [public Analytics Tracking source](../../docs/folloze-analytics-tracking.md), read it completely, and apply it to every CTA and meaningful calculator interaction. If the source cannot be loaded, stop before HTML generation and Folloze publication. Prompt-package mode must place this bootstrap requirement inside the delivered prompt so a clean ChatGPT, Qwen, Claude, or Codex session cannot silently skip it.
+- Apply `$folloze-board-quality-core` throughout local build, responsive review, interaction QA, analytics review, and Folloze MCP preflight.
 - Run `$abm-strategist` before design when the calculator is for a named account, one-to-few campaign, or named account cluster. Use its approved brief and narrative structure. Do not invent a target account for one-to-many work.
-- Run `$brand-harvester` for every HTML build before choosing the visual system or writing CSS. Store the evidence bundle in the active project repo, require a zero CLI exit and `brand.json.validation.status: ok`, and review the resolved source, extraction statuses, desktop and mobile screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`.
+- Use `$folloze-brand-kit` for a Folloze-owned calculator. For an external brand, run `$brand-harvester` before choosing the visual system or writing CSS. Store the evidence bundle in the active project repo, require a zero CLI exit and `brand.json.validation.status: ok`, and review the resolved source, extraction statuses, desktop and mobile screenshots, `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and `brand.json`.
 - If `$brand-harvester` cannot inspect the approved source, stop visual design until the user supplies screenshots, a brand guide, or equivalent approved evidence.
 - Prompt-package mode does not require a live harvest. The delivered prompt must still require `$brand-harvester` or equivalent approved brand evidence before its model generates HTML.
 
@@ -130,12 +132,13 @@ Do not generate HTML until the stakeholder approves the model direction or expli
 When the user asks for a prompt they can give another model:
 
 1. Read the complete [master builder prompt](references/master-builder-prompt.md).
-2. Replace generic language only with approved vendor, product, buyer, and source details.
-3. Keep the evidence, finance, security, brand, accessibility, analytics, QA, and action boundaries intact.
-4. Remove research seeds or defaults that are not approved for the customer.
-5. Preserve the short-round interview behavior and the requirement to approve the model before code generation.
-6. Save the result as a standalone Markdown file in the active project repo.
-7. Provide a short share note that explains what the recipient should attach and what the prompt will produce.
+2. Preserve the required `$folloze-analytics-tracking` download, installation, source receipt, and application gate exactly.
+3. Replace generic language only with approved vendor, product, buyer, and source details.
+4. Keep the evidence, finance, security, brand, accessibility, analytics, QA, and action boundaries intact.
+5. Remove research seeds or defaults that are not approved for the customer.
+6. Preserve the short-round interview behavior and the requirement to approve the model before code generation.
+7. Save the result as a standalone Markdown file in the active project repo.
+8. Provide a short share note that explains what the recipient should attach and what the prompt will produce.
 
 The prompt must be usable in Qwen, ChatGPT, or another capable coding model without relying on hidden context.
 
@@ -176,6 +179,7 @@ Preserve the local HTML and model files as the source of truth. Never invent a d
 
 Before handoff, verify:
 
+- the current `$folloze-analytics-tracking` source was downloaded, read, and applied;
 - formula test vectors for conservative, expected, and upside scenarios;
 - zero, missing, negative, extreme, and locale-formatted inputs;
 - percentage-point versus relative-percentage behavior;
@@ -220,6 +224,7 @@ Report:
 - prompt, model, HTML, and QA artifact paths;
 - strategy and brand evidence paths and review status;
 - deterministic, responsive, accessibility, interaction, and claim QA status;
+- Analytics Tracking source URL, load status, coverage counts, and local versus production verification state;
 - exact Folloze board, page, and section only if verified and in scope;
 - Folloze save, publish, anonymous verification, and analytics states separately;
 - Git commit and push states separately;

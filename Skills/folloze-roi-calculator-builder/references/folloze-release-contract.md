@@ -12,6 +12,7 @@ Do not infer a custom HTML section tool from a general board editor, a template-
 
 Before any Folloze mutation, inspect the current guide or tool schema and verify all of the following:
 
+- the current `$folloze-analytics-tracking` source was downloaded, read completely, and applied to the approved HTML;
 - exact target board ID, page, and section or insertion location;
 - whether the action creates, updates, or replaces content;
 - accepted payload type and size limits;
@@ -68,7 +69,9 @@ Do not call an authenticated preview anonymous verification. Do not call a succe
 
 ## Analytics Boundary
 
-Use a namespaced browser `CustomEvent` as the portable default. Integrate with a Folloze analytics adapter only when the current official guide explicitly documents and authorizes that interface for custom HTML sections.
+Use `$folloze-analytics-tracking` as the required instrumentation contract. Read the current Folloze guide and active save schema immediately before mutation. The live guide and save validator control the exact `flzAnalytic` implementation and override conflicting examples from older archives.
+
+Every CTA must emit `cta_click` with safe `text` and `area` fields and the source element. Every meaningful calculator state change must emit a descriptive tracked event. External destinations must use `target="_blank" rel="noopener"`. Do not inject a custom bridge or reach into undocumented Folloze controllers unless the current guide explicitly requires that exact integration.
 
 Never emit raw financial values, account-confidential values, PII, credentials, or free-text input. Prefer safe fields such as calculator version, input ID, scenario, result band, area, CTA label, and validation error type.
 
@@ -93,6 +96,8 @@ Public URL:
 Anonymous desktop status:
 Anonymous mobile status:
 Analytics adapter status:
+Analytics Tracking source and load status:
+CTA and custom-interaction coverage:
 Production analytics delivery status:
 Git commit status:
 Git push status:
