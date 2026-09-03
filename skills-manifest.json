@@ -1,6 +1,6 @@
 {
   "repo": "folloze-mcp-customer-skills",
-  "bundle_version": "3.1.0",
+  "bundle_version": "3.2.0",
   "visibility": "public",
   "owner": "0xTrey",
   "purpose": "Customer-facing Folloze MCP skills for routing, strategy, brand fidelity, board building, QA, and safe publishing preflight.",
@@ -26,12 +26,14 @@
         "abm-strategist",
         "brand-harvester",
         "folloze-brand-kit",
+        "folloze-analytics-tracking",
         "Folloze-One-To-One-Microsite-Builder",
         "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
         "Folloze-Webinar-Promotion-Page-Builder",
         "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
-        "Folloze-Content-Magic-Builder"
+        "Folloze-Content-Magic-Builder",
+        "folloze-roi-calculator-builder"
       ],
       "routes_to": [
         "Folloze-One-To-One-Microsite-Builder",
@@ -39,7 +41,8 @@
         "Folloze-Webinar-Promotion-Page-Builder",
         "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
-        "Folloze-Content-Magic-Builder"
+        "Folloze-Content-Magic-Builder",
+        "folloze-roi-calculator-builder"
       ],
       "summary": "Chooses the motion, strategy path, brand source, board builder, and publishing state."
     },
@@ -70,6 +73,13 @@
       "role": "brand",
       "status": "customer-facing",
       "summary": "Provides a purpose-built public-safe Folloze brand subset for Folloze-owned experiences."
+    },
+    {
+      "name": "folloze-analytics-tracking",
+      "path": "Skills/folloze-analytics-tracking",
+      "role": "utility",
+      "status": "customer-facing",
+      "summary": "Applies the current Folloze MCP analytics contract to CTAs and meaningful buyer interactions."
     },
     {
       "name": "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
@@ -160,6 +170,22 @@
         "external_brand": "brand-harvester"
       },
       "summary": "Builds hosted single-event portals, webinar series hubs, and reusable live and replay platforms."
+    },
+    {
+      "name": "folloze-roi-calculator-builder",
+      "path": "Skills/folloze-roi-calculator-builder",
+      "role": "builder",
+      "status": "customer-facing",
+      "requires": [
+        "folloze-board-quality-core"
+      ],
+      "conditional_requires": {
+        "named_or_one_to_few": "abm-strategist",
+        "folloze_owned": "folloze-brand-kit",
+        "external_brand": "brand-harvester",
+        "roi_html": "folloze-analytics-tracking"
+      },
+      "summary": "Builds evidence-backed ROI and value models, reusable prompts, and source-branded Folloze calculator experiences."
     }
   ],
   "excluded_internal_workflows": [

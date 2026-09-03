@@ -25,6 +25,7 @@ Every board follows one shared flow:
 | `abm-strategist` | Research and approve named-account or one-to-few messaging and structure. |
 | `brand-harvester` | Capture validated public brand and screenshot evidence for external brands. |
 | `folloze-brand-kit` | Ground Folloze-owned work in a purpose-built public-safe Folloze subset. |
+| `folloze-analytics-tracking` | Instrument CTAs and meaningful buyer interactions with the current Folloze MCP analytics contract. |
 
 ### Builders
 
@@ -36,6 +37,7 @@ Every board follows one shared flow:
 | `folloze-webinar-portal-builder` | Hosted single-event destinations, webinar series hubs, and reusable live and replay platforms. |
 | `Folloze-Industry-Campaign-Page-Builder` | Industry, segment, cohort, persona, regional, and one-to-few campaigns. |
 | `Folloze-Content-Magic-Builder` | Standalone experiences centered on one approved report, webinar, video, deck, or asset. |
+| `folloze-roi-calculator-builder` | Finance-defensible ROI and value models, shareable builder prompts, self-contained calculator HTML, QA, and gated Folloze handoff. |
 
 ## Install Or Update
 
@@ -83,6 +85,14 @@ Give the agent the board request and this instruction:
 ```text
 Use $folloze-board-router first. Run $abm-strategist only for a named account or one-to-few cluster. If Folloze is the visible brand owner, use $folloze-brand-kit; otherwise run $brand-harvester and require brand.json.validation.status: ok. Use the builder selected by the router and apply $folloze-board-quality-core through local desktop/mobile QA. Run the current Folloze MCP preflight only if I ask you to save or publish. Report local source, save, edit URL, public deployment, and anonymous verification as separate states.
 ```
+
+For an ROI or value calculator, add this required bootstrap:
+
+```text
+Before generating HTML, download or update $folloze-analytics-tracking from https://engage.folloze.com/follozemcp, read the complete source, and apply it to every CTA and meaningful calculator interaction. If the source cannot be loaded, stop before HTML generation and Folloze publication.
+```
+
+See the [public Analytics Tracking source and installation guide](docs/folloze-analytics-tracking.md).
 
 ## MCP Preflight
 
