@@ -82,6 +82,21 @@
         "brand-harvester": "required for every build"
       },
       "summary": "Turns an approved content item into an interactive Folloze buyer experience."
+    },
+    {
+      "name": "Folloze-ROI-Calculator-Builder",
+      "path": "Skills/Folloze-ROI-Calculator-Builder",
+      "role": "builder",
+      "status": "customer-facing",
+      "requires": [
+        "abm-strategist",
+        "brand-harvester"
+      ],
+      "runtime_gates": {
+        "abm-strategist": "required for named-account and one-to-few calculators",
+        "brand-harvester": "required for every build"
+      },
+      "summary": "Builds source-branded ROI calculators, savings models, value estimators, and buyer-facing business-case tools."
     }
   ],
   "excluded_internal_workflows": [

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze ROI Calculator Builder"
+  short_description: "Build branded, auditable ROI calculators"
+  default_prompt: "Use $Folloze-ROI-Calculator-Builder to define and test the economic model first, run $abm-strategist when the motion is account-based, and run $brand-harvester for every build with brand.json.validation.status: ok before creating the source-branded calculator HTML."

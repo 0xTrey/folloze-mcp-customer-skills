@@ -21,6 +21,7 @@ This repo is intentionally separate from Folloze internal skill work. It contain
 | `Folloze-One-To-One-Microsite-Builder` | Named-account ABM pages, executive follow-up pages, renewal/expansion microsites, and account-specific buyer experiences. |
 | `Folloze-Industry-Campaign-Page-Builder` | Industry, segment, cohort, persona, event-audience, and one-to-few campaign pages. |
 | `Folloze-Content-Magic-Builder` | Interactive Folloze experiences created from a whitepaper, report, ebook, webinar, deck, video, guide, or other approved content item. |
+| `Folloze-ROI-Calculator-Builder` | Source-branded ROI calculators, savings models, value estimators, and business-case tools with explicit assumptions and tested formulas. |
 
 Every builder declares both foundations as install dependencies. Runtime routing stays honest:
 
@@ -40,7 +41,7 @@ Every builder declares both foundations as install dependencies. Runtime routing
 
 ## Install The Current Skill Pack
 
-Clone or update this repository, then copy all six skill directories into Claude's user skill directory:
+Clone or update this repository, then copy all seven skill directories into Claude's user skill directory:
 
 ```bash
 git clone https://github.com/0xTrey/folloze-mcp-customer-skills.git
