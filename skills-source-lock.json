@@ -82,7 +82,7 @@
       "source_archive_sha256": "50d78a4640682f5d8742df93e8b04ad60c099e340e364e5bf79a42cda4b4927e",
       "derivation": "Current Folloze MCP guide precedence, safe calculator event coverage, sensitive payload exclusions, and production verification boundaries applied to the public catalog skill.",
       "vendored_files": {
-        "Skills/folloze-analytics-tracking/SKILL.md": "67612c9d58a8b9989f95977a905a47a633ae03c8cb6182dca0c24f1c8ca8a175",
+        "Skills/folloze-analytics-tracking/SKILL.md": "d500d19b0158e3debeb67c0b9c56d4e8a9f95e91e2ab0abb9ac238a290032991",
         "Skills/folloze-analytics-tracking/agents/openai.yaml": "52a52fc330f3fb8db8a7bae86efed48e6dc08b578209edc245283b64f76ac420"
       }
     },
@@ -94,7 +94,7 @@
         "Skills/folloze-roi-calculator-builder/SKILL.md": "a581c2b20c9f6c913c8ab341152c1e5f545b46722b23fc7673dd542271d50c70",
         "Skills/folloze-roi-calculator-builder/agents/openai.yaml": "0bc44b3fa9ecb2e7ceb94706ef09ed2988df569a6cfc495fc2277b964e095e7a",
         "Skills/folloze-roi-calculator-builder/references/folloze-release-contract.md": "58757f77d5f757005aaf36040d60385907448c337ff09e3fd4151ea2a2bb2f19",
-        "Skills/folloze-roi-calculator-builder/references/master-builder-prompt.md": "d3e6747afee5bae8761680e691b49e39d7711938ed369c7400799a31abe291e8"
+        "Skills/folloze-roi-calculator-builder/references/master-builder-prompt.md": "0f8b2903885328a451366d8e21607ff282325afb0748d0d33aabd3a0ed7a28f7"
       }
     }
   }

@@ -1,6 +1,6 @@
 ---
 name: folloze-analytics-tracking
-description: Apply Folloze click and interaction tracking to customer-facing HTML before any Folloze save or publish. Use for CTAs, links, navigation, calculators, tabs, accordions, media controls, and other meaningful interactions that must appear in Folloze Pulse and supported external analytics.
+description: Apply the current Folloze click and interaction tracking contract to customer-facing HTML before save or publish. Use for CTAs, navigation, calculators, tabs, accordions, media controls, and other meaningful interactions that need privacy-safe instrumentation plus separate delivery verification.
 ---
 
 # Folloze Analytics Tracking
@@ -71,7 +71,7 @@ scenarioSelect.addEventListener("change", function () {
 });
 ```
 
-Do not place raw currency values, percentages, customer metrics, account names, email addresses, free text, or exact modeled results in analytics payloads. Use safe categories such as input ID, scenario label, result band, validation type, calculator version, and page area.
+Do not place raw currency values, percentages, customer metrics, account names, email addresses, free text, exact modeled results, destination URLs, query strings, form values, element datasets, or arbitrary metadata in analytics payloads. Use only `text`, `area`, and allowlisted categorical fields such as input ID, scenario label, result band, validation type, and calculator version. Keep labels concise and drop unexpected keys before calling `flzAnalytic`.
 
 ## Navigation And Internal Movement
 
