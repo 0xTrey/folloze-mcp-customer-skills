@@ -1,6 +1,6 @@
 {
   "repo": "folloze-mcp-customer-skills",
-  "bundle_version": "2.0.0",
+  "bundle_version": "2.1.0",
   "visibility": "public",
   "owner": "0xTrey",
   "purpose": "Customer-facing Folloze MCP skills for strategy, brand capture, and buyer-experience building.",
@@ -14,14 +14,14 @@
       "path": "Skills/abm-strategist",
       "role": "foundation",
       "status": "customer-facing",
-      "summary": "The Folloze MCP catalog Campaign Brief skill for one-to-one and one-to-few account campaigns."
+      "summary": "Builds a leadership-grade account argument, selects the Folloze construction mode, and hands a binding contract to the correct builder."
     },
     {
       "name": "brand-harvester",
       "path": "Skills/brand-harvester",
       "role": "foundation",
       "status": "customer-facing",
-      "summary": "Captures public brand, design, asset, and screenshot evidence before visual design."
+      "summary": "Captures public brand, required co-brand assets, component families, design rhythm, screenshots, and Custom Theme candidates before visual design."
     },
     {
       "name": "Folloze-Top-Of-Funnel-Campaign-Landing-Page",
@@ -48,10 +48,10 @@
         "brand-harvester"
       ],
       "runtime_gates": {
-        "abm-strategist": "required before design",
-        "brand-harvester": "required before design"
+        "abm-strategist": "required handoff with build_mode mcp_html",
+        "brand-harvester": "required before design, including target-logo acceptance for co-branding"
       },
-      "summary": "Builds named-account Folloze one-to-one microsites and follow-up pages."
+      "summary": "Builds custom MCP/HTML named-account experiences with account-led copy, top-header co-branding, and a decision-advancing interaction."
     },
     {
       "name": "Folloze-Industry-Campaign-Page-Builder",
@@ -63,10 +63,10 @@
         "brand-harvester"
       ],
       "runtime_gates": {
-        "abm-strategist": "required for one-to-few and named account-cluster work",
-        "brand-harvester": "required for every build"
+        "abm-strategist": "required for one-to-few and named account-cluster work, including build-mode handoff",
+        "brand-harvester": "required before HTML or Custom Theme design"
       },
-      "summary": "Builds Folloze industry, segment, cohort, persona, and one-to-few campaign pages."
+      "summary": "Builds industry and one-to-few experiences, including native traditional Folloze boards with exact-domain personalization."
     },
     {
       "name": "Folloze-Content-Magic-Builder",
@@ -102,7 +102,7 @@
   "excluded_internal_workflows": [
     "internal demo-board builders",
     "Zoom demo-room and post-call deal-room automation",
-    "API/native-template board builders",
+    "internal tenant-specific API/native-board implementations, credentials, IDs, and browser automation details",
     "internal sales, CRM, tracker, and deal-process automations"
   ]
 }

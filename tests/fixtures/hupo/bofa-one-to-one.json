@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "fixture_id": "hupo_bofa_one_to_one",
+  "board_count_contribution": 1,
+  "seller": "Hupo",
+  "target_account": "Bank of America",
+  "account_scope": {
+    "parent_company": "Bank of America",
+    "allowed_supporting_business_units": [
+      "Merrill"
+    ],
+    "supporting_business_units_may_own_primary_narrative": false
+  },
+  "campaign_motion": "one_to_one",
+  "build_mode": "mcp_html",
+  "copy_contract": {
+    "headline": "Scale stronger client conversations across Bank of America",
+    "supporting_copy": "Hupo gives Bank of America leaders one system for advisor practice, live support, and manager-visible improvement",
+    "primary_cta": "Model the Bank of America opportunity",
+    "headline_terminal_punctuation": false,
+    "parent_target_owns_headline": true,
+    "parent_target_owns_primary_cta": true,
+    "account_substitution_requires_rewrite": true,
+    "leadership_audience": true
+  },
+  "header": {
+    "placement": "top",
+    "vendor_logo": {
+      "role": "primary",
+      "required": true,
+      "official_asset_required": true
+    },
+    "target_logo": {
+      "role": "secondary",
+      "required": true,
+      "official_asset_required": true
+    },
+    "required_viewports": [
+      1440,
+      390,
+      320
+    ]
+  },
+  "signature_interaction": {
+    "type": "scenario_model",
+    "name": "Bank of America Advisor Capacity Model",
+    "buying_question": "How much advisor capacity could leadership evaluate under different adoption and time-saved scenarios?",
+    "input_policy": "buyer_entered_or_approved",
+    "unsupported_roi_claims_allowed": false
+  },
+  "composition": {
+    "full_width_transition_bands": true,
+    "minimum_distinct_composition_types": 3,
+    "maximum_adjacent_equal_card_grids": 1
+  },
+  "approval_state": "repair_mode",
+  "state_contract": [
+    "local_source",
+    "rendered_qa",
+    "folloze_save",
+    "folloze_readback",
+    "draft_preview",
+    "publish",
+    "anonymous_verification"
+  ]
+}

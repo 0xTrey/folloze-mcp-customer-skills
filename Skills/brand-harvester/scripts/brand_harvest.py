@@ -564,19 +564,43 @@ HARVEST_JS = r"""
   const headings = Array.from(document.querySelectorAll("h1,h2,h3")).filter(visible).slice(0, 80).map((el) => ({
     tag: el.tagName.toLowerCase(),
     text: clean(el.innerText),
+    hasTerminalPunctuation: /[.!?:;]$/.test(clean(el.innerText)),
     rect: rectOf(el),
     style: styleOf(el)
   }));
 
-  const buttons = Array.from(document.querySelectorAll("a[href],button,[role='button']")).filter(visible).slice(0, 120).map((el) => ({
-    tag: el.tagName.toLowerCase(),
-    text: clean(el.innerText || el.getAttribute("aria-label") || el.getAttribute("title")),
-    href: abs(el.getAttribute("href")),
-    className: el.className && typeof el.className === "string" ? el.className : "",
-    id: el.id || "",
-    rect: rectOf(el),
-    style: styleOf(el)
-  })).filter((item) => item.text || item.href);
+  const buttonRole = (el) => {
+    if (el.closest("header,nav")) return "header";
+    if (el.closest("form")) return "form";
+    if (el.closest("footer")) return "footer";
+    if (el.closest("[class*='resource' i],[class*='content' i],[class*='download' i]")) return "resource";
+    if (el.closest("[class*='hero' i],[class*='banner' i],[class*='masthead' i]")) return "hero";
+    return "body";
+  };
+  const buttonLabel = (el) => {
+    const text = clean(el.innerText || el.getAttribute("aria-label") || el.getAttribute("title"));
+    const candidates = Array.from(el.querySelectorAll("span,strong,b,em,[class*='label' i]"))
+      .filter(visible)
+      .filter((child) => clean(child.innerText));
+    const exact = candidates.find((child) => clean(child.innerText) === text);
+    return exact || candidates[candidates.length - 1] || el;
+  };
+  const buttons = Array.from(document.querySelectorAll("a[href],button,[role='button']")).filter(visible).slice(0, 120).map((el) => {
+    const label = buttonLabel(el);
+    const surface = el.parentElement || el;
+    return {
+      tag: el.tagName.toLowerCase(),
+      text: clean(el.innerText || el.getAttribute("aria-label") || el.getAttribute("title")),
+      href: abs(el.getAttribute("href")),
+      className: el.className && typeof el.className === "string" ? el.className : "",
+      id: el.id || "",
+      role: buttonRole(el),
+      rect: rectOf(el),
+      style: styleOf(el),
+      labelStyle: styleOf(label),
+      surfaceStyle: styleOf(surface)
+    };
+  }).filter((item) => item.text || item.href);
 
   const images = Array.from(document.querySelectorAll("img")).filter(visible).slice(0, 120).map((el) => ({
     src: abs(el.currentSrc || el.src),
@@ -623,6 +647,7 @@ HARVEST_JS = r"""
     className: el.className && typeof el.className === "string" ? el.className : "",
     text: clean(el.innerText).slice(0, 280),
     rect: rectOf(el),
+    fullBleed: el.getBoundingClientRect().width >= window.innerWidth * 0.94,
     style: styleOf(el)
   }));
 
@@ -943,6 +968,133 @@ def clean_cta_texts(values: list[str]) -> list[str]:
     return cleaned
 
 
+def headline_conventions(headings: list[dict[str, Any]]) -> dict[str, Any]:
+    usable = [item for item in headings if str(item.get("text") or "").strip()]
+    punctuated = [item for item in usable if item.get("hasTerminalPunctuation")]
+    sample = [str(item.get("text")) for item in usable[:12]]
+    ratio = (len(punctuated) / len(usable)) if usable else None
+    if ratio is None:
+        terminal_punctuation = "unknown"
+    elif ratio <= 0.2:
+        terminal_punctuation = "usually_omitted"
+    elif ratio >= 0.8:
+        terminal_punctuation = "usually_present"
+    else:
+        terminal_punctuation = "mixed"
+    return {
+        "terminal_punctuation": terminal_punctuation,
+        "punctuated_count": len(punctuated),
+        "heading_count": len(usable),
+        "samples": sample,
+    }
+
+
+def button_family_map(buttons: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    families: dict[str, list[dict[str, Any]]] = {}
+    for button in meaningful_buttons(buttons):
+        role = str(button.get("role") or "body")
+        families.setdefault(role, []).append(
+            {
+                "text": button.get("text"),
+                "href": button.get("href"),
+                "style": button.get("style") or {},
+                "label_style": button.get("labelStyle") or {},
+                "surface_style": button.get("surfaceStyle") or {},
+            }
+        )
+    return {role: items[:12] for role, items in families.items()}
+
+
+def section_rhythm(sections: list[dict[str, Any]]) -> dict[str, Any]:
+    usable = [item for item in sections if isinstance(item, dict)]
+    full_bleed = [item for item in usable if item.get("fullBleed")]
+    backgrounds: list[str] = []
+    for item in usable:
+        value = (item.get("style") or {}).get("backgroundColor")
+        if value and value not in backgrounds:
+            backgrounds.append(value)
+    return {
+        "full_bleed_count": len(full_bleed),
+        "section_count": len(usable),
+        "full_bleed_is_common": bool(usable) and len(full_bleed) >= max(1, len(usable) // 2),
+        "observed_backgrounds": backgrounds[:12],
+    }
+
+
+def probe_logo_candidate(raw_value: str, timeout: float) -> dict[str, Any]:
+    value = str(raw_value or "").strip()
+    if not value:
+        return {"source": raw_value, "status": "missing", "reason": "empty value"}
+    local_path = Path(value).expanduser()
+    if local_path.is_file():
+        suffix_ok = local_path.suffix.lower() in {".svg", ".png", ".jpg", ".jpeg", ".webp"}
+        return {
+            "source": value,
+            "source_type": "local_file",
+            "status": "ok" if suffix_ok else "invalid",
+            "reason": None if suffix_ok else "unsupported logo file type",
+        }
+    if not looks_like_url(value):
+        return {"source": value, "status": "invalid", "reason": "not a URL or local file"}
+    request = urllib.request.Request(
+        value,
+        headers={"User-Agent": USER_AGENT, "Accept": "image/*,*/*;q=0.5"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=min(timeout, 8.0)) as response:
+            content_type = str(response.headers.get("Content-Type") or "").split(";", 1)[0].lower()
+            suffix_ok = Path(urllib.parse.urlparse(response.geturl()).path).suffix.lower() in {
+                ".svg", ".png", ".jpg", ".jpeg", ".webp"
+            }
+            image_ok = content_type.startswith("image/") or suffix_ok
+            return {
+                "source": value,
+                "resolved_url": response.geturl(),
+                "source_type": "public_url",
+                "content_type": content_type,
+                "status": "ok" if image_ok else "invalid",
+                "reason": None if image_ok else "URL did not resolve to an image",
+            }
+    except Exception as exc:
+        return {"source": value, "source_type": "public_url", "status": "error", "reason": str(exc)}
+
+
+def asset_requirements(
+    pool: dict[str, Any],
+    required_logo_roles: list[str],
+    target_logo_candidates: list[dict[str, Any]],
+    target_logo_sources: list[str],
+) -> dict[str, Any]:
+    vendor_candidates = list(pool["asset_pool"].get("logos", []))
+    vendor_candidates.extend(pool["asset_pool"].get("brandfetch_logos", []))
+    roles = list(dict.fromkeys(required_logo_roles))
+    verified_target_count = sum(1 for item in target_logo_candidates if item.get("status") == "ok")
+    target_has_provenance = bool([value for value in target_logo_sources if str(value).strip()])
+    checks = {
+        "vendor": {
+            "required": "vendor" in roles,
+            "status": "ok" if vendor_candidates else "missing",
+            "candidate_count": len(vendor_candidates),
+            "provenance": "source page or Brandfetch",
+        },
+        "target": {
+            "required": "target" in roles,
+            "status": "ok" if verified_target_count and target_has_provenance else "missing",
+            "candidate_count": verified_target_count,
+            "candidates": target_logo_candidates,
+            "provenance": target_logo_sources,
+        },
+    }
+    missing = [role for role in roles if checks[role]["status"] != "ok"]
+    return {
+        "status": "ok" if not missing else "incomplete",
+        "required_logo_roles": roles,
+        "checks": checks,
+        "issues": [f"Required {role} logo is missing or unverified." for role in missing],
+    }
+
+
 def pick_brandfetch_colors(brandfetch: dict[str, Any]) -> list[str]:
     data = brandfetch.get("data") if brandfetch.get("status") == "ok" else None
     if not isinstance(data, dict):
@@ -1028,9 +1180,12 @@ def structured_brain_pool(resolved: dict[str, Any], brandfetch: dict[str, Any], 
             "css_variables": css_variables,
             "desktop_color_counts": desktop.get("colorCounts", []),
             "desktop_font_counts": desktop.get("fontCounts", []),
+            "headline_conventions": headline_conventions(headings),
+            "section_rhythm": section_rhythm(desktop.get("sections", [])),
         },
         "component_pool": {
             "buttons": buttons[:60],
+            "button_families": button_family_map(buttons),
             "cards": desktop.get("cards", [])[:60],
             "sections": desktop.get("sections", [])[:50],
             "header_or_sticky": (desktop.get("interactionPatterns") or {}).get("fixedOrSticky", []),
@@ -1104,10 +1259,12 @@ def summarize_buttons(pool: dict[str, Any]) -> str:
     values = []
     for button in buttons:
         style = button.get("style", {})
+        label_style = button.get("labelStyle", {})
         text = button.get("text") or button.get("href") or "button"
         values.append(
-            f"{text[:40]}: bg {style.get('backgroundColor')}, text {style.get('color')}, "
-            f"radius {style.get('borderRadius')}, font {style.get('fontWeight')}"
+            f"{button.get('role') or 'body'} / {text[:40]}: bg {style.get('backgroundColor')}, "
+            f"container text {style.get('color')}, rendered label {label_style.get('color')}, "
+            f"radius {style.get('borderRadius')}, font {label_style.get('fontWeight') or style.get('fontWeight')}"
         )
     return "\n".join(f"  - {value}" for value in values) or "  - No button variants captured."
 
@@ -1143,6 +1300,8 @@ Source DNA:
 - Surface: {summarize_surface(pool)}
 - Type: {summarize_type(pool)}
 - Structure: {summarize_structure(pool)}
+- Headline punctuation: {json.dumps(pool['visual_tokens'].get('headline_conventions', {}), ensure_ascii=False)}
+- Section rhythm: {json.dumps(pool['visual_tokens'].get('section_rhythm', {}), ensure_ascii=False)}
 - Button variants:
 {summarize_buttons(pool)}
 - Motion: {json.dumps(pool.get('interaction_pool', {}), indent=2)}
@@ -1180,6 +1339,8 @@ Recommended experience shape: {choose_shape(pool)}
 - Typography: {fonts}
 - Primary color candidates: {colors}
 - Source structure: {summarize_structure(pool)}
+- Headline conventions: {json.dumps(pool['visual_tokens'].get('headline_conventions', {}), ensure_ascii=False)}
+- Section rhythm: {json.dumps(pool['visual_tokens'].get('section_rhythm', {}), ensure_ascii=False)}
 
 ## CTA Language Pool
 
@@ -1193,6 +1354,9 @@ Recommended experience shape: {choose_shape(pool)}
 
 - Start from the source screenshots and `source-dna.md` before writing HTML.
 - Treat the extracted buttons as the component map for nav, hero, resource, modal, and final CTA states.
+- Use the role-specific button family and the rendered label style, not only the container color.
+- Translate the accepted color, type, button, headline, and section-rhythm evidence into the board-scoped
+  Custom Theme when building a native Folloze board.
 - Use the source-site proof links only after verifying they are public and relevant to the buyer motion.
 - If this becomes a Folloze MCP board, still run the normal link, analytics, mobile, and save-readiness gates.
 
@@ -1223,6 +1387,13 @@ def css_tokens(pool: dict[str, Any]) -> str:
                 return value
         return fallback
 
+    def button_label_style(prop: str, fallback: str) -> str:
+        for button in buttons:
+            value = (button.get("labelStyle") or {}).get(prop)
+            if value:
+                return value
+        return fallback
+
     def card_style(prop: str, fallback: str) -> str:
         for card in cards:
             value = (card.get("style") or {}).get(prop)
@@ -1245,15 +1416,44 @@ def css_tokens(pool: dict[str, Any]) -> str:
   --brand-font-body: {body_font};
   --brand-button-radius: {button_style('borderRadius', '0px')};
   --brand-button-padding: {button_style('padding', '12px 18px')};
-  --brand-button-font-weight: {button_style('fontWeight', '600')};
+  --brand-button-text: {button_label_style('color', button_style('color', '#FFFFFF'))};
+  --brand-button-font-weight: {button_label_style('fontWeight', button_style('fontWeight', '600'))};
   --brand-card-radius: {card_style('borderRadius', '8px')};
   --brand-card-shadow: {card_style('boxShadow', 'none')};
 }}
 """
 
 
-def asset_manifest(pool: dict[str, Any], manual_screenshots: list[dict[str, Any]], screenshot_files: dict[str, Any]) -> dict[str, Any]:
+def theme_handoff(pool: dict[str, Any]) -> dict[str, Any]:
+    colors = pool["visual_tokens"].get("colors", [])
+    fonts = pool["visual_tokens"].get("fonts", [])
+    chromatic = [
+        color for color in colors
+        if isinstance(color, str) and color.startswith("#") and not is_neutral_hex(color)
+    ]
     return {
+        "status": "candidate_requires_rendered_review",
+        "primary_color": chromatic[0] if chromatic else (colors[0] if colors else None),
+        "secondary_color": chromatic[1] if len(chromatic) > 1 else None,
+        "font_families": fonts[:6],
+        "headline_conventions": pool["visual_tokens"].get("headline_conventions", {}),
+        "section_rhythm": pool["visual_tokens"].get("section_rhythm", {}),
+        "button_families": pool["component_pool"].get("button_families", {}),
+        "instruction": (
+            "Map these candidates into the board-scoped Custom Theme, then read back the theme and inspect "
+            "rendered buttons, labels, tabs, tiles, navigation, and mobile states."
+        ),
+    }
+
+
+def asset_manifest(
+    pool: dict[str, Any],
+    manual_screenshots: list[dict[str, Any]],
+    screenshot_files: dict[str, Any],
+    requirements: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "requirements": requirements,
         "logos": pool["asset_pool"].get("logos", []),
         "images": pool["asset_pool"].get("images", []),
         "background_images": pool["asset_pool"].get("background_images", []),
@@ -1298,6 +1498,16 @@ def run(args: argparse.Namespace) -> int:
         )
 
     pool = structured_brain_pool(resolved, brandfetch, basic, devtools)
+    required_logo_roles = list(dict.fromkeys(["vendor", *(args.require_logo or [])]))
+    target_logo_candidates = [
+        probe_logo_candidate(value, args.timeout) for value in (args.target_logo or [])
+    ]
+    requirements = asset_requirements(
+        pool,
+        required_logo_roles,
+        target_logo_candidates,
+        args.target_logo_source or [],
+    )
     files = {
         "brand_json": str(out_dir / "brand.json"),
         "source_dna": str(out_dir / "source-dna.md"),
@@ -1343,6 +1553,7 @@ def run(args: argparse.Namespace) -> int:
         evidence_issues.append(
             "No complete desktop/mobile screenshot pair or copied manual screenshot is available."
         )
+    evidence_issues.extend(requirements.get("issues", []))
     evidence_status = "ok" if not evidence_issues else "incomplete"
     evidence_validation = {
         "status": evidence_status,
@@ -1351,16 +1562,20 @@ def run(args: argparse.Namespace) -> int:
         "desktop_screenshot": desktop_screenshot_ok,
         "mobile_screenshot": mobile_screenshot_ok,
         "manual_screenshot_count": len(copied_manual_screenshots),
+        "asset_requirements": requirements,
         "issues": evidence_issues,
     }
     pool.setdefault("risks", []).extend(evidence_issues)
     brand_json = {
-        "schema_version": "0.1",
+        "schema_version": "0.2",
         "generated_at": utc_now(),
         "input": {
             "query": args.query,
             "source_url": args.source_url,
             "target": args.target,
+            "required_logo_roles": required_logo_roles,
+            "target_logo": args.target_logo,
+            "target_logo_source": args.target_logo_source,
         },
         "resolved": resolved,
         "brandfetch": brandfetch,
@@ -1368,10 +1583,14 @@ def run(args: argparse.Namespace) -> int:
         "devtools": devtools,
         "validation": evidence_validation,
         "structured_brain_pool": pool,
+        "theme_handoff": theme_handoff(pool),
         "files": files,
     }
     write_json(out_dir / "brand.json", brand_json)
-    write_json(out_dir / "asset-manifest.json", asset_manifest(pool, manual_screenshots, screenshot_files))
+    write_json(
+        out_dir / "asset-manifest.json",
+        asset_manifest(pool, manual_screenshots, screenshot_files, requirements),
+    )
     (out_dir / "source-dna.md").write_text(source_dna_markdown(pool, resolved, files))
     (out_dir / "folloze-board-brief.md").write_text(board_brief_markdown(pool, resolved, args.target, files))
     (out_dir / "brand-tokens.css").write_text(css_tokens(pool))
@@ -1386,6 +1605,7 @@ def run(args: argparse.Namespace) -> int:
         "brandfetch_status": brandfetch.get("status"),
         "screenshots": screenshot_files,
         "validation": evidence_validation,
+        "asset_requirements": requirements,
         "risks": pool.get("risks", []),
         "files": files,
     }
@@ -1401,6 +1621,24 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("query", help="Domain, source URL, or account name.")
     parser.add_argument("--source-url", help="Explicit source URL when query is an account name.")
     parser.add_argument("--target", help="Optional target account for the generated Folloze board brief.")
+    parser.add_argument(
+        "--require-logo",
+        action="append",
+        choices=["vendor", "target"],
+        help="Required logo role. Repeat for co-branding. Vendor is required by default.",
+    )
+    parser.add_argument(
+        "--target-logo",
+        action="append",
+        default=[],
+        help="Public image URL or local file for a target-account logo. Repeat for alternatives.",
+    )
+    parser.add_argument(
+        "--target-logo-source",
+        action="append",
+        default=[],
+        help="Official brand-center, press-kit, or user-provided source for the target logo. Repeat as needed.",
+    )
     parser.add_argument("--out", help="Output directory. Defaults to a timestamped /tmp bundle.")
     parser.add_argument("--brandfetch-token", help="Optional Brandfetch API token. Falls back to BRANDFETCH_API_KEY.")
     parser.add_argument("--manual-screenshot", action="append", default=[], help="Path to a GoFullPage/manual screenshot to copy into the bundle.")

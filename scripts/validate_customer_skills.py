@@ -21,11 +21,188 @@ REQUIRED_BRAND_FILES = {
     "references/brand-harvest-cli.md",
     "scripts/brand_harvest.py",
 }
+HUPO_FIXTURE_PATHS = {
+    "one_to_one": ROOT / "tests/fixtures/hupo/bofa-one-to-one.json",
+    "industry": ROOT / "tests/fixtures/hupo/finserv-highspot-native.json",
+}
+REQUIRED_HARDENING_MARKERS = {
+    "Skills/abm-strategist/SKILL.md": {
+        "mcp_html",
+        "mcp_template",
+        "native_traditional",
+        "references/builder-handoff-contract.md",
+        "Repair mode carries approval forward",
+    },
+    "Skills/Folloze-One-To-One-Microsite-Builder/SKILL.md": {
+        "build_mode: mcp_html",
+        "account-substitution test",
+        "top header",
+        "decision-advancing interaction",
+        "320px",
+    },
+    "Skills/Folloze-Industry-Campaign-Page-Builder/SKILL.md": {
+        "native_traditional",
+        "Custom Theme",
+        "generic fallback",
+        "exact-domain",
+        "different logos",
+        "CTA context",
+    },
+    "Skills/brand-harvester/SKILL.md": {
+        "--require-logo target",
+        "--target-logo-source",
+        "asset_requirements.status",
+        "effective rendered button-label styles",
+        "theme_handoff",
+    },
+}
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 OPTIONAL_BRAND = re.compile(
     r"(?:use|run)\s+[`$]*brand-harvester[`]*\s+when available",
     re.IGNORECASE,
 )
+
+
+def load_json(path: Path, errors: list[str]) -> dict:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"cannot read {path.relative_to(ROOT)}: {exc}")
+        return {}
+    if not isinstance(value, dict):
+        errors.append(f"{path.relative_to(ROOT)}: expected a JSON object")
+        return {}
+    return value
+
+
+def validate_hupo_fixtures(errors: list[str]) -> None:
+    one_to_one = load_json(HUPO_FIXTURE_PATHS["one_to_one"], errors)
+    industry = load_json(HUPO_FIXTURE_PATHS["industry"], errors)
+    if not one_to_one or not industry:
+        return
+
+    total_boards = sum(
+        int(item.get("board_count_contribution", 0))
+        for item in (one_to_one, industry)
+    )
+    if total_boards != 2:
+        errors.append(f"Hupo fixtures must describe exactly 2 boards, found {total_boards}")
+
+    if one_to_one.get("build_mode") != "mcp_html":
+        errors.append("Hupo Bank of America fixture must use build_mode mcp_html")
+    if one_to_one.get("target_account") != "Bank of America":
+        errors.append("Hupo one-to-one target must be Bank of America")
+    account_scope = one_to_one.get("account_scope", {})
+    if account_scope.get("parent_company") != "Bank of America":
+        errors.append("Hupo one-to-one parent narrative must belong to Bank of America")
+    if account_scope.get("supporting_business_units_may_own_primary_narrative") is not False:
+        errors.append("Hupo supporting business units must not own the primary narrative")
+    copy_contract = one_to_one.get("copy_contract", {})
+    headline = str(copy_contract.get("headline") or "")
+    primary_cta = str(copy_contract.get("primary_cta") or "")
+    if "Bank of America" not in headline or "Bank of America" not in primary_cta:
+        errors.append("Hupo one-to-one headline and primary CTA must name Bank of America")
+    if re.search(r"[.!?:;]$", headline):
+        errors.append("Hupo one-to-one headline must not use terminal punctuation")
+    for field in (
+        "parent_target_owns_headline",
+        "parent_target_owns_primary_cta",
+        "account_substitution_requires_rewrite",
+        "leadership_audience",
+    ):
+        if copy_contract.get(field) is not True:
+            errors.append(f"Hupo one-to-one copy contract requires {field}=true")
+    header = one_to_one.get("header", {})
+    if header.get("placement") != "top":
+        errors.append("Hupo one-to-one co-branding must be in the top header")
+    for role in ("vendor_logo", "target_logo"):
+        logo = header.get(role, {})
+        if logo.get("required") is not True or logo.get("official_asset_required") is not True:
+            errors.append(f"Hupo one-to-one {role} must require an official asset")
+    if set(header.get("required_viewports", [])) != {1440, 390, 320}:
+        errors.append("Hupo one-to-one must verify 1440, 390, and 320 pixel viewports")
+    interaction = one_to_one.get("signature_interaction", {})
+    if interaction.get("type") not in {
+        "calculator", "scenario_model", "diagnostic", "readiness_assessment",
+        "maturity_score", "comparison", "role_path",
+    }:
+        errors.append("Hupo one-to-one requires a decision-advancing signature interaction")
+    if interaction.get("unsupported_roi_claims_allowed") is not False:
+        errors.append("Hupo one-to-one cannot allow unsupported ROI claims")
+    composition = one_to_one.get("composition", {})
+    if composition.get("minimum_distinct_composition_types", 0) < 3:
+        errors.append("Hupo one-to-one requires at least 3 composition types")
+    if composition.get("maximum_adjacent_equal_card_grids", 99) > 1:
+        errors.append("Hupo one-to-one cannot allow consecutive equal-card grids")
+
+    if industry.get("build_mode") != "native_traditional":
+        errors.append("Hupo FinServ fixture must use build_mode native_traditional")
+    if industry.get("incumbent") != "Highspot":
+        errors.append("Hupo FinServ fixture must identify Highspot as the incumbent")
+    industry_copy = industry.get("copy_contract", {})
+    if "Highspot" not in str(industry_copy.get("headline") or ""):
+        errors.append("Hupo FinServ first-viewport headline must name Highspot")
+    if industry_copy.get("headline_terminal_punctuation") is not False:
+        errors.append("Hupo FinServ headline must omit terminal punctuation")
+    for field in (
+        "incumbent_named_in_first_viewport",
+        "different_mechanism_explained",
+        "leadership_outcome_present",
+    ):
+        if industry_copy.get(field) is not True:
+            errors.append(f"Hupo FinServ copy contract requires {field}=true")
+    if industry_copy.get("unsupported_comparative_claims_allowed") is not False:
+        errors.append("Hupo FinServ cannot allow unsupported comparative claims")
+    if industry.get("native_content_required") is not True:
+        errors.append("Hupo FinServ must require native content")
+    if industry.get("html_final_substitute_allowed") is not False:
+        errors.append("Hupo FinServ cannot allow HTML as the final substitute")
+    theme = industry.get("theme", {})
+    if theme.get("type") != "board_scoped_custom_theme" or theme.get("readback_required") is not True:
+        errors.append("Hupo FinServ must require a board-scoped Custom Theme and readback")
+    personalization = industry.get("personalization", {})
+    if personalization.get("matching") != "exact_domain":
+        errors.append("Hupo FinServ personalization must use exact-domain matching")
+    if personalization.get("raw_domain_in_analytics") is not False:
+        errors.append("Hupo FinServ analytics must not emit raw domains")
+    variants = personalization.get("variants", [])
+    expected_domains = {"fallback", "ubs.com", "allianz-trade.com"}
+    actual_domains = {item.get("account_domain") for item in variants}
+    if actual_domains != expected_domains:
+        errors.append(
+            f"Hupo FinServ variants must be {sorted(expected_domains)}, found {sorted(actual_domains)}"
+        )
+    content_sets: list[set[str]] = []
+    for variant in variants:
+        for field in (
+            "recognition_logo", "hero_copy_key", "supporting_copy_key",
+            "content_item_ids", "content_types", "cta_context",
+        ):
+            if not variant.get(field):
+                errors.append(
+                    f"Hupo FinServ variant {variant.get('variant_key')} is missing {field}"
+                )
+        if len(set(variant.get("content_types", []))) < 2:
+            errors.append(
+                f"Hupo FinServ variant {variant.get('variant_key')} needs at least 2 native content types"
+            )
+        content_sets.append(set(variant.get("content_item_ids", [])))
+    for left_index, left in enumerate(content_sets):
+        for right in content_sets[left_index + 1:]:
+            if left & right:
+                errors.append("Hupo FinServ personalized content sets must be disjoint")
+
+
+def validate_hardening_markers(errors: list[str]) -> None:
+    for relative_path, markers in REQUIRED_HARDENING_MARKERS.items():
+        path = ROOT / relative_path
+        if not path.is_file():
+            errors.append(f"missing hardening target {relative_path}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                errors.append(f"{relative_path}: missing hardening marker {marker!r}")
 
 
 def frontmatter_name(skill_file: Path) -> str | None:
@@ -206,6 +383,9 @@ def main() -> int:
                 f"{markdown_file.relative_to(ROOT)}: contains an absolute user path"
             )
 
+    validate_hardening_markers(errors)
+    validate_hupo_fixtures(errors)
+
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
@@ -216,7 +396,8 @@ def main() -> int:
     print(
         "Validation passed: "
         f"{len(skills)} skills, {builders} builders, "
-        f"{len(REQUIRED_FOUNDATIONS)} required foundations."
+        f"{len(REQUIRED_FOUNDATIONS)} required foundations, "
+        "2 Hupo regression fixtures."
     )
     return 0
 

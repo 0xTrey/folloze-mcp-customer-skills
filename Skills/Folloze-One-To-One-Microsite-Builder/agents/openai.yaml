@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze 1:1 Microsite"
   short_description: "Build buyer-safe named-account Folloze microsites and follow-up pages"
-  default_prompt: "Run $abm-strategist first and get the brief and page structure approved. Then use $brand-harvester and require brand.json.validation.status to be ok before using $Folloze-One-To-One-Microsite-Builder to build the buyer-safe named-account HTML. Render desktop and mobile, compare them with the brand evidence, run buyer-facing QA, and only then hand off to Folloze MCP."
+  default_prompt: "Run $abm-strategist and consume its builder handoff. Use this skill when build_mode is mcp_html. Run $brand-harvester with required vendor and target logos for co-branding and require brand.json.validation.status to be ok. Make the parent target own the leadership argument, place both logos in the top header, include one decision-advancing interaction, avoid repetitive equal-card sections, and verify desktop, 390px, and 320px before any save or publish."

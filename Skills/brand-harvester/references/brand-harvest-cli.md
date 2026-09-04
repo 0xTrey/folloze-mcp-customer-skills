@@ -56,6 +56,22 @@ python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/bran
   --out research/brand-harvest/younion-home
 ```
 
+For co-branding, require the target logo and provide at least one official candidate:
+
+```bash
+python3 "${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/brand-harvester/scripts/brand_harvest.py" \
+  vendor.example \
+  --target "Target Account" \
+  --require-logo target \
+  --target-logo https://target.example/assets/official-wordmark.svg \
+  --target-logo-source https://target.example/brand-center \
+  --out research/brand-harvest/vendor-target
+```
+
+Vendor logo is always required. `--require-logo target` adds the co-brand requirement. Repeat
+`--target-logo` when several official dark, light, or horizontal variants should be tested. Record the
+official brand-center, press-kit, or user-provided provenance with `--target-logo-source`.
+
 ## Outputs
 
 - `brand.json`: full structured capture, including the structured brain pool.
@@ -74,6 +90,7 @@ The CLI writes diagnostic outputs even when evidence is incomplete. A successful
 - a resolved source URL;
 - successful basic HTML or complete desktop/mobile DevTools extraction;
 - a desktop/mobile screenshot pair or at least one copied manual screenshot.
+- every required logo role accepted under `brand.json.validation.asset_requirements`.
 
 Exit code `2` and status `incomplete` mean the bundle is diagnostic only and must not authorize visual design.
 
@@ -94,7 +111,9 @@ Exit code `2` and status `incomplete` mean the bundle is diagnostic only and mus
 
 4. Chrome DevTools:
    - Uses local Chrome/Chromium directly through DevTools Protocol.
-   - Extracts computed colors, fonts, CSS variables, buttons, cards, sections, logos, proof links, CTA text, interaction patterns, and responsive metrics.
+   - Extracts computed colors, fonts, CSS variables, role-specific button families, effective rendered label
+     styles, cards, full-width section rhythm, headline punctuation, logos, proof links, CTA text, interaction
+     patterns, and responsive metrics.
    - Captures desktop and mobile full-page screenshots.
 
 5. Manual screenshot intake:
@@ -102,14 +121,17 @@ Exit code `2` and status `incomplete` mean the bundle is diagnostic only and mus
 
 ## Board Builder Use
 
-Use `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, and screenshots before writing page HTML. The output is working context, not buyer-facing copy.
+Use `source-dna.md`, `folloze-board-brief.md`, `brand-tokens.css`, `asset-manifest.json`, `theme_handoff`, and screenshots before writing page HTML or a Folloze Custom Theme. The output is working context, not buyer-facing copy.
 
 Brand harvest is the required first visual step for new vendor-branded boards and material redesigns unless the user explicitly provides an approved equivalent evidence bundle. Preserve the harvest bundle with the board source and QA artifacts so future updates can reuse the same brand evidence.
 
 Before saving through Folloze MCP, still run the normal gates:
 
 - official logo verification
+- required vendor and target logo acceptance for co-branding
 - source-site button treatment verification
+- rendered nested-label style verification
+- headline-punctuation and full-width section-rhythm verification
 - link and CTA analytics checks
 - mobile overflow checks
 - asset render checks

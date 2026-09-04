@@ -1,4 +1,4 @@
 interface:
   display_name: "Brand Harvester"
   short_description: "Harvest public brand, design, asset, and screenshot evidence for vendor-faithful GTM work"
-  default_prompt: "Use $brand-harvester to harvest the public brand and source-site design system for a vendor domain or source URL, storing durable outputs under the active repo's research/brand-harvest folder."
+  default_prompt: "Use $brand-harvester to harvest the public brand and source-site design system into the active repo. Vendor logo is required by default. For co-branding, require and verify the target logo. Review requirement acceptance, role-specific button families, rendered label styles, headline punctuation, section rhythm, screenshots, and theme_handoff before HTML or Custom Theme work."

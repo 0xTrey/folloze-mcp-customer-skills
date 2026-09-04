@@ -1,4 +1,4 @@
 interface:
   display_name: "Folloze ABM Strategist"
-  short_description: "Plan the account campaign and approve its narrative before design"
-  default_prompt: "Use $abm-strategist to research a named account or one-to-few cluster, produce the concise campaign brief, get the brief and page structure approved, then hand off to the matching Folloze customer builder. The builder must run $brand-harvester before visual design or HTML."
+  short_description: "Build the account argument and route it to the correct Folloze construction mode"
+  default_prompt: "Use $abm-strategist to research the named account, create a leadership-grade account argument, and set exactly one build mode: mcp_html, mcp_template, or native_traditional. Complete the builder handoff contract. Build directly only for mcp_template; route custom MCP/HTML to the one-to-one builder and native traditional work to the industry builder. In repair mode, preserve the approved brief unless seller, target, offering, CTA, motion, or build mode changed."

@@ -2,22 +2,30 @@
   "schema_version": 1,
   "sources": {
     "abm-strategist": {
-      "source_url": "https://cdn.folloze.com/flz/skills/abm-strategist.zip",
-      "source_archive_sha256": "9a8effd4b60d93569f0ab4313b168ed6ff584a09cabed862c460702181d2f14d",
-      "upstream_skill_sha256": "38dd381b30791037da9442895750a3d1f83ee8e7dc8da4b51c07363d3adec06a",
+      "source_type": "user-provided Board MCP QA attachment",
+      "source_file": "abm-strategist-SKILL.md",
+      "source_received": "2026-08-14",
+      "upstream_skill_sha256": "9f087a74cf6917bfab91ca319c71af229a3bad6fc5d4b0b248d16c72981805ab",
+      "historical_catalog_snapshot": {
+        "source_url": "https://cdn.folloze.com/flz/skills/abm-strategist.zip",
+        "source_archive_sha256": "9a8effd4b60d93569f0ab4313b168ed6ff584a09cabed862c460702181d2f14d",
+        "upstream_skill_sha256": "38dd381b30791037da9442895750a3d1f83ee8e7dc8da4b51c07363d3adec06a",
+        "verified": "2026-08-14"
+      },
       "vendored_files": {
-        "Skills/abm-strategist/SKILL.md": "5d9cafbe22b2b34b8f2467de3297738d01fa13f78fcbf17bed25159b9b73944a",
-        "Skills/abm-strategist/agents/openai.yaml": "324dbe2c3018d1bab4bfb07f7a580dae3eda5d197b0eea70570af3c970487bfd"
+        "Skills/abm-strategist/SKILL.md": "b947ff4dff13994ea76d0e8fafbcbc040b19d903b3525119dfbd7807ae90e600",
+        "Skills/abm-strategist/agents/openai.yaml": "396aaae112365fe79f87a46a454bcd1f5424e05b6639e4f8ba9d7c477d3a895e",
+        "Skills/abm-strategist/references/builder-handoff-contract.md": "0a4c89eea62b48be978cddc8eb5ac6a11dc89d0db47afa680ca4b1e36de61507"
       }
     },
     "brand-harvester": {
       "source_url": "https://github.com/0xTrey/Folloze-Skills",
       "source_commit": "04d3482064a3ae8083af13ca4557dff515fc9ce1",
       "vendored_files": {
-        "Skills/brand-harvester/SKILL.md": "eb523fee405f51b2f96b509aa9c2fa574b3cc1929fc46c45011666669e293db8",
-        "Skills/brand-harvester/agents/openai.yaml": "4cae1f086b47f39a3b6e989e576f90cc10613e916d248d08eb064ba678219c52",
-        "Skills/brand-harvester/references/brand-harvest-cli.md": "8f63f62d40e37052aba544957d9e5c6529bc077cb754eb4a74ecba68109252cb",
-        "Skills/brand-harvester/scripts/brand_harvest.py": "8d7231213486d420c35313c9e2589a3fd1bd181f138d7173f09ea819672b19ae"
+        "Skills/brand-harvester/SKILL.md": "d89da7b608baa5c0715b0b342f883d8cc06e8c8917d32ad4ce7058e6f6182a07",
+        "Skills/brand-harvester/agents/openai.yaml": "42eaa230eafc4a0009dbc6c17b20c867fd875ec660de5fc13199f0bc0a207dc3",
+        "Skills/brand-harvester/references/brand-harvest-cli.md": "066d187ca5c6fd56e1e7300f75516a453cff295364fe17136422f7ac4ddf55f3",
+        "Skills/brand-harvester/scripts/brand_harvest.py": "2fd611e3a98239a0cfc5b32752a45b3d340dc38472074bb2dfb935c9f349af62"
       }
     }
   }

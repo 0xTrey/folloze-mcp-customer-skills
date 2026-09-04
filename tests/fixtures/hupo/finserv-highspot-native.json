@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "fixture_id": "hupo_finserv_highspot_native",
+  "board_count_contribution": 1,
+  "seller": "Hupo",
+  "audience": "Financial services",
+  "campaign_motion": "competitive_displacement",
+  "incumbent": "Highspot",
+  "build_mode": "native_traditional",
+  "copy_contract": {
+    "headline": "Move beyond Highspot with conversation performance built for financial services",
+    "supporting_copy": "Connect practice, live guidance, post-call reinforcement, and manager visibility in one operating loop",
+    "primary_cta": "Assess replacement readiness",
+    "headline_terminal_punctuation": false,
+    "incumbent_named_in_first_viewport": true,
+    "different_mechanism_explained": true,
+    "leadership_outcome_present": true,
+    "unsupported_comparative_claims_allowed": false
+  },
+  "signature_interaction": {
+    "type": "readiness_assessment",
+    "name": "Highspot Replacement Readiness Diagnostic",
+    "dimensions": [
+      "practice",
+      "live_guidance",
+      "post_call_reinforcement",
+      "manager_visibility",
+      "governance"
+    ]
+  },
+  "theme": {
+    "type": "board_scoped_custom_theme",
+    "primary_brand": "Hupo",
+    "readback_required": true,
+    "rendered_component_review_required": true
+  },
+  "personalization": {
+    "matching": "exact_domain",
+    "raw_domain_in_analytics": false,
+    "fallback_variant_key": "highspot_replacement_generic_finserv",
+    "variants": [
+      {
+        "variant_key": "highspot_replacement_generic_finserv",
+        "account_domain": "fallback",
+        "recognition_logo": "hupo_finserv_generic",
+        "hero_copy_key": "generic_finserv_highspot_replacement",
+        "supporting_copy_key": "generic_finserv_operating_loop",
+        "content_item_ids": [
+          "generic_replacement_guide",
+          "generic_conversation_performance_article",
+          "generic_readiness_snapshot"
+        ],
+        "content_types": [
+          "pdf",
+          "article",
+          "snapshot"
+        ],
+        "cta_context": "Assess financial-services replacement readiness"
+      },
+      {
+        "variant_key": "highspot_replacement_ubs",
+        "account_domain": "ubs.com",
+        "recognition_logo": "ubs_official_wordmark",
+        "hero_copy_key": "ubs_advisor_conversation_performance",
+        "supporting_copy_key": "ubs_manager_visibility",
+        "content_item_ids": [
+          "ubs_advisor_coaching_brief",
+          "ubs_conversation_performance_playbook",
+          "ubs_evaluation_snapshot"
+        ],
+        "content_types": [
+          "article",
+          "pdf",
+          "snapshot"
+        ],
+        "cta_context": "Review a UBS replacement evaluation"
+      },
+      {
+        "variant_key": "highspot_replacement_allianz_trade",
+        "account_domain": "allianz-trade.com",
+        "recognition_logo": "allianz_trade_official_wordmark",
+        "hero_copy_key": "allianz_trade_distribution_conversations",
+        "supporting_copy_key": "allianz_trade_coaching_governance",
+        "content_item_ids": [
+          "allianz_trade_distribution_brief",
+          "allianz_trade_insurance_playbook",
+          "allianz_trade_evaluation_snapshot"
+        ],
+        "content_types": [
+          "article",
+          "pdf",
+          "snapshot"
+        ],
+        "cta_context": "Review an Allianz Trade replacement evaluation"
+      }
+    ]
+  },
+  "native_content_required": true,
+  "html_final_substitute_allowed": false,
+  "designer_preview_required": true,
+  "required_viewports": [
+    1440,
+    390
+  ],
+  "state_contract": [
+    "native_build",
+    "theme_readback",
+    "content_readback",
+    "personalization_rule_readback",
+    "designer_variant_preview",
+    "publish",
+    "anonymous_verification"
+  ]
+}
