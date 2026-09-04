@@ -779,7 +779,7 @@ For the embeddable version:
 - do not use cookies or local storage by default;
 - do not make network requests by default;
 - do not collect PII by default;
-- use event listeners rather than inline event handlers;
+- use event listeners for calculation, rendering, navigation, and other calculator behavior; the only inline-handler exception is a direct `flzAnalytic` call on a CTA when the current Folloze guide or save validator requires inspectable tracking;
 - do not use `eval`, dynamic code execution, or unsanitized `innerHTML` with stakeholder or visitor input;
 - keep calculation functions pure and separate from DOM rendering;
 - expose one explicit `mountFollozeRoi(root)` function and make it idempotent;
@@ -799,7 +799,7 @@ Use real supplied destinations for every link and CTA. Do not use `href="#"`, `j
 
 ## Analytics contract
 
-Apply the downloaded `folloze-analytics-tracking` skill. Instrument meaningful events, but do not send raw sensitive financial inputs or PII unless an approved analytics policy explicitly requires it.
+Apply the downloaded `folloze-analytics-tracking` skill. Instrument meaningful events, but never send raw sensitive financial inputs or PII through calculator analytics.
 
 Recommended events:
 
@@ -822,8 +822,10 @@ Recommended safe payload fields:
 - scenario;
 - result band, not exact result;
 - model status;
-- CTA text and approved destination;
+- CTA text and an approved destination identifier, not the URL or query string;
 - validation error type.
+
+Never place raw input values, exact modeled results, PII, account-confidential values, free text, destination URLs, query strings, form values, element datasets, or arbitrary metadata in an analytics payload. Allowlist and normalize every emitted field, keep labels concise, and drop unexpected keys.
 
 Create one defensive analytics adapter that emits the required `flzAnalytic` events when that function is available and may also dispatch a namespaced browser `CustomEvent` for local testing. Do not inject a custom bridge or reach into undocumented Folloze controllers or services unless the current official guide explicitly requires that exact integration.
 
@@ -833,7 +835,7 @@ Use this internal adapter contract:
 emitRoiEvent(eventName, detail, sourceElement = null)
 ```
 
-Every event must use one versioned envelope:
+Every event passed through the internal adapter must use one versioned envelope:
 
 ```json
 {
@@ -850,7 +852,9 @@ Every event must use one versioned envelope:
 }
 ```
 
-Use a direct inline `flzAnalytic('cta_click', {text, area}, this)` call on every CTA so the current save validator can inspect it. For calculator controls and composite interactions, route safe event fields through `emitRoiEvent`, then call `flzAnalytic` with the action name, safe payload, and source element. Dispatch `folloze:roi-event` with the envelope in `event.detail` as an optional local test path. Verify both paths with test spies. Record the emitted name and payload, confirm that raw financial inputs and PII are absent, and do not claim production analytics delivery until the saved Folloze experience is tested independently.
+Treat this full envelope as the internal payload for the optional local `folloze:roi-event` test path. Before calling `flzAnalytic`, project the envelope onto the narrow allowlist permitted by the current Analytics Tracking skill and live guide: always `text` and `area`, plus only explicitly approved categorical keys. Do not forward `timestamp`, raw envelope fields, or arbitrary metadata to `flzAnalytic` by default.
+
+Use a direct inline `flzAnalytic('cta_click', {text, area}, this)` call on every CTA so the current save validator can inspect it. For calculator controls and composite interactions, route safe event fields through `emitRoiEvent`, then call `flzAnalytic` with the action name, the projected allowlisted payload, and the source element. Dispatch `folloze:roi-event` with the full envelope in `event.detail` as an optional local test path. Verify both paths with test spies. Record the emitted name and payload, confirm that raw financial inputs and PII are absent, and do not claim production analytics delivery until the saved Folloze experience is tested independently.
 
 ## Accessibility and responsive contract
 
