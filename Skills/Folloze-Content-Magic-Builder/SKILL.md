@@ -1,130 +1,136 @@
 ---
 name: Folloze-Content-Magic-Builder
-description: Turn a customer-provided content item into a strategically framed, source-branded, interactive Folloze experience. Use when the user uploads or links a whitepaper, report, ebook, webinar, blog post, deck, video, checklist, guide, or similar asset and wants a standalone buyer experience rather than a static download or PDF wrapper.
+description: Turn one approved report, PDF, webinar, video, deck, guide, or similar content item into a source-branded, editorially rewritten, interactive Folloze buyer experience with portable assets and verified public delivery. Use when the content item is the experience rather than one module in a broader campaign.
 ---
 
 # Folloze Content Magic Builder
 
-Use this skill to transform one approved content item into a complete standalone Folloze-ready experience. The asset supplies the approved substance; the buyer context and source brand supply the strategy, visual system, and journey.
+Transform one approved content item into a complete vendor-owned digital experience. The source supplies facts, claims, concepts, and proof. The activation context and declared visual owner supply the buyer strategy, editorial framing, design system, imagery, interactions, and conversion path.
 
 ## Fit
 
-Use this when the content item is the center of the page. This skill must stand on its own with the same strategic and visual discipline as the campaign and account builders.
+Use this skill when the content item is the center of the experience. If the item is only one module inside a broader campaign, use the appropriate campaign builder instead.
 
-If the asset is only one module inside a broader campaign, use the appropriate campaign builder instead. If the asset remains the primary experience, keep this skill in control and use the activation context to shape the page.
+Do not treat a PDF or deck as a visual template. The output must stand alone as polished buyer-facing marketing, not as a document wrapper or evidence review.
 
 ## Required Foundations
 
-- Confirm that the approved content item is the experience's primary conversion job. If an upstream route handoff is supplied, inherit it without rerunning routing.
-- Run `$abm-strategist` only when the activation is named-account or one-to-few. Do not invent a target account for a standalone or one-to-many content experience.
-- For a Folloze-owned experience, use `$folloze-brand-kit`. For an external brand, run `$brand-harvester` and require a zero CLI exit plus `brand.json.validation.status: ok` before choosing visual treatments or writing CSS/HTML.
-- Use `$folloze-board-quality-core` for source discipline, experience-shape selection, responsive and interaction QA, analytics, and MCP preflight.
+- Confirm that the approved content item is the primary conversion job. Inherit an approved upstream route handoff without rerunning routing.
+- Run `$abm-strategist` only for named-account or one-to-few activation. Do not invent a target account for broad or standalone content.
+- Use `$folloze-brand-kit` for a Folloze-owned experience.
+- For every external brand, run `$brand-harvester` and require a zero exit plus `brand.json.validation.status: ok` before choosing visual treatments or writing CSS or HTML.
+- Use `$folloze-board-quality-core` for source discipline, shape selection, responsive and interaction QA, analytics, accessibility, and MCP preflight.
+- Read [the Content Magic Production Contract](references/content-magic-production-contract.md) before concept selection, copywriting, interaction planning, or build work.
 
 ## Minimum Inputs
 
 Gather only what is missing:
 
-- The source content item: file, URL, pasted text, transcript, deck, video, or approved summary.
-- Target audience.
-- Activation context: standalone resource, demand-generation offer, event follow-up, sales follow-up, named-account experience, industry/persona experience, or another real use.
-- Buyer stage: awareness, education, evaluation, validation, or decision support.
-- Desired conversion action.
-- Source brand website, specific source page, brand guide, screenshot, or approved design direction.
-- Whether the full asset should stay gated, ungated, summarized, or used as supporting material.
+- Approved source content item or approved summary
+- Audience and activation context
+- Buyer stage and desired conversion action
+- Primary visual owner and approved brand source
+- Supporting partner or co-brand, when applicable
+- Original asset access model: native, embedded, reader, gated, public source, or approved authoritative fallback
 
-If activation context or buyer stage is not clear from the request, ask one concise question before choosing the page structure. Do not ask the user to select an internal skill.
+If activation context or buyer stage is genuinely unclear, ask one concise question before choosing the page shape. Do not ask the user to select an internal skill.
 
-## Source And Rights Boundaries
+## Mandatory Production Packet
 
-- Use only user-provided, public, or approved content.
-- Do not reproduce long third-party copyrighted text from an external source. Summarize, excerpt briefly, and link to the source when needed.
-- Preserve compliance-sensitive claims exactly only when they are in the approved source. If a claim is unclear, label it for review.
-- Keep internal content, notes, or unpublished materials out of buyer-facing copy unless explicitly approved.
+Before HTML, record these decisions in the active project repo:
 
-## Workflow
+1. Activation brief and claim matrix
+2. Brand ownership declaration and surface map
+3. Three materially distinct experience concepts when the user requests creative direction or the best shape is unclear
+4. Selected page shape and reason
+5. Message spine and per-scene copy plan
+6. Visual allocation map with one distinct job per dominant visual
+7. Interaction map naming the control, target region, material changes, direction, keyboard behavior, and analytics event
+8. Asset manifest naming source, rights status, purpose, delivery method, expected dimensions, and fallback
+9. Original asset access decision, including any approved unavailable-asset exception
 
-1. Read the complete source asset before writing buyer-facing copy or HTML.
-2. Extract the asset spine: core promise, audience pain, key ideas, proof points, recommended action, useful visuals, and source limitations.
-3. For named-account or one-to-few activation, run `$abm-strategist` and inherit its approved brief and page structure. Otherwise write an activation brief: use context, audience, buyer stage, why now, asset promise, proof hierarchy, gating model, CTA, and constraints.
-4. Establish two sources of truth:
-   - Use the asset for facts, claims, quotations, concepts, diagrams, and proof.
-   - Use the vendor's public website or approved brand source for visual design, typography, imagery, layout rhythm, buttons, navigation, and footer treatment.
-5. Complete the brand gate before writing CSS. Use `$folloze-brand-kit` for Folloze-owned work. For an external brand, run `$brand-harvester`, save and review the durable evidence bundle, and stop for approved evidence if the source is blocked or unavailable.
-6. Build a message spine: buyer tension, useful promise, key ideas, proof, business implication, and natural next action. Do not mirror the asset page by page.
-7. Choose the overall page shape before choosing interactions.
-8. Plan the first viewport and section sequence. Give every section one primary job: orient, teach, prove, personalize, qualify, route, or convert.
-9. Choose only the interactions that improve comprehension or progression: tabs, accordions, filters, progress path, quiz, assessment, checklist, calculator, modal, embedded media, or role selector.
-10. Create one self-contained local HTML file in the active repo.
-11. Link to or embed the original asset according to the approved gating/share model.
-12. Render and QA the complete experience for design fidelity, desktop/mobile layout, interaction behavior, source fidelity, conversion path, and content-rights boundaries.
-13. Complete a buyer-facing QA pass across copy, links, interactions, desktop/mobile layout, placeholders, and dead controls before save, publish, or delivery.
+Keep provenance, page citations, filenames, and evidence notes in this packet and QA receipts, never in ordinary buyer-facing sections.
 
-## Recommended Page Shapes
+## Production Workflow
 
-Choose one primary composition based on the asset and activation brief:
+1. Read the complete source before writing buyer-facing copy or HTML.
+2. Extract its spine: buyer tension, useful promise, key ideas, proof, business implication, action, visual opportunities, and limitations.
+3. Declare the primary visual owner, content authority, supporting partners, source evidence, and excluded brand signals. A partner mentioned in the source does not automatically own the visual system.
+4. Complete the applicable brand gate. Stop visual design if Brand Harvester evidence is invalid, incomplete, or contradicted by the proposed composition.
+5. Choose the experience shape before interactions. Do not default to chapters merely because the source is paginated.
+6. Write customer-facing copy from the source facts. Never narrate the source document or expose the production process.
+7. Allocate a distinct visual job to every scene. Do not repeat a dominant diagram, photograph, or composition unless the repetition communicates an intentional progression.
+8. Specify every interaction before implementation. A control must materially change the region its affordance points toward or be removed.
+9. Choose portable asset delivery before build. Embed approved assets or use stable public HTTPS locations. Do not depend on local, temporary, private, or expiring URLs.
+10. Create one self-contained local HTML source in the active Git repo unless the approved Folloze method requires another portable source.
+11. Resolve the validator relative to this `SKILL.md`, then run it against the exact artifact:
 
-- Narrative workflow: buyer problem, new approach, how it works, proof, next action.
-- Proof-led story: strongest result or quotation first, followed by the evidence and method.
-- Diagram-led experience: one central model or architecture with progressive explanation.
-- Role-based explorer: one asset interpreted through distinct stakeholder priorities.
-- Assessment or workbench: the buyer applies the asset's framework to their own environment.
-- Chapter path: a guided sequence when the source has a strong natural progression.
-- Resource companion: useful summary, media, tools, and access to the original asset.
+```bash
+CONTENT_MAGIC_SKILL_DIR=/path/to/Folloze-Content-Magic-Builder
+python3 "$CONTENT_MAGIC_SKILL_DIR/scripts/validate_content_magic.py" path/to/experience.html \
+  --json-output path/to/qa/content-magic-static.json
+```
 
-Do not default to a chapter path merely because the source is a PDF or deck.
+Add `--chapter-path` for a guided pinned-scene experience. Add `--public-fallback URL` when an approved public resource replaces an unavailable original file.
 
-## Page Standards
+12. Render and visually inspect desktop near `1440 x 900`, compact desktop near `1366 x 768`, and mobile near `390 x 844`. Exercise every interactive state and fix all blocking issues.
+13. If the user requested Folloze save or publish, complete the current MCP preflight and analytics contract. Preserve the requested theme mode, board target, and vanity decision.
+14. After save, verify the saved configuration independently. After publish, verify the anonymous public URL independently with fresh public loading.
 
-- The page must feel like a complete vendor-owned digital experience, not an enhanced document viewer.
-- Lead with the buyer problem and useful takeaway, not the asset title alone.
-- Make the first viewport communicate the buyer problem or outcome in under 10 seconds.
-- Include the vendor or subject identity, the strongest relevant visual or proof signal, one meaningful action, and a visible hint of what comes next.
-- Break long content into scan-friendly modules and paths.
-- Every interactive element should teach, qualify, route, or advance the buyer.
-- Use the source asset's diagrams, concepts, or sections only when they are approved and render well.
-- Use real vendor, product, customer, or source-asset visuals when available. Rebuild important diagrams as live HTML/SVG only when that improves comprehension.
-- Match the source brand's logo treatment, typography scale, button styling, card treatment, imagery, spacing, section surfaces, and light/dark rhythm.
-- Use the asset as content authority, not as the visual template. Do not reproduce PDF page proportions, document headers, or page-by-page composition.
-- Avoid generic AI gradients, decorative blobs, repetitive card grids, oversized empty heroes, and interaction-heavy layouts with weak narrative hierarchy.
-- Choose visual emphasis based on the asset's strongest material: proof statistics, model, architecture, process, quotation, checklist, or decision framework.
-- Keep the original asset accessible without making it the primary visual experience.
+## Copy Contract
 
-## Design Review
+- Write source-grounded, source-invisible marketing copy.
+- Lead with the buyer problem, useful outcome, or strongest verified proof, not the asset title.
+- Give each scene one primary editorial job: orient, teach, prove, personalize, qualify, route, or convert.
+- Keep a major desktop headline near two or three lines when the source-faithful message permits it. Widen the composition or edit the copy before accepting a six-line stack.
+- Remove source-proof labels, filenames, page citations, provenance microcopy, internal context notes, and phrases such as “the brief says” or “the source frames.”
+- Do not use an eyebrow-headline-dek stack.
+- Do not use em dash characters.
+- Preserve verified claims and compliance-sensitive language. Do not invent results, customers, metrics, guarantees, timelines, quotations, or case-study outcomes.
+- Read the complete experience once as a content marketer after scene-level edits. Repair ambiguity, repetition, abrupt transitions, and copy that describes the production process instead of buyer value.
 
-Before building, confirm:
+## Design And Interaction Contract
 
-- The activation brief makes the real use case clear.
-- The approved brand source has been inspected.
-- The page shape fits the buyer stage and source material.
-- The first viewport has a specific visual concept.
-- Proof appears at the point where it strengthens the argument.
-- Interactions support the page shape rather than becoming the page shape.
+- Match the declared visual owner's real logo treatment, typography, component families, imagery, spacing, surfaces, and light or dark rhythm.
+- Keep supporting brands in their declared role. Do not average two brands into a generic co-branded theme.
+- Every dominant visual must have a documented source, purpose, and distinct scene-level job.
+- If a diagram represents orbit, flow, sequence, accumulation, or comparison, make the behavior communicate that meaning when motion improves comprehension. Provide a reduced-motion state.
+- Directional controls must point toward the region that changes.
+- A selector must update primary content such as image, headline, explanation, steps, diagram, or decision output. A change limited to small footer copy or incidental microcopy is not material.
+- If no material state change is justified, remove the arrow and use static value propositions or another honest presentation.
+- Every visible control must work with pointer and keyboard input, expose usable names and state, and emit descriptive analytics when the publishing path supports it.
 
-If these decisions are still generic, improve them before writing HTML.
+## Asset Access And Portability
 
-## QA Gates
+- Apply the shared Content Item Experience Contract when the original item can be safely kept on-board, embedded, or opened in an accessible reader.
+- Never ship a reader, CTA, image, logo, video, or download that depends on `file:`, localhost, a user directory, a temporary directory, a private workspace, or an expiring signed URL.
+- If the original file is unavailable and the user approves substitution, replace its access CTA with the closest authoritative public source. Record the exception internally. Do not expose a buyer-facing warning or evidence label.
+- Public fallbacks open with `target="_blank" rel="noopener"` and retain analytics.
+- Validate the effective source and natural dimensions of every hosted image after save and after publish, including images revealed by tabs or selectors.
 
-Before final response or publish:
+## Guided Chapter Contract
 
-- The source asset is identified and approved for the intended use.
-- Named-account/one-to-few work has an approved `$abm-strategist` brief and page structure.
-- The selected brand path is complete: `$folloze-brand-kit` for Folloze-owned work, or a durable validated `$brand-harvester` bundle for external-brand work.
-- `$folloze-board-quality-core` passed for source/proof discipline, selected experience shape, desktop/mobile render, controls, analytics, accessibility, and save readiness.
-- Rendered desktop and mobile views were compared with the harvested source screenshots or approved equivalent brand evidence.
-- The activation brief identifies the use context, buyer stage, promise, proof hierarchy, gating model, and CTA.
-- The vendor website or approved design source was inspected before CSS was written.
-- The page shape was chosen before the interaction pattern.
-- The first viewport looks source-branded and communicates a clear buyer outcome.
-- Long text has been transformed into original summaries or short compliant excerpts.
-- Interactions work and are not decorative.
-- CTA and original asset access path are clear.
-- The page does not follow the asset page by page or resemble a PDF wrapper.
-- Desktop near `1440 x 900` and mobile near `390 x 844` have been rendered and visually inspected.
-- Mobile reading and interaction states are clean, with no clipping, overlap, horizontal overflow, or layout shifts.
-- Source-brand fidelity, visual hierarchy, imagery, section rhythm, and proof treatment meet the same quality bar as the campaign builders.
-- Buyer-facing copy, links, interactions, desktop/mobile layout, placeholders, and dead controls have been checked and any blocking issues have been fixed or explicitly reported.
-- If saved through Folloze MCP, use the available Folloze MCP publishing tools and current Folloze guide. Report local source path, board ID, returned edit URL, and public URL status separately.
+Use this only when a chapter path is the selected shape:
+
+- Desktop uses one stationary viewport, one active scene, one chapter per accepted navigation gesture, and inactive scenes that are hidden, inert, and noninteractive.
+- At `900px` and below, switch to ordinary document flow and remove desktop-only inert and hidden state.
+- Use `100dvh`, compact-height bands, measured active-scene overflow, and remeasurement after resize, font settlement, scene entry, and interaction changes.
+- Provide visible progress, previous and next controls, keyboard navigation, reduced motion, and an honest hint of what comes next.
+- Never solve height pressure with a single hard cutoff that clips content.
+
+## QA And Release Gates
+
+Before delivery, save, or publish, require all applicable gates in the production contract. In particular:
+
+- Static validation passes against the exact artifact hash.
+- Brand fidelity is compared with approved desktop and mobile evidence.
+- Desktop, compact-height desktop, and mobile renders have no clipping, overlap, horizontal overflow, or unreadable content.
+- Every control is exercised and every declared target changes materially.
+- Every image state loads with nonzero natural dimensions.
+- No page-authored console errors remain.
+- The original asset or approved authoritative fallback works publicly.
+- Local build, Folloze save, saved readback, theme, vanity, publication, anonymous rendering, hosted interactions, analytics invocation, analytics delivery, Git commit, and push are reported as separate states.
 
 ## Final Response
 
-Return the local file path, brief mode and approval status, brand-harvest path and review status, source asset used, activation context, buyer stage, page shape, interaction pattern, CTA, content-rights caveats, rendered design QA status, buyer-facing QA status, and Folloze save/publish status.
+Return the local source path, artifact hash, activation context, selected shape, brand owner and harvest status, source item and access mode, copy review status, visual and interaction QA status, asset portability status, responsive QA status, board identifier when applicable, theme decision, vanity decision, save state, publish state, anonymous public URL status, analytics state, and Git state.
