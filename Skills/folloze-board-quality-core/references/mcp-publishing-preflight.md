@@ -17,6 +17,16 @@ Run this preflight only after the local source passes the buyer-experience quali
 - Confirm the local HTML path is the reviewed source of truth and contains the current required stylesheet or shell contract.
 - Confirm title, slug or vanity preference, visibility intent, and publish intent separately when those choices exist.
 
+## Custom HTML Section Layout
+
+Apply this gate when a custom HTML section is meant to fill the page. Intentionally inset embeds keep their designed spacing.
+
+1. Read the current custom HTML section guide and inspect the saved section in Folloze Designer. Treat the Folloze section, grid, and HTML widget as separate layout layers. Do not assume the local HTML preview shows their padding.
+2. Use the native full-width or **Full grid** control when available. Confirm its saved state after reload. Do not infer that MCP exposes the control unless the current guide or tool readback says so.
+3. Measure the rendered section and widget padding on all four sides. For an edge-to-edge design, remove unintended left, right, top, and bottom gutters. Prefer native zero-padding controls. If the host retains padding, offset only the measured value on the HTML fragment's scoped root; do not apply a fixed negative margin to every board or change global `body` styles.
+4. Check the saved draft and anonymous published page at desktop and mobile widths. The intended edge-to-edge boundaries must meet the viewport or adjacent section, with no theme-colored strip or horizontal overflow. Ignore Designer selection outlines and toolbar chrome when judging the public result.
+5. Record the native layout setting, measured host padding, any scoped compensation, and rendered QA evidence. Fix any unintended gutter before publication; report an unresolved platform limit if it cannot be removed.
+
 ## Write And Readback
 
 1. Perform the narrowest supported save operation.
@@ -38,6 +48,7 @@ Publishing state:
 - Public deployment requested:
 - Public URL:
 - Anonymous public verification:
+- Custom HTML layout verification, if applicable:
 - Caveats:
 ```
 
