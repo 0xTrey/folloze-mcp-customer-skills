@@ -2,6 +2,8 @@
 
 Use this public-safe reference for Folloze positioning, audience, and narrative guardrails.
 
+Read messaging-v3-3.md first for the current lead positioning, definition, impact promise, and signal requirements.
+
 ## External Frame
 
 Folloze helps B2B teams target and convert key accounts. It turns team-created or AI-created content into live, governed, measurable buyer experiences.
@@ -27,7 +29,7 @@ Do not lead external copy with internal agent names, `activation layer`, `Buyer 
 
 ## Primary Audiences
 
-- marketing and revenue leaders
+- marketing and revenue leaders, including CEO stakeholders
 - demand generation, ABM, field, campaign, and customer marketers
 - marketing and revenue operations
 - sales enablement and sales teams when the use case is follow-up or expansion

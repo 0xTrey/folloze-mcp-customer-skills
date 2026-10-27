@@ -10,25 +10,41 @@ Use a current, approved Folloze logo supplied by the user or an authorized publi
 - Keep clear space and verify the actual rendered size.
 - Match the approved light or dark variant to the surface and record the source used.
 
+## Visual Reference
+
+The approved homepage design capture from July 2026 supplies the general corporate defaults below. Tyler's October 26 update changes messaging, not the palette or logo.
+
 ## Color Tokens
 
 | Role | Hex |
 | --- | --- |
-| Cyan | `#00CCFF` |
-| Bright blue | `#00ADFF` |
-| Primary blue | `#0077FF` |
-| Deep blue | `#0048DE` |
-| Pink accent | `#FF469E` |
-| Purple accent | `#7F45FF` |
-| Green accent | `#11D175` |
-| Orange accent | `#F98A1B` |
-| Yellow accent | `#FFC800` |
-| Pale blue | `#F3F9FD` |
-| Light blue gray | `#D8ECFA` |
-| Slate | `#2C3D59` |
-| Navy | `#1C293F` |
-| Deep navy | `#071428` |
-| White | `#FFFFFF` |
+| Primary ink | #1C293F |
+| Deep ink | #071428 |
+| Action navy | #0A1230 |
+| Body copy | #2C3D59 |
+| Muted copy | #6B7E9D |
+| Primary accent | #5B5BFF |
+| Accent dark | #3B3BE0 |
+| Accent tint | #EEEEFF |
+| Border | #E6E8F0 |
+| Soft surface | #FAFAFB |
+| White | #FFFFFF |
+
+Keep expressive campaign palettes coherent within their approved campaign context. Do not default to the older cyan-blue palette for general corporate work.
+
+## Type And Controls
+
+- Display: Instrument Sans, weight 500.
+- Body and buttons: Inter, normally 400 and 500.
+- Navigation: Open Sans Variable where available.
+- Use readable 16px body text and usable system sans-serif fallbacks.
+- Buttons are pill-shaped. Standard cards use 24px radius; large proof and CTA panels use 32px.
+- Primary buttons use action navy and white, with violet hover.
+- Prefer borders and surface contrast over heavy shadows.
+
+## Composition
+
+Start with one primary headline. Put supporting context in body content. Do not stack an eyebrow, headline, and explanatory subtitle. Use 1 through 9 without leading zeros.
 
 ## Direction
 
@@ -37,7 +53,7 @@ Folloze-owned work should feel modern, crisp, enterprise-ready, bright without b
 Prefer:
 
 - large, clear outcome headlines
-- mostly white and pale-blue surfaces
+- mostly white and soft surfaces, navy text, and restrained violet actions
 - occasional navy system or proof panels
 - restrained accent color for state and emphasis
 - compact, purposeful modules
