@@ -2,6 +2,8 @@
 
 Folloze sounds like a direct, experienced peer to B2B marketers: confident without bravado, specific rather than abstract, and accurate enough for a senior practitioner.
 
+Read messaging-v3-3.md for the v3.3 guardrails: define AI-driven ABM, promise one-to-one impact, avoid unlimited production claims, and include engagement signal when explaining how it works.
+
 ## Voice Rules
 
 1. Lead with the buyer outcome or constraint.

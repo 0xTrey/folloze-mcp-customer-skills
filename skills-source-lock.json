@@ -34,18 +34,21 @@
     },
     "folloze-brand-kit-public-safe-derivative": {
       "source_url": "https://github.com/0xTrey/Folloze-Skills",
-      "source_commit": "3c37cc8c4a6938fb7eaa76760e70d83252d1ccfd",
-      "derivation": "Purpose-built public-safe subset; private source pointers, pricing, package rows, restricted proof, competitive strategy, roadmap context, and logo binaries excluded.",
+      "source_commit": "be0137d",
+      "derivation": "Public-safe subset with approved October 26, 2026 v3.3 messaging alignment; private source pointers, pricing, package rows, restricted proof, competitive strategy, roadmap context, and logo binaries excluded.",
       "vendored_files": {
-        "Skills/folloze-brand-kit/SKILL.md": "6d2185fbcc7183918167c959b3c5b328b113d6a604ebfeec7a1327770ecc806c",
-        "Skills/folloze-brand-kit/agents/openai.yaml": "e4eec5e39e496d723e01feabfdc9f633551a6bd19bc38a91f98e5f1bae05713f",
-        "Skills/folloze-brand-kit/references/brand-foundation.md": "d82e44b0941c33781da95ef50eb125cd48b3a092adbf113b5a4dd4092a729a3d",
-        "Skills/folloze-brand-kit/references/campaign-board-design-context.md": "c938b8a037fa61c05c15e5dd1772ed8927d0a98c0b1a15ef2988b4786405060d",
+        "Skills/folloze-brand-kit/SKILL.md": "bca6da11f786ca0609d7ad72384dbcd52c6692f2bd695e2090a9ae0d447ffe03",
+        "Skills/folloze-brand-kit/agents/openai.yaml": "22d4dee3dec94aeb75a6907c02f44854ea0a1bb6654348c289fff608e99fbbb7",
+        "Skills/folloze-brand-kit/references/brand-foundation.md": "81cee9af565671a26c0064677cf353311beee6ce63193dd1313449099df81a7c",
+        "Skills/folloze-brand-kit/references/campaign-board-design-context.md": "1ed3376a7eefd37b48aa6f77e737165bd89f615a2f27cb0a94e38b0e50df145a",
         "Skills/folloze-brand-kit/references/claims-and-proof.md": "e363268071b868f30c12fe5ba51873c2d579077c4ea556a7ad9a482a37372394",
+        "Skills/folloze-brand-kit/references/messaging-v3-3.md": "2fec83003e5547177dc03ee63a7f12ed8150ea382cb5e40222757e5eac0d9104",
         "Skills/folloze-brand-kit/references/product-capabilities-public-safe.md": "e781f93a0cc5cb0a66953a6477cade8c8c89ae63dce978543a29964dcbe89c37",
-        "Skills/folloze-brand-kit/references/visual-identity.md": "63d241e8c619e4f444b6799e7a6766113c420e534f3940d18ac59db05501a029",
-        "Skills/folloze-brand-kit/references/voice-and-style.md": "7f906ff4c83527df8901c93bdb84b6a8f1ca2bacbfb62d72e7baf71b34461df0"
-      }
+        "Skills/folloze-brand-kit/references/visual-identity.md": "cd0ec407eec6aabf046c31614521b86651b28b11e3cc2f6c4c772769b38fe4af",
+        "Skills/folloze-brand-kit/references/voice-and-style.md": "13eb88e6597ae4de72540b9dc0555d0b2ba83c580e1ce9083b724d148b57751b"
+      },
+      "messaging_source_version": "3.3",
+      "messaging_source_date": "2026-10-26"
     },
     "customer-bundle-v3-authored": {
       "source_url": "https://github.com/0xTrey/folloze-mcp-customer-skills",

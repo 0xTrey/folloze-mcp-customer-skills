@@ -39,3 +39,7 @@ Campaign design context:
 - Claims and named proof pass the public-safe proof gate.
 - CTA labels are concrete and point to approved destinations.
 - No visible copy implies the page was generated, templated, or internally staged.
+
+## Current Messaging And Composition
+
+Apply messaging-v3-3.md before writing Folloze-owned board copy. Start with one headline. Do not stack an eyebrow, headline, and explanatory subtitle. Use 1 through 9 without leading zeros.

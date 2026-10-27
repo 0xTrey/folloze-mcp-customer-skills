@@ -7,6 +7,10 @@ description: Public-safe Folloze brand, messaging, visual identity, logo, voice,
 
 Use this portable subset as the brand authority for Folloze-owned customer-facing boards. It is derived from the public-safe material in the broader Folloze brand kit and excludes private source pointers, pricing, package rows, customer proof libraries, tracker details, operator identities, and roadmap material.
 
+## Current Messaging
+
+Read references/messaging-v3-3.md first. Lead with AI-driven ABM and define it: your AI researches and writes; Folloze turns it into governed account campaigns and captures engagement. Promise one-to-one impact, never production volume. Include the signal beat whenever explaining how it works.
+
 ## Brand Anchor
 
 Folloze helps B2B teams target and convert key accounts.
@@ -21,7 +25,7 @@ Preferred display register:
 
 ## How To Use
 
-1. Read `references/brand-foundation.md` for positioning, audience, and narrative rules.
+1. Read `references/messaging-v3-3.md` for current positioning, then `references/brand-foundation.md` for positioning, audience, and narrative rules.
 2. Read `references/voice-and-style.md` for buyer-facing language.
 3. Read `references/visual-identity.md` and obtain a current approved Folloze logo from a verified official or user-authorized source.
 4. Use `references/product-capabilities-public-safe.md` only when product capability context is needed.
