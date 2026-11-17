@@ -36,6 +36,7 @@ REQUIRED_QUALITY_FILES = {
     "references/mcp-publishing-preflight.md",
 }
 LOCK_COMPLETE_SKILLS = {
+    "folloze-native-one-to-few-campaign-page",
     "folloze-board-router",
     "folloze-board-quality-core",
     "Folloze-Webinar-Promotion-Page-Builder",
@@ -109,8 +110,8 @@ def main() -> int:
 
     if set(manifest.get("required_foundations", [])) != REQUIRED_CORE:
         errors.append(f"manifest required_foundations must be exactly {sorted(REQUIRED_CORE)}")
-    if manifest.get("bundle_version") != "3.2.0":
-        errors.append("manifest bundle_version must be 3.2.0")
+    if manifest.get("bundle_version") != "3.2.1":
+        errors.append("manifest bundle_version must be 3.2.1")
 
     locked_paths: set[str] = set()
     for source_name, source in source_lock.get("sources", {}).items():

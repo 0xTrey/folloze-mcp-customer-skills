@@ -57,10 +57,10 @@
       "vendored_files": {
         "Skills/Folloze-Webinar-Promotion-Page-Builder/SKILL.md": "dbcc1b829ce6f7d9bcb9552a0da25a1a28ce1b3f31e1ab7c282411399db5c10e",
         "Skills/Folloze-Webinar-Promotion-Page-Builder/agents/openai.yaml": "c24bccd1bb23c6088d6997988a5f3f4e6bb0314146aa159bb01acb0a0b44335d",
-        "Skills/folloze-board-quality-core/SKILL.md": "6ccefa71e848aa2b9d5e97f2a13cc3f4c235896780b4d4dd71ea10792abb138d",
+        "Skills/folloze-board-quality-core/SKILL.md": "1c0cc998f0be80f8e55a8d6e9df187819a262a4282fe993ad146c202a746ae44",
         "Skills/folloze-board-quality-core/agents/openai.yaml": "ca0aae8ea0a5bbadfd02f6e7f3c83565327bc6a22eff8e8e461d309dd47f9b4c",
         "Skills/folloze-board-quality-core/references/mcp-publishing-preflight.md": "3062103379d33c62ad94c1de282f79f72643e3afa5cf6ec9b4177f515ad6779b",
-        "Skills/folloze-board-router/SKILL.md": "0b7343e53472cdb905837df56e17b1f141a1d18fcd764399c8ed5c024af4c990",
+        "Skills/folloze-board-router/SKILL.md": "69b053636196d67c05a4690b971d6bbad6d40126515cb9f51cf7ea04c7408d8a",
         "Skills/folloze-board-router/agents/openai.yaml": "00734c6792515a8a35e5c02f23c21a0b8d3dae8be78d2716e28f8ac98a310318"
       }
     },
@@ -98,6 +98,19 @@
         "Skills/folloze-roi-calculator-builder/agents/openai.yaml": "0bc44b3fa9ecb2e7ceb94706ef09ed2988df569a6cfc495fc2277b964e095e7a",
         "Skills/folloze-roi-calculator-builder/references/folloze-release-contract.md": "58757f77d5f757005aaf36040d60385907448c337ff09e3fd4151ea2a2bb2f19",
         "Skills/folloze-roi-calculator-builder/references/master-builder-prompt.md": "0f8b2903885328a451366d8e21607ff282325afb0748d0d33aabd3a0ed7a28f7"
+      }
+    },
+    "native-industry-account-builder": {
+      "source_url": "https://github.com/0xTrey/folloze-mcp-customer-skills",
+      "source_commit": "2c0148af915fc8f33c0216dfde147031a7771120",
+      "derivation": "Portable native builder and synthetic validation fixture, with automatic theme routing. Brand and update guidance uses current evidence and configuration comparison without requiring unpublished shared helpers.",
+      "vendored_files": {
+        "Skills/folloze-native-one-to-few-campaign-page/SKILL.md": "8f89204331da32bcf06b462cac8188a136f949ba7418e816122072994bfdedc3",
+        "Skills/folloze-native-one-to-few-campaign-page/agents/openai.yaml": "bed857344bbc66be6e168fc99934c5ece0909d8df1ae364aff860fb84d7c9522",
+        "Skills/folloze-native-one-to-few-campaign-page/examples/industry-account-contract.json": "e657aecaab8da26c8cea731622bf6701df8e1ea5f3687a49752dcaa77eb80441",
+        "Skills/folloze-native-one-to-few-campaign-page/references/industry-account-rules.md": "48ee7e605bfba6b438057376178cbcbea6c9d82277c34406aef1360649a29562",
+        "Skills/folloze-native-one-to-few-campaign-page/references/native-content-and-updates.md": "4b55890908384d2bde565f839a5abea6393b23e75906aeaddb0b30cc3f970834",
+        "Skills/folloze-native-one-to-few-campaign-page/scripts/native_contract.py": "ddacc37a862d8284453705561f34df2154dd47e68ca69b302e9bbe236c0d29e0"
       }
     }
   }

@@ -16,6 +16,8 @@ Every board follows one shared flow:
 4. The selected builder creates the experience.
 5. `$folloze-board-quality-core` supplies shared design, proof, responsive, interaction, analytics, and MCP preflight gates.
 
+Native boards use `$folloze-native-one-to-few-campaign-page` for saved industry and account personalization. Native or hybrid styling changes automatically invoke `$folloze-theme-builder` when that separately authorized package is installed. Reuse existing brand evidence and matching themes. If the package is missing, report the theme-stage gap and complete independent work. This public pack does not redistribute the internal theme package.
+
 ### Shared skills
 
 | Skill | Job |
@@ -31,6 +33,7 @@ Every board follows one shared flow:
 
 | Skill | Use it for |
 | --- | --- |
+| `folloze-native-one-to-few-campaign-page` | Native industry messages, account-name callouts, independent logo rules and native readers. |
 | `Folloze-One-To-One-Microsite-Builder` | Named-account pages, executive follow-up, renewal, and expansion experiences. |
 | `Folloze-Top-Of-Funnel-Campaign-Landing-Page` | Broad demand generation, product launch, partner, event-awareness, and offer pages. |
 | `Folloze-Webinar-Promotion-Page-Builder` | Before, during, and after webinar promotion, live companion, replay, and follow-up pages. |
@@ -40,6 +43,8 @@ Every board follows one shared flow:
 | `folloze-roi-calculator-builder` | Finance-defensible ROI and value models, shareable builder prompts, self-contained calculator HTML, QA, and gated Folloze handoff. |
 
 ## Install Or Update
+
+Version 3.2.1 adds the portable native builder, synthetic rule/readback checks, and automatic native theme routing. Existing save and publish authority still applies.
 
 Clone or fast-forward a clean checkout, then run the same installer for Claude, Codex, or both:
 
