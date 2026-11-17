@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "example_only": true,
+  "board_id": "example-board",
+  "capabilities": {
+    "receipt": "synthetic-discovery-example",
+    "observed_at": "2026-10-28",
+    "fields": [
+      {
+        "id": "industry-field",
+        "semantic": "industry",
+        "enabled": true,
+        "allowed_values": [
+          "Financial Services",
+          "Pharmaceuticals"
+        ]
+      },
+      {
+        "id": "domain-field",
+        "semantic": "account_domain",
+        "enabled": true
+      },
+      {
+        "id": "name-field",
+        "semantic": "account_name",
+        "enabled": true,
+        "replacement": true,
+        "token": "{!account_name}"
+      }
+    ]
+  },
+  "required_roles": [
+    "hero",
+    "logos",
+    "performance",
+    "values",
+    "leading",
+    "workflow",
+    "customer_context",
+    "resources",
+    "close"
+  ],
+  "header": {
+    "navigation": [
+      "Overview",
+      "Resources"
+    ],
+    "cta": "Talk with us"
+  },
+  "industry_rules": [
+    {
+      "field_id": "industry-field",
+      "value": "Financial Services",
+      "variant": "banking"
+    },
+    {
+      "field_id": "industry-field",
+      "value": "Pharmaceuticals",
+      "variant": "pharma"
+    }
+  ],
+  "logo_rules": [
+    {
+      "field_id": "domain-field",
+      "domain": "bank.example",
+      "effects": {
+        "secondary_logo": "approved-bank-logo"
+      }
+    },
+    {
+      "field_id": "domain-field",
+      "domain": "pharma.example",
+      "effects": {
+        "secondary_logo": "approved-pharma-logo"
+      }
+    }
+  ],
+  "account_token": {
+    "field_id": "name-field",
+    "syntax": "{!account_name}",
+    "fallback": "your team",
+    "placement": "inside_each_industry_banner"
+  },
+  "variants": {
+    "generic": {
+      "sections": {
+        "hero": {
+          "headline": "Keep work moving.",
+          "image": "generic-image-from-approved-source"
+        },
+        "logos": "generic logos content",
+        "performance": "generic performance content",
+        "values": "generic values content",
+        "leading": "generic leading content",
+        "workflow": "generic workflow content",
+        "customer_context": "generic customer_context content",
+        "resources": "generic resources content",
+        "close": "generic close content"
+      },
+      "leading": {
+        "selection": "manual",
+        "item_id": "pdf-generic"
+      },
+      "resources": [
+        "article-workflow",
+        "pdf-generic"
+      ]
+    },
+    "banking": {
+      "sections": {
+        "hero": {
+          "headline": "Make banking operations simpler at {!account_name}",
+          "fallback_headline": "Make banking operations simpler.",
+          "image": "banking-image-from-approved-source"
+        },
+        "logos": "banking logos content",
+        "performance": "banking performance content",
+        "values": "banking values content",
+        "leading": "banking leading content",
+        "workflow": "banking workflow content",
+        "customer_context": "banking customer_context content",
+        "resources": "banking resources content",
+        "close": "banking close content"
+      },
+      "leading": {
+        "selection": "manual",
+        "item_id": "pdf-banking"
+      },
+      "resources": [
+        "article-workflow",
+        "pdf-banking"
+      ]
+    },
+    "pharma": {
+      "sections": {
+        "hero": {
+          "headline": "Keep regulated teams moving at {!account_name}",
+          "fallback_headline": "Keep regulated teams moving.",
+          "image": "pharma-image-from-approved-source"
+        },
+        "logos": "pharma logos content",
+        "performance": "pharma performance content",
+        "values": "pharma values content",
+        "leading": "pharma leading content",
+        "workflow": "pharma workflow content",
+        "customer_context": "pharma customer_context content",
+        "resources": "pharma resources content",
+        "close": "pharma close content"
+      },
+      "leading": {
+        "selection": "manual",
+        "item_id": "pdf-pharma"
+      },
+      "resources": [
+        "article-workflow",
+        "pdf-pharma"
+      ]
+    }
+  },
+  "items": {
+    "pdf-generic": {
+      "board_id": "example-board",
+      "title": "generic customer story",
+      "type": "pdf",
+      "source": "https://example.com/generic.pdf",
+      "file_id": "example-file-generic",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_pages": 5
+    },
+    "pdf-banking": {
+      "board_id": "example-board",
+      "title": "banking customer story",
+      "type": "pdf",
+      "source": "https://example.com/banking.pdf",
+      "file_id": "example-file-banking",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_pages": 5
+    },
+    "pdf-pharma": {
+      "board_id": "example-board",
+      "title": "pharma customer story",
+      "type": "pdf",
+      "source": "https://example.com/pharma.pdf",
+      "file_id": "example-file-pharma",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_pages": 5
+    },
+    "article-workflow": {
+      "board_id": "example-board",
+      "title": "Workflow overview",
+      "type": "article",
+      "source": "https://example.com/workflow"
+    }
+  }
+}

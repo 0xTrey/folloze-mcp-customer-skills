@@ -51,10 +51,15 @@ Choose exactly one required brand source:
 - broad offer, demand-generation, product-launch, partner, or general campaign page: `$Folloze-Top-Of-Funnel-Campaign-Landing-Page`
 - webinar registration, promotion, live-event companion, or replay/follow-up page: `$Folloze-Webinar-Promotion-Page-Builder`
 - hosted single-event destination, multi-session series hub, or reusable live and on-demand platform: `$folloze-webinar-portal-builder`
+- traditional native board with saved industry messaging, account-name callouts, independent account logos and native readers: `$folloze-native-one-to-few-campaign-page`
 - industry, segment, cohort, persona, or one-to-few campaign: `$Folloze-Industry-Campaign-Page-Builder`
 - one approved asset as the center of the experience: `$Folloze-Content-Magic-Builder`
 
 When two routes seem plausible, choose the experience's primary job. A campaign page that promotes one webinar uses the promotion builder. A destination that hosts live access, multiple sessions, lifecycle transitions, or a reusable replay library uses the portal builder. A report featured inside a broader campaign remains a campaign page.
+
+## Native custom branding
+
+When native sections or a hybrid native shell need custom branding in theme-controlled components, invoke `$folloze-theme-builder` automatically before styling. Read `reference/native-board-routing.md` from that installed skill and pass the existing brand evidence, target theme, and task authority. Reuse a verified matching theme; skip this route for HTML-only or logo/copy/layout-only changes. Keep native construction and the existing save/publish boundaries. If the skill is unavailable, report the theme-stage gap and continue independent work.
 
 ## Shared Production Contract
 

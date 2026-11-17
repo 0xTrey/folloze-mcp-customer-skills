@@ -1,6 +1,6 @@
 {
   "repo": "folloze-mcp-customer-skills",
-  "bundle_version": "3.2.0",
+  "bundle_version": "3.2.1",
   "visibility": "public",
   "owner": "0xTrey",
   "purpose": "Customer-facing Folloze MCP skills for routing, strategy, brand fidelity, board building, QA, and safe publishing preflight.",
@@ -33,7 +33,8 @@
         "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
         "Folloze-Content-Magic-Builder",
-        "folloze-roi-calculator-builder"
+        "folloze-roi-calculator-builder",
+        "folloze-native-one-to-few-campaign-page"
       ],
       "routes_to": [
         "Folloze-One-To-One-Microsite-Builder",
@@ -42,7 +43,8 @@
         "folloze-webinar-portal-builder",
         "Folloze-Industry-Campaign-Page-Builder",
         "Folloze-Content-Magic-Builder",
-        "folloze-roi-calculator-builder"
+        "folloze-roi-calculator-builder",
+        "folloze-native-one-to-few-campaign-page"
       ],
       "summary": "Chooses the motion, strategy path, brand source, board builder, and publishing state."
     },
@@ -186,6 +188,21 @@
         "roi_html": "folloze-analytics-tracking"
       },
       "summary": "Builds evidence-backed ROI and value models, reusable prompts, and source-branded Folloze calculator experiences."
+    },
+    {
+      "name": "folloze-native-one-to-few-campaign-page",
+      "path": "Skills/folloze-native-one-to-few-campaign-page",
+      "role": "builder",
+      "status": "customer-facing",
+      "requires": [
+        "folloze-board-quality-core"
+      ],
+      "conditional_requires": {
+        "named_account": "abm-strategist",
+        "external_brand": "brand-harvester",
+        "folloze_brand": "folloze-brand-kit"
+      },
+      "summary": "Native industry messaging and independent account recognition"
     }
   ],
   "excluded_internal_workflows": [

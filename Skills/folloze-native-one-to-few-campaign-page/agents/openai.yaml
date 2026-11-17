@@ -1,0 +1,4 @@
+interface:
+  display_name: "Folloze Native Industry Demo"
+  short_description: "Build native industry content with independent account recognition"
+  default_prompt: "Use $folloze-native-one-to-few-campaign-page with $folloze-board-quality-core. Apply $abm-strategist for named account motions. Use $folloze-brand-kit for Folloze-owned work or $brand-harvester with brand.json.validation.status ok for external brands. Preserve the accepted scope, verify real content and interactions, and keep draft and public evidence separate."

@@ -18,6 +18,10 @@ Use these at the matching stage:
 
 For a Folloze-owned page, `$folloze-brand-kit` replaces external Source DNA capture. Its visual and voice references remain the brand authority.
 
+## Native custom branding
+
+When native sections or a hybrid native shell need custom branding in theme-controlled components, invoke `$folloze-theme-builder` automatically before styling. Read `reference/native-board-routing.md` from that installed skill and pass the existing brand evidence, target theme, and task authority. Reuse a verified matching theme; skip this route for HTML-only or logo/copy/layout-only changes. Keep native construction and the existing save/publish boundaries. If the skill is unavailable, report the theme-stage gap and continue independent work.
+
 ## Production Sequence
 
 1. Confirm the router handoff: motion, brand owner, approved strategy, brand evidence, selected builder, and conversion job.
